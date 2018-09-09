@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置  开始前，先了解一下maven的几个知识点。  groupId：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot + Maven多模块配置">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/springboot + maven多模块配置/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置  开始前，先了解一下maven的几个知识点。  groupId：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-07T17:18:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot + Maven多模块配置">
+<meta name="twitter:description" content="最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置  开始前，先了解一下maven的几个知识点。  groupId：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/07/springboot + maven多模块配置/"/>
+
+
+
+
+
+  <title>SpringBoot + Maven多模块配置 | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/springboot + maven多模块配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot + Maven多模块配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:04+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置</p>
+</blockquote>
+<p>开始前，先了解一下maven的几个知识点。</p>
+<ul>
+<li><strong>groupId</strong>：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是公司/个人域名，但会包括众多的 Maven 项目；</li>
+<li><strong>artifactId</strong>：定义实际项目中的一个 Maven 项目，一般用实际项目名称作为 artifactId 的前缀；</li>
+<li><strong>versioin</strong>：指定工程的版本，如 - 1.0 SNAPSHOT，SNAPSHOT 意为快照，说明在该项目还处于开发中；</li>
+<li><strong>packaging</strong>：定义 Maven 项目的打包方式，有 JAR 、WAR 和 EAR 三种格式<a href="http://www.jb51.net/article/35881.htm" target="_blank" rel="noopener">详情见：JAR，WAR，EAR区别</a></li>
+<li><strong>dependencies</strong>：所有依赖在此范围添加，包含众多dependency</li>
+<li><strong>parent</strong>：指定当前项目的父模块或者父工程，使用groupId，artifactId定位项目</li>
+<li><strong>modules</strong>：在父模块中引用子模块，所有子模块均包含在里面</li>
+<li><strong>module</strong>：表示一个子模块，使用相对路径</li>
+</ul>
+<h3 id="父模块包含子模块（包含）"><a href="#父模块包含子模块（包含）" class="headerlink" title="父模块包含子模块（包含）"></a>父模块包含子模块（包含）</h3><p>在用maven管理项目中，可以在当前项目下构建一个子模块。（子模块使用maven构造的话默认继承父模块，若是使用Spring Initializr的话，则需要手动配置父模块）</p>
+<ul>
+<li><strong>建立一个父模块</strong></li>
+</ul>
+<p>在IDEA中建立一个SpringBoot项目，Group选择公司名字，Artifact选择项目名字。建立好之后，POM.xml大概会是一下的样子。</p>
+<p>==值得注意的是==：要将packaging改为pom，因为所有的父模块中的packaging就是pom。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">	&lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;test2&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;test2&lt;/name&gt;</span><br><span class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">	&lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">	&lt;properties&gt;</span><br><span class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">		&lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">	&lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">	&lt;build&gt;</span><br><span class="line">		&lt;plugins&gt;</span><br><span class="line">			&lt;plugin&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">			&lt;/plugin&gt;</span><br><span class="line">		&lt;/plugins&gt;</span><br><span class="line">	&lt;/build&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>由于使用SpringBoot，所以最顶层父项目就是spring-boot-starter-parent。逻辑上不影响项目分层。父项目建立了基本依赖。</p>
+<ul>
+<li><strong>建立子模块</strong></li>
+</ul>
+<ol>
+<li>右键点击父模块，New -&gt; Module -&gt; Maven</li>
+<li>选择maven-archetype-webapp之后，默认继承父模块的GroupId，需要填写artifactId，此处可填写模块的作用。</li>
+<li>一直点击Next，最后Finish，完成子模块构建</li>
+</ol>
+<p>最后生成的pom.xml如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;artifactId&gt;test2&lt;/artifactId&gt;</span><br><span class="line">        &lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">        &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;artifactId&gt;repository&lt;/artifactId&gt;</span><br><span class="line">    &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line"></span><br><span class="line">    &lt;name&gt;repository Maven Webapp&lt;/name&gt;</span><br><span class="line">    &lt;!-- FIXME change it to the project&apos;s website --&gt;</span><br><span class="line">    &lt;url&gt;http://www.example.com&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;</span><br><span class="line">        &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.11&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;finalName&gt;repository&lt;/finalName&gt;</span><br><span class="line">        &lt;pluginManagement&gt;&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span><br><span class="line">            &lt;plugins&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-clean-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.0.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.0.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.7.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.20.1&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.2.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.5.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.8.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">            &lt;/plugins&gt;</span><br><span class="line">        &lt;/pluginManagement&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>这时父模块中将会添加<modules></modules>标签。（可以手动，但大多时候自动）。其中包含了其下的所被继承的子模块，使用<module></module>指定子模块。</p>
+<p>在我的测试项目中建立user，service，repository子模块，他们都继承父模块。又因为父模块继承SpringBoot模块，因此user，service，repository都继承SpringBoot模块，<strong>也就是说user，service，repository都是SpringBoot项目</strong></p>
+<blockquote>
+<p>假设A继承B模块，B继承C模块，那么A也将自动继承C模块。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;modules&gt;</span><br><span class="line">		&lt;module&gt;user&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;service&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;repository&lt;/module&gt;</span><br><span class="line">	&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>子模块A调用子模块B</strong></li>
+</ul>
+<blockquote>
+<p>概述：子模块A依赖子模块B，所以直接在子模块A上添加子模块B的依赖。</p>
+</blockquote>
+<p>完成user，service，repository三个模块之后，每个模块都是独立的一个项目。此时假设user想要调用service模块中的方法，那将怎么做。</p>
+<p><strong>分析</strong>：user模块调用service模块可以表示为<strong>user模块依赖service模块</strong>。因此在此理解基础上，可以为user模块添加一个service模块依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;service&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>这时就可以引入service中的方法了。</p>
+<h3 id="父工程与子工程同级（并列）"><a href="#父工程与子工程同级（并列）" class="headerlink" title="父工程与子工程同级（并列）"></a><strong>父工程与子工程同级（并列）</strong></h3><blockquote>
+<p>父工程与子工程同级的意思是，子工程不在父工程文件夹下，而是与父工程同一级文件夹。</p>
+</blockquote>
+<ul>
+<li><strong>建立父工程</strong></li>
+</ul>
+<p>使用Spring Initializr进行构建项目，步骤同上。建立好之后的pom.xml与上面一样。</p>
+<ul>
+<li><strong>建立子工程</strong></li>
+</ul>
+<p>子工程可以使用maven构建，也可以使用Spring Initializr构建，这两种方法无异。但是在pom.xml中都要使用<parent></parent>指定其父工程是哪一个（使用GroupId，ArtifactId进行定位）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--为子工程指明父工程--&gt;</span><br><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;com.maven&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;test&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.1-SHAPSHOT&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
+<p>此时在maven里的逻辑上已经指明他的父工程，若想使用父工程，则添加父工程依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--在子工程添加父工程的依赖--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.maven&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;test&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>目前，测试时建立两个子工程：TestAdmin和TestUser。他们两个都与父工程TestMaven同级，因此在TestMaven中聚合这两个子工程。使用<modules></modules>，<module></module>中使用相对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--在父工程TestMaven--&gt;</span><br><span class="line">&lt;modules&gt;</span><br><span class="line">		&lt;module&gt;../TestUser&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;../TestAdmin&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;config&lt;/module&gt;</span><br><span class="line">	&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>配置入口类</strong></li>
+</ul>
+<blockquote>
+<p>由于maven中继承是子工程继承自父工程，而父工程聚合子工程，所以<strong>子工程可以添加父工程的依赖，而父工程不能添加子工程依赖</strong>，就像儿子可以依赖父亲，父亲却很少依赖儿子一样。</p>
+</blockquote>
+<p><strong>假设入口类在子工程A</strong></p>
+<p>子工程A默认引用了父工程的依赖，而没有引用子工程B的依赖，因此当启动叻在子工程A中的启动类时，Spring将扫描子工程A和父工程，而不会扫描子工程B，原因就是没有在子工程A中引入子工程B的依赖。</p>
+<blockquote>
+<p>子工程A没理由也没必要引用子工程B，就像A独立开发A模块，B独立开发B模块，最后必须得将A模块依赖B模块，这样功劳岂不都是B的了，因此这样做在逻辑上说不通。</p>
+</blockquote>
+<p><strong>假设入口类在子工程B</strong></p>
+<p>同上</p>
+<p><strong>假设入口类在父工程</strong></p>
+<blockquote>
+<p>当入口类在父工程时，在逻辑上说的过去了，因为子工程A，子工程B本来就是从父工程中分离出来的，最后终究要回到父工程，因此由父工程作为启动类位置较为合适。</p>
+</blockquote>
+<p>但是！！！！！假若入口类直接放在父工程中的src - main - java - com - maven - test的包里，由于父工程不能引用子工程AB，因此启动时，将不会扫描子工程AB，貌似情况比之前还要糟糕了。</p>
+<p>仔细想想，入口类放在父工程下是没错的，但是就是不能直接放在父工程的代码里，那如果是放在父工程的子模块呢？</p>
+<p>试一下，在父工程下建立子模块在前面已经提到过，建立的子模块就是SpringBoot项目。因此将入口类放在子模块中，而在子模块中的pom.xml去引入TestAdmin, TestUser的依赖，好像这样子就可以运行起来了，因为子模块的pom.xml继承自父工程，因此可以直接添加依赖。</p>
+<p>当项目运行起来时，可以看到，在父工程下建立子模块，将这个子模块作为整个项目的入口启动类，这样是可以行得通的。</p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/31/html&css基础/" rel="next" title="HTML&CSS基础">
+                <i class="fa fa-chevron-left"></i> HTML&CSS基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/09/springboot配置多数据源/" rel="prev" title="springboot配置多数据源">
+                springboot配置多数据源 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#父模块包含子模块（包含）"><span class="nav-number">1.</span> <span class="nav-text">父模块包含子模块（包含）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父工程与子工程同级（并列）"><span class="nav-number">2.</span> <span class="nav-text">父工程与子工程同级（并列）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

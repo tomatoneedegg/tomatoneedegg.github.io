@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot Quartz 定时任务">
+<meta property="og:url" content="http://yoursite.com/2018/08/29/SpringBoot Quartz 定时任务/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png">
+<meta property="og:updated_time" content="2018-08-29T12:08:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot Quartz 定时任务">
+<meta name="twitter:description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
+<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/29/SpringBoot Quartz 定时任务/"/>
+
+
+
+
+
+  <title>SpringBoot Quartz 定时任务 | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/SpringBoot Quartz 定时任务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot Quartz 定时任务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T20:08:39+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SpringBoot-Quartz-定时任务"><a href="#SpringBoot-Quartz-定时任务" class="headerlink" title="SpringBoot Quartz 定时任务"></a>SpringBoot Quartz 定时任务</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。</p>
+<ul>
+<li>创建实现org.quartz.Job接口的java类，其中只有一个方法：<strong>execute (JobExecutionContext context) throws JobExecutionException</strong>，将要实现的任务逻辑添加进execute这个方法里</li>
+<li>创建JobDetail</li>
+<li>创建触发器（CronTrigger）</li>
+<li>Scheduler开启定时任务</li>
+</ul>
+<h2 id="名词阐述"><a href="#名词阐述" class="headerlink" title="名词阐述"></a>名词阐述</h2><h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><p>是一个接口，只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务，JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中；</p>
+<h3 id="JobDetail"><a href="#JobDetail" class="headerlink" title="JobDetail"></a>JobDetail</h3><p>Quartz在每次执行Job时，都重新创建一个Job实例，所以它不直接接受一个Job的实例，相反它接收一个Job实现类，以便运行时通过newInstance()的反射机制实例化Job。因此需要通过一个类来描述Job的实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息，JobDetail承担了这一角色。</p>
+<h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><p>是一个类，描述触发Job执行的时间触发规则。主要有SimpleTrigger和CronTrigger这两个子类。当仅需触发一次或者以固定时间间隔周期执行，SimpleTrigger是最适合的选择；而CronTrigger则可以通过Cron表达式定义出各种复杂时间规则的调度方案：如每早晨9:00执行，周一、周三、周五下午5:00执行等；</p>
+<h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p>代表一个Quartz的独立运行容器，Trigger和JobDetail可以注册到Scheduler中，两者在Scheduler中拥有各自的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据，Trigger的组及名称必须唯一，JobDetail的组和名称也必须唯一（但可以和Trigger的组和名称相同，因为它们是不同类型的）。Scheduler定义了多个接口方法，允许外部通过组及名称访问和控制容器中Trigger和JobDetail。</p>
+<h2 id="项目需求"><a href="#项目需求" class="headerlink" title="项目需求"></a>项目需求</h2><p>近期做的一个项目中，有一个这样的需求，活动报名通道需要根据预设好的截止时间结束活动报名，截止时间可以为空，时间格式是yyyy-MM-dd HH:mm:ss</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>加入Quartz，需要以下两个依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;quartz&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.3.0&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;5.0.7.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在将quartz应用到项目之前，还了解到quartz可应用于单任务以及多任务</p>
+<h3 id="单任务"><a href="#单任务" class="headerlink" title="单任务"></a>单任务</h3><p><a href="https://blog.csdn.net/zahngjialiang/article/details/78690932" target="_blank" rel="noopener">参考别人的文章</a></p>
+<p>虽然单任务不是项目需求所要求的解决方案，还是写一下，以后需要的时候可以翻出来看看，而单任务在我解决项目需求前，曾动手实验了一番，正是因为跑过代码，才发现单任务不太适合这个项目需求</p>
+<p>单任务即整个项目就只有一个定时任务，与用户数量无关，比如定时清理数据库日志，定时全站通告等等</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableScheduling</span><br><span class="line">public class ScheduleTask &#123;</span><br><span class="line">    public void scheduleTest() &#123;</span><br><span class="line">        System.out.println(&quot;scheduleTest&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class QuartzConfigration &#123;</span><br><span class="line"></span><br><span class="line">    //设置任务</span><br><span class="line">    @Bean(name = &quot;jobDetail&quot;)  </span><br><span class="line">    public MethodInvokingJobDetailFactoryBean detailFactoryBean(ScheduleTask task) &#123;</span><br><span class="line">        // ScheduleTask为需要执行的任务</span><br><span class="line">        MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();  </span><br><span class="line">        /* </span><br><span class="line">         *  是否并发执行 </span><br><span class="line">         *  例如每5s执行一次任务，但是当前任务还没有执行完，就已经过了5s了， </span><br><span class="line">         *  如果此处为true，则下一个任务会bing执行，如果此处为false，则下一个任务会等待上一个任务执行完后，再开始执行 </span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setConcurrent(true);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setName(&quot;scheduler&quot;);// 设置任务的名字(必须）</span><br><span class="line">        jobDetail.setGroup(&quot;scheduler_group&quot;);// 设置任务的分组，这些属性都可以存储在数据库中，在多任务的时候使用（必须）</span><br><span class="line"></span><br><span class="line">        /* </span><br><span class="line">         * 这两行代码表示执行task对象中的scheduleTest方法。定时执行的逻辑都在scheduleTest。</span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setTargetObject(task);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setTargetMethod(&quot;scheduleTest&quot;); //用字符串指明了要执行的方法</span><br><span class="line">        return jobDetail;  </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    //设置触发器</span><br><span class="line">    @Bean(name = &quot;jobTrigger&quot;)  </span><br><span class="line">    public CronTriggerFactoryBean cronJobTrigger(MethodInvokingJobDetailFactoryBean jobDetail) &#123;  </span><br><span class="line">        CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();  </span><br><span class="line">        tigger.setJobDetail(jobDetail.getObject());  </span><br><span class="line">        tigger.setCronExpression(&quot;0/6 * * * * ?&quot;);// 表示每隔6秒钟执行一次，cron表达式</span><br><span class="line">        tigger.setName(&quot;myTigger&quot;);// trigger的name  </span><br><span class="line">        return tigger;  </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //设置scheduler，触发任务</span><br><span class="line">    @Bean(name = &quot;scheduler&quot;)  </span><br><span class="line">    public SchedulerFactoryBean schedulerFactory(Trigger cronJobTrigger) &#123;  </span><br><span class="line">        SchedulerFactoryBean bean = new SchedulerFactoryBean();</span><br><span class="line">        //设置是否任意一个已定义的Job会覆盖现在的Job。默认为false，即已定义的Job不会覆盖现有的Job。</span><br><span class="line">        bean.setOverwriteExistingJobs(true);  </span><br><span class="line">        // 延时启动，应用启动5秒后  ，定时器才开始启动</span><br><span class="line">        bean.setStartupDelay(5);  </span><br><span class="line">        // 注册定时触发器  </span><br><span class="line">        bean.setTriggers(cronJobTrigger);  </span><br><span class="line">        return bean;  </span><br><span class="line">    &#125;</span><br><span class="line">    //多任务时的Scheduler，动态设置Trigger。一个SchedulerFactoryBean可能会有多个Trigger</span><br><span class="line">    @Bean(name = &quot;multitaskScheduler&quot;) </span><br><span class="line">    public SchedulerFactoryBean schedulerFactoryBean()&#123;  </span><br><span class="line">        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();   </span><br><span class="line">        return schedulerFactoryBean;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述设置时，会在项目启动的5秒之后，每隔6秒执行一次啊ScheduleTask中的scheduleTest方法。若想动态改变cron表达式，可以重新生成一个trigger，schedule重新规划这个触发器</p>
+<h4 id="动态改变cron表达式"><a href="#动态改变cron表达式" class="headerlink" title="动态改变cron表达式"></a>动态改变cron表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">    @GetMapping(&quot;/&#123;prod&#125;/quart&quot;)</span><br><span class="line">    public String quartzTest(@PathVariable Integer prod) throws SchedulerException&#123;</span><br><span class="line">         //获取这个触发器</span><br><span class="line">         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         //触发器中的cron表达式</span><br><span class="line">         String currentCron = trigger.getCronExpression();// 当前Trigger使用的  </span><br><span class="line">         System.err.println(&quot;当前trigger使用的-&quot;+currentCron);</span><br><span class="line">        </span><br><span class="line">         //改变cron表达式，1秒钟执行一次</span><br><span class="line">         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(&quot;0/1 * * * * ?&quot;);  </span><br><span class="line">         </span><br><span class="line">         // 按新的cronExpression表达式重新构建trigger  </span><br><span class="line">         trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         trigger = trigger.getTriggerBuilder().withIdentity(cronTrigger.getKey())  </span><br><span class="line">                 .withSchedule(scheduleBuilder).build();  </span><br><span class="line">                 </span><br><span class="line">         // 按新的trigger重新设置job执行  </span><br><span class="line">         scheduler.rescheduleJob(cronTrigger.getKey(), trigger);  </span><br><span class="line">        return prod+&quot;-这是quartz测试&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>上述的单任务在项目启动时就会启动，但是在项目往往的场景是项目启动时，不要你启动，而只需要用户指定启动的时候，启动某一特定的任务。因此这一动态多任务相比单任务要简单得多</p>
+<h4 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png" alt="实现了Job接口的任务"></p>
+<p>实际情况是，有多少个任务就有多少个类实现Job这个接口</p>
+<p>上面图片，实现了通过传一个id过来，去数据查找，然后更新。我的处理使将id作为Job的name，然后传过来，再将其转换为Integer类型。若遇到更多的参数的话，应通过使用JobDetail的JobDataMap传输过来，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDetail job = JobBuilder.newJob(。。。).withIdentity(..., ...).build();</span><br><span class="line">job.getJobDataMap().putAsString(&quot;key&quot;, &quot;value&quot;);</span><br></pre></td></tr></table></figure>
+<p>这种方式传入参数是Quartz比较推荐的。然后再execute方法里再通过JobDataMap取出来，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDataMap map = context.getJobDetail().getJobDataMap()</span><br><span class="line">map.getString(&quot;key&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png" alt="开启任务配置"></p>
+<p>上图步骤如下：</p>
+<ul>
+<li>先使用JobBuilder将任务放进去，同时设置name，group，得到一个JobDetail</li>
+<li>然后通过CronScheduleBuilder设置触发日期</li>
+<li>接着使用TriggerBuilder获取一个触发器</li>
+<li>Scheduler去规划这个Job和这个触发器什么时候触发</li>
+</ul>
+<p>基本步骤如上，当然项目还使用了其他的方法，如下：</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png" alt="其他方法"></p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png" alt="其他方法"></p>
+<p>综合上图可以看到，要找到一个任务，只需传入name和group，得到一个JobKey，再通过JobKey获取这个JobDetail。Quartz就是这么简单操作</p>
+<h2 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h2><p>既然提及到定时任务，就不得不提一下Cron表达式，<a href="https://www.cnblogs.com/javahr/p/8318728.html" target="_blank" rel="noopener">详情请参考这篇文章</a>，参考一下大神的博客，受益匪浅</p>
+<blockquote>
+<p>Cron表达式是一个字符串，以5或者6个空格隔开，分成6或者7个域，每一个域代表一个含义</p>
+</blockquote>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>Cron从左到右：<strong>秒 分 时 日 月 星期 年份</strong></p>
+<h3 id="各字段含义"><a href="#各字段含义" class="headerlink" title="各字段含义"></a>各字段含义</h3><ul>
+<li>秒：0~59的整数，允许，- * /四个字符</li>
+<li>分：0~59的整数，允许，- * /四个字符</li>
+<li>时：0~23的整数，允许, - * /四个字符</li>
+<li>日：1~31的整数，允许，- * / L W C ？八个字符</li>
+<li>月：1~12的整数，或者JAN-DEC，允许, - * /四个字符</li>
+<li>星期：1~7的整数，或者SUN-SAT，允许，- * / L C # ? 八个字符</li>
+<li>年：1970~2099，允许，- * /四个字符</li>
+</ul>
+<blockquote>
+<p>注意：<br>*：表示匹配任意值<br>?：只能用在日和星期这两个地方，<br>-：表示范围，如分钟可用5-20 表示5到20分钟<br>/：表示起始时间开始触发，然后每隔固定时间触发一次，如5/20：可表示5分钟触发一次，而下一次触发为25分钟，再下一次为45分钟<br>，：表示列出枚举值<br>L：表示最后，只能出现在日和星期这两个地方，例如5L表示最后一个周四触发<br>W：表示有效工作日（周一到周五），只能出现在日，系统将在离指定日期的最近有效工作日触发，比如5W，如果5号是周六，将在最近的周五触发，如果5号是在周日，将在最近的周一触发。</p>
+<p>#：表示用于确定每个月第几个星期几，比如：4#2    表示某月的第2个星期三</p>
+</blockquote>
+<h2 id="Quartz和SpringTask区别"><a href="#Quartz和SpringTask区别" class="headerlink" title="Quartz和SpringTask区别"></a>Quartz和SpringTask区别</h2><ol>
+<li>第一个也是最重要的一个，就是精确度：</li>
+</ol>
+<p>Quarz的精确度可以精确到某年某月某日某时某分某秒，而SpringTask或者别的Timer不行，看了下SpringTask源码，只能够让我们精确到某月某日某时某分某秒以及星期，相比于Quartz差了很多，这也是我一开始尝试SpringTask后，遇到这个坑，再转去Quartz的。</p>
+<ol start="2">
+<li>对异常的处理：</li>
+</ol>
+<p>Quartz在某次执行任务过程中抛出异常，不影响下一次任务执行。</p>
+<p>SpringTask一旦某个任务执行过程出现异常，整个任务周期结束，不再执行</p>
+<ol start="3">
+<li>任务执行过程</li>
+</ol>
+<p>Quartz采用多线程，而Task默认采用单线程串行执行，若任务时间长，后续任务无法展开。</p>
+<ol start="4">
+<li>部署</li>
+</ol>
+<p>这个区别还没遇到过，Quartz采用集群方式，分布式部署到多台机器，分配执行定时任务。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在项目中，用上了Quartz以及用之前踩过的坑，能够深入理解到定时任务调度这块还是Quartz做的比较好。在理解过程中，应该寻着源码去探究。如果一个异常跑出来了，这就是学习机会，这可以通过打印出来的堆栈信息一步一步去看里面设置了什么东西。尽量避免面向百度编程吧233333333333</p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/12/springboot动态选择数据源/" rel="next" title="springboot动态选择多数据源">
+                <i class="fa fa-chevron-left"></i> springboot动态选择多数据源
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/29/MySQL5.7 JSON新特性/" rel="prev" title="MySQL5.7 JSON新特性">
+                MySQL5.7 JSON新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot-Quartz-定时任务"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot Quartz 定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词阐述"><span class="nav-number">1.2.</span> <span class="nav-text">名词阐述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Job"><span class="nav-number">1.2.1.</span> <span class="nav-text">Job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JobDetail"><span class="nav-number">1.2.2.</span> <span class="nav-text">JobDetail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trigger"><span class="nav-number">1.2.3.</span> <span class="nav-text">Trigger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler"><span class="nav-number">1.2.4.</span> <span class="nav-text">Scheduler</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目需求"><span class="nav-number">1.3.</span> <span class="nav-text">项目需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.4.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">1.5.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单任务"><span class="nav-number">1.5.1.</span> <span class="nav-text">单任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-1"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态改变cron表达式"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">动态改变cron表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务"><span class="nav-number">1.5.2.</span> <span class="nav-text">多任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务-1"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-2"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron表达式"><span class="nav-number">1.6.</span> <span class="nav-text">Cron表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">1.6.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各字段含义"><span class="nav-number">1.6.2.</span> <span class="nav-text">各字段含义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartz和SpringTask区别"><span class="nav-number">1.7.</span> <span class="nav-text">Quartz和SpringTask区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.8.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

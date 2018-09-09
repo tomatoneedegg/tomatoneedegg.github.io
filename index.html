@@ -1,0 +1,3236 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不定时更新一些技术上的坑或者吐槽之类的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stuartd&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="不定时更新一些技术上的坑或者吐槽之类的">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stuartd&#39;s Blog">
+<meta name="twitter:description" content="不定时更新一些技术上的坑或者吐槽之类的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/09/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T16:27:17+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/一台电脑管理多个ssh key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/一台电脑管理多个ssh key/" itemprop="url">一台电脑管理多个ssh key</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T22:37:04+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一台电脑管理多个ssh-key"><a href="#一台电脑管理多个ssh-key" class="headerlink" title="一台电脑管理多个ssh key"></a>一台电脑管理多个ssh key</h1><p>最近运维那边管理服务器，考虑到服务器的账号密码的安全性，因此考虑使用免密钥登录，使用ssh进行登录。然后麻烦就来了，因为我有一些github需要ssh，而此时我并不知道如何去管理多个ssh账号，因此略显狼狈，闲下来写写博客时，才想到整理一篇这样的文章，以备日后使用</p>
+<h2 id="生成ssh-key"><a href="#生成ssh-key" class="headerlink" title="生成ssh key"></a>生成ssh key</h2><p>使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;mail@company.com&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-t：指定使用rsa算法生成ssh的key</li>
+<li>-C：指定账户</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901130457.png" alt="第一回车"></p>
+<p>在第一个回车时指定生成的文件名或者指定生成文件存放的位置，这里我指定不同的文件名就好，无需指定文件位置，例如github的就指定github_rsa就好了，如果是gitLab的就gitLab_rsa</p>
+<h2 id="设置ssh的代理"><a href="#设置ssh的代理" class="headerlink" title="设置ssh的代理"></a>设置ssh的代理</h2><ol>
+<li>查看代理</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+<p>如果提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure></p>
+<p>则表示系统没有代理任何key，可以添加一个ssh代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec ssh-agent bash</span><br></pre></td></tr></table></figure>
+<p>如果已经有了代理，使用以下代码进行删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -D</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加私钥"><a href="#添加私钥" class="headerlink" title="添加私钥"></a>添加私钥</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add /c/Users/PC/.ssh/github_rsa</span><br><span class="line">ssh-add /c/Users/PC/.ssh/ubuntu_rsa</span><br></pre></td></tr></table></figure>
+<h2 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h2><p>在github上添加对应的公钥，在服务器添加对应的公钥</p>
+<h2 id="新建编辑一个config文件"><a href="#新建编辑一个config文件" class="headerlink" title="新建编辑一个config文件"></a>新建编辑一个config文件</h2><p>在.ssh目录下新建一个config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /c/Users/PC/.ssh/config</span><br></pre></td></tr></table></figure>
+<p>然后往config文件里添加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /c/Users/PC/.ssh/github_rsa</span><br><span class="line">    user git</span><br><span class="line"></span><br><span class="line">Host &lt;你的服务器ip&gt;</span><br><span class="line">    HostName &lt;你的服务器ip&gt;</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /c/Users/PC/.ssh/ubuntu_rsa</span><br><span class="line">    user ubuntu</span><br></pre></td></tr></table></figure>
+<p>上面是我的config文件里配置，其内容根据具体情况而定，保存之后，通过<strong>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></strong>进行测试</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/MySQL主从复制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/MySQL主从复制/" itemprop="url">MySQL主从复制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T12:38:04+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h1><p>参考文章：<a href="https://blog.csdn.net/deeplearnings/article/details/78398526" target="_blank" rel="noopener">mysql主从复制</a></p>
+<p>做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。</p>
+<p>由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，MySQL的主从复制应该是由两台机进行的，原因是当单机的MySQL已经无法承载其用户体量的时候，应考虑进行读写分离。而在Docker配置两个MySQL纯属练习。目的是掌握核心配置步骤。（讲真，还是因为Docker比较方便）当然，本文还是会讲下如何不使用Docker进行主从配置，其实道理都是一样的。</p>
+<h2 id="Docker容器搭建MySQL主从复制"><a href="#Docker容器搭建MySQL主从复制" class="headerlink" title="Docker容器搭建MySQL主从复制"></a>Docker容器搭建MySQL主从复制</h2><h3 id="Docker下载MySQL"><a href="#Docker下载MySQL" class="headerlink" title="Docker下载MySQL"></a>Docker下载MySQL</h3><ol>
+<li>在Docker上输入命令 <strong>sudo docker search mysql</strong>，当然如果你是root，请无视掉sudo。</li>
+<li>将mysql pull到本地，执行命令 <strong>sudo docker pull mysql:5.6.40</strong>，本例使用mysql:5.6.40，当然什么版本都可以，但是有一点必须注意的是 <strong>主从容器的MySQL版本一定要一致</strong>。</li>
+<li>使用 <strong>sudo docker images</strong> 看看是否已经下载好了~，由于我之前已经下载好了，所以可以看到下图的情况</li>
+</ol>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901002403.png" alt="Docker images"></p>
+<p>（请忽略掉hello-world~）</p>
+<h3 id="Docker运行MySQL"><a href="#Docker运行MySQL" class="headerlink" title="Docker运行MySQL"></a>Docker运行MySQL</h3><ol>
+<li>在主机下建立/mysql/conf，/mysql/logs，/mysql/data这三个文件夹，同时创建一个slave的文件夹，用来存放从服务器的mysql配置，当然也可以在/mysql/conf下建立两个配置文件：master.cnf，slave.cnf。关于这两个配置文件的内容可以参考这篇文章：<a href="https://blog.csdn.net/linzhiqiang0316/article/details/79249271" target="_blank" rel="noopener">docker配置mysql主从复制</a>。当然整个docker配置也可以参考这个。不过我更倾向于在容器内设置，然后重启这种方法</li>
+<li>运行容器：</li>
+</ol>
+<blockquote>
+<p>运行主容器：<strong>sudo docker run -p 3306:3306 –name mysql-master-5.6.40 -v $PWD/mysql/conf:/etc/mysql/conf.d -v $PWD/mysql/logs:/logs -v $PWD/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=’123456’ -d mysql:5.6.40</strong></p>
+</blockquote>
+<blockquote>
+<p>运行从容器：<strong>sudo docker run -p 3307:3306 –name mysql-slave-5.6.40 -v $PWD/mysql/slave/conf:/etc/mysql/conf.d -v $PWD/mysql/slace/logs:/logs -v $PWS/mysql/slave:/var/lib/mysql -e MYSQL_ROOT_PASSWORF=’123456’-d mysql:5.6.40</strong></p>
+</blockquote>
+<p>解释一下：</p>
+<ul>
+<li>-p：-p参数中，3306:3306，冒号前表示主机的端口，冒号后表示容器的端口，看看从容器就知道了，3307:3306，将容器的3306端口映射到主机的3307端口。</li>
+<li>-v：将主机目录的/mysql/conf挂载到容器的/etc/mysql/conf.d下，（$PWD表示获取当前目录），当然也可以指定文件：-v $PWD/mysql/conf/master.cnf:/etc/mysql/conf.d/master.cnf这样也是可以的</li>
+<li>-e：初始化root用户的密码</li>
+</ul>
+<p>运行结果如下所示：<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901004240.png" alt="docker下运行的容器"></p>
+<h3 id="Docker-MySQL主从配置"><a href="#Docker-MySQL主从配置" class="headerlink" title="Docker MySQL主从配置"></a>Docker MySQL主从配置</h3><h4 id="主容器配置"><a href="#主容器配置" class="headerlink" title="主容器配置"></a>主容器配置</h4><ol>
+<li>进入到容器当中，执行命令<strong>sudo docker exec -it <container-id> bash</container-id></strong>，其中的container-id是上一图中的container-id。首先上图第二个是主容器，所以sudo docker exec -it 477 bash就可以了，container-id不用太长，取前面的2,3位就行。</li>
+<li>进入到容器之后，找到/etc/mysql</li>
+</ol>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005136.png" alt="容器中的/etc/mysql"></p>
+<p>可以看到下面有这几个东西，我看了网上说在conf.d下写my.cnf~但是我看到my.cnf里的内容。<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005439.png" alt="my.cnf的内容"></p>
+<p>里面明确写了包括这两个文件夹下的东西，所以之前说的master.cnf是可以的，当然我看了下mysql.conf.d下的东西，有一个mysqld.cnf的配置文件，我索性就在下面配置了</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005806.png" alt="mysqld.cnf的配置"></p>
+<p>如上图，重要配置代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql_bin</span><br><span class="line">server-id=226 //默认为1，服务器唯一id，一般取IP的最后一段，我这里参考了上面博客的，只要唯一就行。</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>哦对了，在docker容器里是没有vim和gedit的，这些东西要自行安装，在容器外安装没用，得在容器里安装：执行命令 <strong>apt-get update</strong>之后，再执行命令<strong>apt-get install vim</strong>这样就可以使用vim去编辑了。（好麻烦感觉，在宿舍网络差的10k/s也是很迷人）</p>
+</blockquote>
+<ol start="3">
+<li>主容器重启：</li>
+</ol>
+<p>退出docker容器后，使用命令：<strong>sudo docker restart <container-id></container-id></strong> 进行重启容器</p>
+<h4 id="从容器配置"><a href="#从容器配置" class="headerlink" title="从容器配置"></a>从容器配置</h4><p>从容器配置跟主容器配置基本一致。</p>
+<ol>
+<li>进入容器内</li>
+<li>找到/etc/mysql/mysql.conf.d/mysqld.cnf文件，添加以下代码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql_bin</span><br><span class="line">server-id=222</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>退出容器，重启容器，sudo docker restart <container-id></container-id></li>
+</ol>
+<p>至此，在容器上的配置已经完成了，此时应转入到mysql里面的配置。</p>
+<h4 id="mysql的主从配置"><a href="#mysql的主从配置" class="headerlink" title="mysql的主从配置"></a>mysql的主从配置</h4><h5 id="主服务器操作"><a href="#主服务器操作" class="headerlink" title="主服务器操作"></a>主服务器操作</h5><ol>
+<li>打开主容器的mysql，连接上之后，打开命令行界面。我使用的是Navicat，所以我这样说，如果各位用惯mysql的纯命令行也行的哈。</li>
+<li>查看主容器状态</li>
+</ol>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011305.png" alt="mysql主容器状态"></p>
+<p><strong>记住其中的File，Position，待会有用</strong></p>
+<ol start="3">
+<li>授权给从容器</li>
+</ol>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011453.png" alt="授权"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<p>解释一下上面的sql语句：‘slave’@‘%’中slave表示User，即账号名，像root一样。而后面的%表示Host，此时可以填入从服务器的ip地址。identified by ‘123456’表示设置密码。</p>
+<h5 id="从服务器操作"><a href="#从服务器操作" class="headerlink" title="从服务器操作"></a>从服务器操作</h5><p>从服务器只需要配置一下代码即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; change master to master_host=&apos;119.119.119.119&apos;, master_user=&apos;slave&apos;, master_password=&apos;123456&apos;, master_log_file=&apos;mysql_bin.000001&apos;, master_log_pos=&apos;416262&apos;;</span><br></pre></td></tr></table></figure>
+<p>解释一下：</p>
+<ul>
+<li>master_host：这里表示的是主服务器的ip地址</li>
+<li>master_user：这里表示主服务器中登录的账户名，即上述在主服务器中设置的账户</li>
+<li>master_password：这里表示密码，上面主服务器设置的登录密码</li>
+<li>master_log_file：主服务器的日志文件名，在上面需要记住的file，即在主服务器通过show master status查看到的file列</li>
+<li>master_log_pos：主服务器日志开始同步的位置</li>
+</ul>
+<p>然后执行命令 <strong>start slave;</strong>启动从服务器复制功能</p>
+<h4 id="检验从服务器复制功能"><a href="#检验从服务器复制功能" class="headerlink" title="检验从服务器复制功能"></a>检验从服务器复制功能</h4><p>在从服务器中执行命令 <strong>show slave status</strong> ，当Slave_IO和Slave_SQL为Yes时，表示正常执行，否则都是错误的</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123011.png" alt="主服务器测试数据库"></p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123103.png" alt="从服务器测试数据库"></p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123236.png" alt="主服务器里的表"></p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123414.png" alt="从服务器数据表"></p>
+<p>由上图可见，从服务器实现了在主服务器上通过二进制文件进行复制的操作。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/MySQL5.7 JSON新特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/MySQL5.7 JSON新特性/" itemprop="url">MySQL5.7 JSON新特性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T20:37:04+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MySQL5-7-JSON新特性"><a href="#MySQL5-7-JSON新特性" class="headerlink" title="MySQL5.7 JSON新特性"></a>MySQL5.7 JSON新特性</h1><h2 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，不太合理，恰巧有伙伴了解到MySQL在5.7版本支持了json的存储，因此把数据库升级到MySQL5.7.x使用JSON这个新特性。不得不说MySQL大有一统数据库的野心，一个关系型数据库，居然支持json形式存储。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>项目使用SpringBoot，SpringDataJpa。由于SpringDataJpa里面对MySQL5.7的json支持不是很够，因此需要手写sql语句。由于初期并没有考虑MySQL优化这方面，只想着把服务给跑起来，后续再进行优化。因此手写的sql语句并没有顾及到全表扫描等问题。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180828151514.png" alt="JSON操作"></p>
+<p>由上图可以看到，sql语句并没有对优化做出任何努力。这在后续会进行一定的优化。主要目的是为了了解json的函数。图中使用的json函数包括JSON_CONTAINS_PATH，以及查询json字段里面的key，value。sql语句的意思是，如果表单里有某个字段，就查这个字段的值，如果表单里没有这个字段，就跳过去，不查。</p>
+<h2 id="JSON函数"><a href="#JSON函数" class="headerlink" title="JSON函数"></a>JSON函数</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>引用文章<a href="https://blog.csdn.net/wuzuodingfeng/article/details/53693209" target="_blank" rel="noopener">MySQL5.7中对json的支持</a></p>
+<p>从5.7.8开始，MySQL提供了一个原生的json类型，因此json不再以字符串形式存储，而是采用一种允许快速读取文本元素的内部二进制格式。MySQL5.7.8还提供了一些基于json的函数，包括：</p>
+<ul>
+<li>创建JSON：<ul>
+<li>JSON_ARRAY()，</li>
+<li>JSON_MERGE()，</li>
+<li>JSON_OBJECT()</li>
+</ul>
+</li>
+<li>查询JSON：<ul>
+<li>JSON_CONTAINS()，</li>
+<li>JSON_CONTAINS_PATH()，</li>
+<li>JSON_EXTRACT()，</li>
+<li>JSON_KEYS()，</li>
+<li>JSON_SEARCH()</li>
+</ul>
+</li>
+<li>修改JSON：<ul>
+<li>JSON_APPEND()，</li>
+<li>JSON_ARRAY_APPEND()，</li>
+<li>JSON_ARRAY_INSERT(),</li>
+<li>JSON_INSERT(),</li>
+<li>JSON_QUOTE()，</li>
+<li>JSON_REMOVE()，</li>
+<li>JSON_REPLACE(),</li>
+<li>JSON_SET(),</li>
+<li>JSON_UNQUOTE()</li>
+</ul>
+</li>
+<li>获取JSON的META信息：<ul>
+<li>JSON_DEPTH(),</li>
+<li>JSON_LENGTH()</li>
+<li>JSON_TYPE()</li>
+<li>JSON_VALID()</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在5.7.9之后可以使用column -&gt; path作为JSON_EXTRACT(column, path)的快捷方式，并且可以出现在任何位置。-&gt; 左边的参数是json数据的列名，右边的参数是json数据中的路径表达式，如$.name这样~</p>
+</blockquote>
+<h3 id="JSON类型"><a href="#JSON类型" class="headerlink" title="JSON类型"></a>JSON类型</h3><p>MySQL对JSON类型做了一些限制：</p>
+<ol>
+<li>JSON文本最大长度取决于系统常量：max_allowed_packet。</li>
+<li>JSON列没有默认值</li>
+<li>与其他二进制类型列一样无法创建索引</li>
+</ol>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>由于这篇文章写得足够详细<a href="https://blog.csdn.net/wuzuodingfeng/article/details/53693209" target="_blank" rel="noopener">MySQL对json的支持</a>，因此不再重复造轮子，只写下在项目用到的几个函数。</p>
+<ul>
+<li><p>JSON_CONTAINS_PATH()</p>
+<ul>
+<li>语法：<br>  JSON_CONTAINS_PATH(json_doc,  one_or_all,  path[, path]…)</li>
+<li>说明：<ul>
+<li>结果会返回0或者1，表示指定的json_doc下某个路径或某些路径下是否包含待定的值</li>
+<li>某些参数为NULL返回NULL</li>
+<li>以下情况将报错：<ul>
+<li>json_doc为不合法的json文本</li>
+<li>path参数中包含不合法的路径</li>
+<li>one_or_all参数为非’one’或者’all’的值</li>
+</ul>
+</li>
+<li>如果目标文本中没有指定的路径，则返回0，否则返回值依赖于one_or_all值<ul>
+<li>‘one’：表示json文本（json_doc）中只要存在至少一个指定路径（path）则返回1，否则返回0</li>
+<li>‘all’：表示json文本(json_doc)中必须包含有所有指定的路径才返回1，否则返回0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>项目中运用：<ul>
+<li>在项目中由于表单是可以随时变化的，而搜索项是不会改变，所以必须得判断该搜索项对应一个表单里面的路径是否存在，如果存在再去找对应的字段；如果不存在，则不会去寻找，跳到下一个条件。如上图。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JSON_EXTRACT()</p>
+<ul>
+<li>语法：<br>  JSON_EXTRACT(json_doc, path[, path]…)</li>
+<li>说明：<ul>
+<li>返回json_doc中与path参数    </li>
+<li>MySQL5.7.9以后的版本支持’-&gt;’操作符作为本函数两个参数的便捷写法。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/SpringBoot Quartz 定时任务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/SpringBoot Quartz 定时任务/" itemprop="url">SpringBoot Quartz 定时任务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T20:08:39+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SpringBoot-Quartz-定时任务"><a href="#SpringBoot-Quartz-定时任务" class="headerlink" title="SpringBoot Quartz 定时任务"></a>SpringBoot Quartz 定时任务</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。</p>
+<ul>
+<li>创建实现org.quartz.Job接口的java类，其中只有一个方法：<strong>execute (JobExecutionContext context) throws JobExecutionException</strong>，将要实现的任务逻辑添加进execute这个方法里</li>
+<li>创建JobDetail</li>
+<li>创建触发器（CronTrigger）</li>
+<li>Scheduler开启定时任务</li>
+</ul>
+<h2 id="名词阐述"><a href="#名词阐述" class="headerlink" title="名词阐述"></a>名词阐述</h2><h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><p>是一个接口，只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务，JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中；</p>
+<h3 id="JobDetail"><a href="#JobDetail" class="headerlink" title="JobDetail"></a>JobDetail</h3><p>Quartz在每次执行Job时，都重新创建一个Job实例，所以它不直接接受一个Job的实例，相反它接收一个Job实现类，以便运行时通过newInstance()的反射机制实例化Job。因此需要通过一个类来描述Job的实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息，JobDetail承担了这一角色。</p>
+<h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><p>是一个类，描述触发Job执行的时间触发规则。主要有SimpleTrigger和CronTrigger这两个子类。当仅需触发一次或者以固定时间间隔周期执行，SimpleTrigger是最适合的选择；而CronTrigger则可以通过Cron表达式定义出各种复杂时间规则的调度方案：如每早晨9:00执行，周一、周三、周五下午5:00执行等；</p>
+<h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p>代表一个Quartz的独立运行容器，Trigger和JobDetail可以注册到Scheduler中，两者在Scheduler中拥有各自的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据，Trigger的组及名称必须唯一，JobDetail的组和名称也必须唯一（但可以和Trigger的组和名称相同，因为它们是不同类型的）。Scheduler定义了多个接口方法，允许外部通过组及名称访问和控制容器中Trigger和JobDetail。</p>
+<h2 id="项目需求"><a href="#项目需求" class="headerlink" title="项目需求"></a>项目需求</h2><p>近期做的一个项目中，有一个这样的需求，活动报名通道需要根据预设好的截止时间结束活动报名，截止时间可以为空，时间格式是yyyy-MM-dd HH:mm:ss</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>加入Quartz，需要以下两个依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;quartz&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.3.0&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;5.0.7.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在将quartz应用到项目之前，还了解到quartz可应用于单任务以及多任务</p>
+<h3 id="单任务"><a href="#单任务" class="headerlink" title="单任务"></a>单任务</h3><p><a href="https://blog.csdn.net/zahngjialiang/article/details/78690932" target="_blank" rel="noopener">参考别人的文章</a></p>
+<p>虽然单任务不是项目需求所要求的解决方案，还是写一下，以后需要的时候可以翻出来看看，而单任务在我解决项目需求前，曾动手实验了一番，正是因为跑过代码，才发现单任务不太适合这个项目需求</p>
+<p>单任务即整个项目就只有一个定时任务，与用户数量无关，比如定时清理数据库日志，定时全站通告等等</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableScheduling</span><br><span class="line">public class ScheduleTask &#123;</span><br><span class="line">    public void scheduleTest() &#123;</span><br><span class="line">        System.out.println(&quot;scheduleTest&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class QuartzConfigration &#123;</span><br><span class="line"></span><br><span class="line">    //设置任务</span><br><span class="line">    @Bean(name = &quot;jobDetail&quot;)  </span><br><span class="line">    public MethodInvokingJobDetailFactoryBean detailFactoryBean(ScheduleTask task) &#123;</span><br><span class="line">        // ScheduleTask为需要执行的任务</span><br><span class="line">        MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();  </span><br><span class="line">        /* </span><br><span class="line">         *  是否并发执行 </span><br><span class="line">         *  例如每5s执行一次任务，但是当前任务还没有执行完，就已经过了5s了， </span><br><span class="line">         *  如果此处为true，则下一个任务会bing执行，如果此处为false，则下一个任务会等待上一个任务执行完后，再开始执行 </span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setConcurrent(true);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setName(&quot;scheduler&quot;);// 设置任务的名字(必须）</span><br><span class="line">        jobDetail.setGroup(&quot;scheduler_group&quot;);// 设置任务的分组，这些属性都可以存储在数据库中，在多任务的时候使用（必须）</span><br><span class="line"></span><br><span class="line">        /* </span><br><span class="line">         * 这两行代码表示执行task对象中的scheduleTest方法。定时执行的逻辑都在scheduleTest。</span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setTargetObject(task);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setTargetMethod(&quot;scheduleTest&quot;); //用字符串指明了要执行的方法</span><br><span class="line">        return jobDetail;  </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    //设置触发器</span><br><span class="line">    @Bean(name = &quot;jobTrigger&quot;)  </span><br><span class="line">    public CronTriggerFactoryBean cronJobTrigger(MethodInvokingJobDetailFactoryBean jobDetail) &#123;  </span><br><span class="line">        CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();  </span><br><span class="line">        tigger.setJobDetail(jobDetail.getObject());  </span><br><span class="line">        tigger.setCronExpression(&quot;0/6 * * * * ?&quot;);// 表示每隔6秒钟执行一次，cron表达式</span><br><span class="line">        tigger.setName(&quot;myTigger&quot;);// trigger的name  </span><br><span class="line">        return tigger;  </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //设置scheduler，触发任务</span><br><span class="line">    @Bean(name = &quot;scheduler&quot;)  </span><br><span class="line">    public SchedulerFactoryBean schedulerFactory(Trigger cronJobTrigger) &#123;  </span><br><span class="line">        SchedulerFactoryBean bean = new SchedulerFactoryBean();</span><br><span class="line">        //设置是否任意一个已定义的Job会覆盖现在的Job。默认为false，即已定义的Job不会覆盖现有的Job。</span><br><span class="line">        bean.setOverwriteExistingJobs(true);  </span><br><span class="line">        // 延时启动，应用启动5秒后  ，定时器才开始启动</span><br><span class="line">        bean.setStartupDelay(5);  </span><br><span class="line">        // 注册定时触发器  </span><br><span class="line">        bean.setTriggers(cronJobTrigger);  </span><br><span class="line">        return bean;  </span><br><span class="line">    &#125;</span><br><span class="line">    //多任务时的Scheduler，动态设置Trigger。一个SchedulerFactoryBean可能会有多个Trigger</span><br><span class="line">    @Bean(name = &quot;multitaskScheduler&quot;) </span><br><span class="line">    public SchedulerFactoryBean schedulerFactoryBean()&#123;  </span><br><span class="line">        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();   </span><br><span class="line">        return schedulerFactoryBean;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述设置时，会在项目启动的5秒之后，每隔6秒执行一次啊ScheduleTask中的scheduleTest方法。若想动态改变cron表达式，可以重新生成一个trigger，schedule重新规划这个触发器</p>
+<h4 id="动态改变cron表达式"><a href="#动态改变cron表达式" class="headerlink" title="动态改变cron表达式"></a>动态改变cron表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">    @GetMapping(&quot;/&#123;prod&#125;/quart&quot;)</span><br><span class="line">    public String quartzTest(@PathVariable Integer prod) throws SchedulerException&#123;</span><br><span class="line">         //获取这个触发器</span><br><span class="line">         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         //触发器中的cron表达式</span><br><span class="line">         String currentCron = trigger.getCronExpression();// 当前Trigger使用的  </span><br><span class="line">         System.err.println(&quot;当前trigger使用的-&quot;+currentCron);</span><br><span class="line">        </span><br><span class="line">         //改变cron表达式，1秒钟执行一次</span><br><span class="line">         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(&quot;0/1 * * * * ?&quot;);  </span><br><span class="line">         </span><br><span class="line">         // 按新的cronExpression表达式重新构建trigger  </span><br><span class="line">         trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         trigger = trigger.getTriggerBuilder().withIdentity(cronTrigger.getKey())  </span><br><span class="line">                 .withSchedule(scheduleBuilder).build();  </span><br><span class="line">                 </span><br><span class="line">         // 按新的trigger重新设置job执行  </span><br><span class="line">         scheduler.rescheduleJob(cronTrigger.getKey(), trigger);  </span><br><span class="line">        return prod+&quot;-这是quartz测试&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>上述的单任务在项目启动时就会启动，但是在项目往往的场景是项目启动时，不要你启动，而只需要用户指定启动的时候，启动某一特定的任务。因此这一动态多任务相比单任务要简单得多</p>
+<h4 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png" alt="实现了Job接口的任务"></p>
+<p>实际情况是，有多少个任务就有多少个类实现Job这个接口</p>
+<p>上面图片，实现了通过传一个id过来，去数据查找，然后更新。我的处理使将id作为Job的name，然后传过来，再将其转换为Integer类型。若遇到更多的参数的话，应通过使用JobDetail的JobDataMap传输过来，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDetail job = JobBuilder.newJob(。。。).withIdentity(..., ...).build();</span><br><span class="line">job.getJobDataMap().putAsString(&quot;key&quot;, &quot;value&quot;);</span><br></pre></td></tr></table></figure>
+<p>这种方式传入参数是Quartz比较推荐的。然后再execute方法里再通过JobDataMap取出来，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDataMap map = context.getJobDetail().getJobDataMap()</span><br><span class="line">map.getString(&quot;key&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png" alt="开启任务配置"></p>
+<p>上图步骤如下：</p>
+<ul>
+<li>先使用JobBuilder将任务放进去，同时设置name，group，得到一个JobDetail</li>
+<li>然后通过CronScheduleBuilder设置触发日期</li>
+<li>接着使用TriggerBuilder获取一个触发器</li>
+<li>Scheduler去规划这个Job和这个触发器什么时候触发</li>
+</ul>
+<p>基本步骤如上，当然项目还使用了其他的方法，如下：</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png" alt="其他方法"></p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png" alt="其他方法"></p>
+<p>综合上图可以看到，要找到一个任务，只需传入name和group，得到一个JobKey，再通过JobKey获取这个JobDetail。Quartz就是这么简单操作</p>
+<h2 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h2><p>既然提及到定时任务，就不得不提一下Cron表达式，<a href="https://www.cnblogs.com/javahr/p/8318728.html" target="_blank" rel="noopener">详情请参考这篇文章</a>，参考一下大神的博客，受益匪浅</p>
+<blockquote>
+<p>Cron表达式是一个字符串，以5或者6个空格隔开，分成6或者7个域，每一个域代表一个含义</p>
+</blockquote>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>Cron从左到右：<strong>秒 分 时 日 月 星期 年份</strong></p>
+<h3 id="各字段含义"><a href="#各字段含义" class="headerlink" title="各字段含义"></a>各字段含义</h3><ul>
+<li>秒：0~59的整数，允许，- * /四个字符</li>
+<li>分：0~59的整数，允许，- * /四个字符</li>
+<li>时：0~23的整数，允许, - * /四个字符</li>
+<li>日：1~31的整数，允许，- * / L W C ？八个字符</li>
+<li>月：1~12的整数，或者JAN-DEC，允许, - * /四个字符</li>
+<li>星期：1~7的整数，或者SUN-SAT，允许，- * / L C # ? 八个字符</li>
+<li>年：1970~2099，允许，- * /四个字符</li>
+</ul>
+<blockquote>
+<p>注意：<br>*：表示匹配任意值<br>?：只能用在日和星期这两个地方，<br>-：表示范围，如分钟可用5-20 表示5到20分钟<br>/：表示起始时间开始触发，然后每隔固定时间触发一次，如5/20：可表示5分钟触发一次，而下一次触发为25分钟，再下一次为45分钟<br>，：表示列出枚举值<br>L：表示最后，只能出现在日和星期这两个地方，例如5L表示最后一个周四触发<br>W：表示有效工作日（周一到周五），只能出现在日，系统将在离指定日期的最近有效工作日触发，比如5W，如果5号是周六，将在最近的周五触发，如果5号是在周日，将在最近的周一触发。</p>
+<p>#：表示用于确定每个月第几个星期几，比如：4#2    表示某月的第2个星期三</p>
+</blockquote>
+<h2 id="Quartz和SpringTask区别"><a href="#Quartz和SpringTask区别" class="headerlink" title="Quartz和SpringTask区别"></a>Quartz和SpringTask区别</h2><ol>
+<li>第一个也是最重要的一个，就是精确度：</li>
+</ol>
+<p>Quarz的精确度可以精确到某年某月某日某时某分某秒，而SpringTask或者别的Timer不行，看了下SpringTask源码，只能够让我们精确到某月某日某时某分某秒以及星期，相比于Quartz差了很多，这也是我一开始尝试SpringTask后，遇到这个坑，再转去Quartz的。</p>
+<ol start="2">
+<li>对异常的处理：</li>
+</ol>
+<p>Quartz在某次执行任务过程中抛出异常，不影响下一次任务执行。</p>
+<p>SpringTask一旦某个任务执行过程出现异常，整个任务周期结束，不再执行</p>
+<ol start="3">
+<li>任务执行过程</li>
+</ol>
+<p>Quartz采用多线程，而Task默认采用单线程串行执行，若任务时间长，后续任务无法展开。</p>
+<ol start="4">
+<li>部署</li>
+</ol>
+<p>这个区别还没遇到过，Quartz采用集群方式，分布式部署到多台机器，分配执行定时任务。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在项目中，用上了Quartz以及用之前踩过的坑，能够深入理解到定时任务调度这块还是Quartz做的比较好。在理解过程中，应该寻着源码去探究。如果一个异常跑出来了，这就是学习机会，这可以通过打印出来的堆栈信息一步一步去看里面设置了什么东西。尽量避免面向百度编程吧233333333333</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/springboot动态选择数据源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/springboot动态选择数据源/" itemprop="url">springboot动态选择多数据源</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T01:28:35+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="springboot动态选择数据源"><a href="#springboot动态选择数据源" class="headerlink" title="springboot动态选择数据源"></a>springboot动态选择数据源</h1><p>前情回顾：</p>
+<ul>
+<li><a href="https://tomatoneedegg.github.io/2018/06/09/springboot%E9%85%8D%E7%BD%AE%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" target="_blank" rel="noopener">springboot配置多数据源</a></li>
+</ul>
+<p>前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，<strong>动态选择数据源不等于主从复制，也不等于读写分离</strong>，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础</p>
+<h2 id="基础原理"><a href="#基础原理" class="headerlink" title="基础原理"></a>基础原理</h2><p>既然要动态选择数据源，本质上还是进行动态选择数据库连接。查看一下java.sql.DataSource的接口，会发现有其有返回对应的Connection<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png" alt="DataSource"></p>
+<p>然后在IDEA中按Ctrl + Alt 同时点击getConnection（）方法查看其实现类。在实现类列表中找到AbstractRoutingDataSource这个类，这个类由Spring框架提供实现，点进去</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_getconnect_1528734255_12254.png" alt="getConnectionRouting"></p>
+<p>在上图，由determineTargetDataSource实现了getConnection方法，点进去<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_determinet_1528734325_2914.png" alt="determineTargetDataSource"></p>
+<p>上图中，<strong>determineCurrentLookupKey</strong>是一个抽象方法，其返回值可以通过传给resolvedDataSource从而决定一个连接的DataSource。而resolvedDataSource是一个Map&lt;Object, Object&gt;类型，其中约摸估计应该包含有用户所定义的所有的数据库DataSource。然后点击resolvedDataSource可以看到其是一个Map&lt;Object, Object&gt;<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_resolvedda_1528734670_10043.png" alt="resolvedDataSource"></p>
+<p>继续往下看，看到一个方法afterPropertiesSet，里面会对resolvedDataSource进行初始化操作</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_afterprope_1528734764_5131.png" alt="afterPropertiesSet"></p>
+<p>其中的resolvedDataSource的值是由targetDataSource设置二来，而targetDataSource也是一个Map&lt;Object, Object&gt;类型。</p>
+<p>看到这里，相信大家都应该知道要做什么了，先把流程理一下</p>
+<ol>
+<li>继承AbstractRoutingDataSource，并将所有的数据库（包括主从数据库）的DataSource设置进targetDataSource，设置格式为Map&lt;Obejct, Object&gt;，第一个Object表示一个Key，将通过determinLookupKey进行筛选，第二个Object就是数据源</li>
+<li>然后targetDataSources将自身设置给resolvedDataSources</li>
+<li>通过重写determineLookupKey（）方法，选择相应的数据源的key值。</li>
+<li>用户通过某种自定义的方法动态选择数据源（这里使用AOP）</li>
+</ol>
+<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><ul>
+<li>springboot框架</li>
+<li>SpringDataJPA</li>
+<li>Lombok</li>
+<li>Aspect</li>
+</ul>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>在前面我们知道如何配置多数据源，而配置多数据源又是动态选择数据源的基础，但是此处配置又与前面有所不同（进度条充足，请继续食用）</p>
+<p>在开始介绍之前，首先来看一下项目结构：</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testdataso_1528709353_11090.png" alt="TestDataSource2结构"></p>
+<h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=root</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=root</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
+<p>数据库连接这块与前面没有什么不同之处，为了方便，我们使用同一服务下的不同库进行模拟演示</p>
+<h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><p>在前面配置多数据源的时候，我是将entity下再进行分层primary和slave，这样是方便演示，实际上这在多数据源中是不需要进行再分包的，可以直接在entity建立实体，如下图</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png" alt="Entity结构"></p>
+<ul>
+<li>User类；</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png" alt="User类"></p>
+<ul>
+<li>Admin类</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png" alt="Admin类"></p>
+<h3 id="建立数据操作类"><a href="#建立数据操作类" class="headerlink" title="建立数据操作类"></a>建立数据操作类</h3><p>数据操作类也不必像配置多数据源一样进行分层，可以直接在repository下建立</p>
+<ul>
+<li>repository分类</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_repository_1528718694_32169.png" alt="repository分类"></p>
+<ul>
+<li>UserRepository</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface UserRepository extends JpaRepository&lt;User, Integer&gt;&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>AdminRepository</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface AdminRepository extends JpaRepository&lt;Admin, Integer&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="配置动态数据源"><a href="#配置动态数据源" class="headerlink" title="配置动态数据源"></a>配置动态数据源</h3><p>动态数据源配置与配置多数据源的不太一样，前者是以后者为基础的，话不多说，先贴图</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png" alt="动态数据源配置结构"></p>
+<p>说明：</p>
+<ul>
+<li>Datasource：自定义一个注解</li>
+<li>DatasourceAspect：自定义的一个切面</li>
+<li>DatasourceConfig：用来扫描配置文件中所配置的多个数据源，并生成Bean</li>
+<li>DatasourceType：定义一个枚举类，里面有所要表示的各种配置类的名称</li>
+<li>DynamicDatasource：继承了AbstractRoutingDatasource，并且实现了其抽象类determineCurrentLookupKey方法</li>
+<li>DynamicDatasourceConfig：动态选择数据源的配置类</li>
+<li>DynamicDatasourceHolder：动态数据源决策类</li>
+</ul>
+<h4 id="DataSourceConfig"><a href="#DataSourceConfig" class="headerlink" title="DataSourceConfig"></a>DataSourceConfig</h4><p>有多少个数据源，就配置多少个Bean<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528735484_4303.png" alt="DataSourceConfig"></p>
+<h4 id="DynamicDataSouceConfig"><a href="#DynamicDataSouceConfig" class="headerlink" title="DynamicDataSouceConfig"></a>DynamicDataSouceConfig</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableTransactionManagement</span><br><span class="line">@EnableJpaRepositories(</span><br><span class="line">        entityManagerFactoryRef = &quot;dynamicEntityManagerFactory&quot;,</span><br><span class="line">        basePackages = &#123;&quot;com.shanyu.datasource.repository&quot;&#125;</span><br><span class="line">)</span><br><span class="line">public class DynamicDatasourceConfig &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private JpaProperties jpaProperties;</span><br><span class="line">    </span><br><span class="line">    @Bean</span><br><span class="line">    @Primary</span><br><span class="line">    public AbstractRoutingDataSource routingDataSource(</span><br><span class="line">            @Qualifier(&quot;masterDatasource&quot;)DataSource masterDatasource,</span><br><span class="line">            @Qualifier(&quot;slaveDatasource&quot;)DataSource slaveDatasource</span><br><span class="line">    ) &#123;</span><br><span class="line">        System.out.println(&quot;---------begin-------------&quot;);</span><br><span class="line">        DynamicDatasource dynamicDatasource = new DynamicDatasource();</span><br><span class="line">        Map&lt;Object, Object&gt; targetDatasource = new HashMap&lt;Object, Object&gt;();</span><br><span class="line">        targetDatasource.put(DatasourceType.MASTER.type(), masterDatasource);</span><br><span class="line">        targetDatasource.put(DatasourceType.SLAVE.type(), slaveDatasource);</span><br><span class="line">        dynamicDatasource.setTargetDataSources(targetDatasource);//设置targetDataSources</span><br><span class="line">        dynamicDatasource.setDefaultTargetDataSource(masterDatasource);//设置默认的targetDataSources</span><br><span class="line">        System.out.println(&quot;------------end-------------&quot;);</span><br><span class="line">        return dynamicDatasource;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactoryBean&quot;)</span><br><span class="line">    @Primary</span><br><span class="line">    public LocalContainerEntityManagerFactoryBean dynamicEntityFactoryBean(EntityManagerFactoryBuilder entityManagerFactoryBuilder,</span><br><span class="line">                                                                                         DataSource dataSource) &#123;</span><br><span class="line">        return entityManagerFactoryBuilder.dataSource(dataSource)</span><br><span class="line">                .packages(&quot;com.shanyu.datasource.entity&quot;)</span><br><span class="line">                .properties(jpaProperties.getProperties())</span><br><span class="line">                .persistenceUnit(&quot;dynamicDataSource&quot;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactory&quot;)</span><br><span class="line">    public EntityManagerFactory dynamicEntityFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder, DataSource dataSource) &#123;</span><br><span class="line">        return this.dynamicEntityFactoryBean(entityManagerFactoryBuilder, dataSource).getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;transactionManager&quot;)</span><br><span class="line">    public PlatformTransactionManager transactionManager(@Qualifier(&quot;dynamicEntityManagerFactory&quot;) EntityManagerFactory entityManagerFactory) &#123;</span><br><span class="line"></span><br><span class="line">        return new JpaTransactionManager(entityManagerFactory);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DynamicDataSourceConfig里面也是主要配置三个东西</p>
+<ul>
+<li>配置动态的DataSource（将key值与DataSource设置成targetDataSource）</li>
+<li>配置EntityManagerFactory（实体管理工厂）</li>
+<li>配置TransactionManager（事务管理器）</li>
+</ul>
+<p>配置动态的DataSource需要依赖DynamicDataSource去提供一个key值，在里面同时将key值与相应的数据源匹配到一起，比如key值为master，value就是masterDataSource；key值是slave，value就是slaveDataSource。</p>
+<p>其中在配置EntityManagerFactory中遇到一个坑，就是现在如代码所示在dynamicEntityFactoryBean这个方法里，通过builder去构建一个LocalContainerEntityManagerFactoryBean，但是如果直接在dynamicEntityFactoryBean里直接构建一个EntityMangerFactory时，是得通过builer.build().getObject()的方法进行构建的，**但是，getObject()在此方法中会产生NullPointerException的空指针异常。具体原因不是特别清楚，如果将其分开来的话，就如上面代码所示，通过一个dynamicEntityFactory方法可以构建一个EntityManagerFactory，这样就可以运行，至于为什么前者不行，还有待深入研究。</p>
+<p>之后配置事务管理器，就直接将EntityManagerFactory这个Bean注入进去就可以了。</p>
+<blockquote>
+<p>以上关于动态数据源在哪里的配置就已经结束了，但是怎么动态选择数据源的问题将在下面解决</p>
+</blockquote>
+<h4 id="DataSourceType"><a href="#DataSourceType" class="headerlink" title="DataSourceType"></a>DataSourceType</h4><blockquote>
+<p>在DataSourceType里定义了Map&lt;Object, Opject&gt;结构里的key值，随后可以动态选择key值，然后通过DynamicDataSourceHolder决策类进行设置。</p>
+</blockquote>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528736661_3737.png" alt="DataSourceType"></p>
+<p>其是一个Enum类，MASTER表示masterDataSource，SLAVE表示slaveDataSource</p>
+<h4 id="DynamicDataSource"><a href="#DynamicDataSource" class="headerlink" title="DynamicDataSource"></a>DynamicDataSource</h4><blockquote>
+<p>继承自AbstractRoutingDataSource，并且重写了determineCurrentLookupKey方法</p>
+</blockquote>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528736796_16364.png" alt="DynamicDataSource"></p>
+<p>就简单地选择了一下，其依赖DynamicDataSourceHolder决策类，通过决策类进行选择，如果决策类里有，就返回，否则默认返回masterDataSource。</p>
+<h4 id="DynamicDataSourceHolder"><a href="#DynamicDataSourceHolder" class="headerlink" title="DynamicDataSourceHolder"></a>DynamicDataSourceHolder</h4><blockquote>
+<p>动态数据源的决策，如果用户选择了某个数据库连接，那么DataSourceType将会通过设值到DynamicDataSourceHolder，然后determineCurrentLookupKey将会取出Holder里面的值，然后再源码层面上将这个key值取出targetDataSource里面对应的DataSource，并getConnection。</p>
+</blockquote>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528737061_22288.png" alt="DynamicDataSourceHolder"></p>
+<h4 id="注解DataSource和切面DataSourceAspect"><a href="#注解DataSource和切面DataSourceAspect" class="headerlink" title="注解DataSource和切面DataSourceAspect"></a>注解DataSource和切面DataSourceAspect</h4><blockquote>
+<p>在本次测试项目中，将通过AOP进行动态的数据源选择</p>
+</blockquote>
+<ul>
+<li>注解DataSource</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737184_20158.png" alt="DataSourceAnnotation"></p>
+<ul>
+<li>切面DataSourceAspect</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737215_13591.png" alt="DataSourceAspect"></p>
+<p>用完清除是个好习惯~</p>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><p>由于自定义了一个@DataSource，此注解应用在service层，因此，将其注解在service层，就能实现动态选择数据源</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testservic_1528737397_19408.png" alt="testService"></p>
+<p>由于尽量模拟读写分离，因此读就从SLAVE读，而写就写进MASTER。</p>
+<p>至此，关于sprinboot动态选择数据源就已经介绍到这里，下次继续向读写分离进发，最近考试月2333333333333333333</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/springboot配置多数据源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/09/springboot配置多数据源/" itemprop="url">springboot配置多数据源</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T22:06:10+08:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="springboot配置多数据源"><a href="#springboot配置多数据源" class="headerlink" title="springboot配置多数据源"></a>springboot配置多数据源</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。</p>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><ul>
+<li>SpringBoot</li>
+<li>Spring Data JPA</li>
+<li>MySQL</li>
+</ul>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><p>在application.properties中进行如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=970329</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=970329</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
+<p>上面代码中前缀为spring.datasource.primary表示主数据库，前缀为spring.datasource.slave表示从数据库，而spring.jpa就是配置一下jpa这块的东西（基本配置）。上面配置的是基本的数据库连接，就像平时项目一样，对数据库的连接。（在此提醒不要太依赖IDEA的智能提醒）</p>
+<p><strong>值得注意的是</strong>，一般配置jdbc的url的时候，是使用<strong>spring.datasource.url</strong> = jdbc:mysql://localhost:3306/XXX这个配置，但是在配置多数据源的时候，使用<strong>spring.datasource.jdbc-url</strong> 。第二个比第一个不同之处在于：第一个是url，第二个是jdbc-url。如果不这样配置，会出现说jdbcUrl is required with driverClassName的异常。</p>
+<h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><blockquote>
+<p>这里提一下。测试中将建立两个实体类。一个是User类，一个是Admin类，其中User放在主数据库，Admin放在从数据库</p>
+</blockquote>
+<p>项目分层结构：</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png" alt="项目结构"></p>
+<p>在项目目录中，我们可以看到在com.shanyu.datasource.entity的包下再分层，一个是primary，一个是slave，primary包下管理主数据库的实体，entity包下管理从数据库的实体。</p>
+<ul>
+<li>com.shanyu.datasource.entity.primary.<strong>User</strong> 实体如下所示</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png" alt="User实体类"></p>
+<ul>
+<li>com.shanyu.datasource.entity.slave.<strong>Admin</strong> 实体类</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png" alt="Admin实体类"></p>
+<h3 id="建立数据操作类（repository）"><a href="#建立数据操作类（repository）" class="headerlink" title="建立数据操作类（repository）"></a>建立数据操作类（repository）</h3><p>数据操作类分组也可以像entity下进行这样的分类，以便进行区分</p>
+<ul>
+<li>UserRepository接口</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png" alt="UserRepository"></p>
+<ul>
+<li>AdminRepository接口</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png" alt="AdminRepository"></p>
+<p>说明一下，使用SpringDataJpa之后，就可以直接通过继承JpaRepository接口实现基本的增删查改操作，同时因为只是接口，因此可以不用加@Repository这个注解，Spring容器就可以识别。当然也可以加。</p>
+<h3 id="配置主从数据源（config）"><a href="#配置主从数据源（config）" class="headerlink" title="配置主从数据源（config）"></a>配置主从数据源（config）</h3><p>在SpringBoot项目中，通过注解@Configuration在一个类上，可对整个项目进行配置。</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png" alt="config项目结构"></p>
+<p>在图上可以知道，config文件夹下并不像entity和Repository下那样进行分层。可以同时对主数据库，从数据库进行配置。其中无论主数据库还是从数据库，都只需要配置一下三个东西。</p>
+<ul>
+<li>dataSource：数据源连接信息（上面配过了）</li>
+<li>entityManagerFactory：实体管理工厂</li>
+<li>transactionManager：事务管理</li>
+</ul>
+<h4 id="对主数据库配置"><a href="#对主数据库配置" class="headerlink" title="对主数据库配置"></a>对主数据库配置</h4><ul>
+<li>MasterDataConfig中配置。</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png" alt="MasterDataConfig"></p>
+<ul>
+<li>@Configuration：表明这是一个SpringBoot下的配置类</li>
+<li>@EnableTransactionManagement：开启事务管理器。</li>
+<li>@EnableJpaRepositories：用于Spring JPA的代码配置。<ul>
+<li>entityManagerFactoryRef：实体管理工厂引用名称，对应到@Bean注解对应方法</li>
+<li>basePackages：用于配置扫描Repository所在的package及子package。即数据操作接口所在package</li>
+</ul>
+</li>
+<li>@ConfigurationProperties：对application.properties配置文件进行扫描</li>
+<li>@Primary：表示在众多相同的Bean中，优先使用@Primary注解的Bean</li>
+<li>@Qualifier：注入对应的Bean。</li>
+</ul>
+<p>在主数据源配置类中，对application.properties中以spring.datasource.primary开头的配置进行扫描读取。并进行dataSource配置。<strong>注意Datasource是java.sql.Datasource</strong>。</p>
+<ul>
+<li>对Datasouce进行配置</li>
+</ul>
+<p>使用DatasourceBuilder进行配置，读取application.properties中以spring.datasource.primary的配置。</p>
+<ul>
+<li>对实体管理工厂进行配置</li>
+</ul>
+<p>实体管理工厂方法中返回LocalContainerEntityManagerFactory。其中builder.packages中指定的是实体类所在的包路径，而builder.properties中使用jpaProperties配置HibernateSetting。在Springboot1.5x以前是使用Datasource作为形参注入到getHibernateSetting中去，而SpringBoot2.0之后就变成了HibernateSetting作为形参了，这是一个坑，很多博客还是停留在SpringBoot1.5x以前并没有进行更新。我也是从一些良心博主中找到的<a href="https://blog.csdn.net/tianyaleixiaowu/article/details/78905149" target="_blank" rel="noopener">原文地址</a></p>
+<ul>
+<li>对事务管理器进行配置</li>
+</ul>
+<p>就使用Jpa的事务管理器就行了，因为Jpa本身支持多数据源配置。</p>
+<h4 id="对从数据库配置"><a href="#对从数据库配置" class="headerlink" title="对从数据库配置"></a>对从数据库配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png" alt="SlaveDataConfig"></p>
+<p>配置从数据库跟配置主数据库基本一致。不同的是扫描application.properties中的前缀是spring.datasource.secondary，同时配置的Repository的路径和Entity的包路径也与主数据库配置不一样。</p>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><h4 id="编写Service层"><a href="#编写Service层" class="headerlink" title="编写Service层"></a>编写Service层</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png" alt="TestService"></p>
+<h4 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png" alt="测试类"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为SpringBoot + SpringDataJPA对多数据源的支持，所以极大地简化了多数据源的配置，让开发配置越来越简单，开发配置成本越来越低。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/springboot + maven多模块配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/springboot + maven多模块配置/" itemprop="url">SpringBoot + Maven多模块配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:04+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置</p>
+</blockquote>
+<p>开始前，先了解一下maven的几个知识点。</p>
+<ul>
+<li><strong>groupId</strong>：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是公司/个人域名，但会包括众多的 Maven 项目；</li>
+<li><strong>artifactId</strong>：定义实际项目中的一个 Maven 项目，一般用实际项目名称作为 artifactId 的前缀；</li>
+<li><strong>versioin</strong>：指定工程的版本，如 - 1.0 SNAPSHOT，SNAPSHOT 意为快照，说明在该项目还处于开发中；</li>
+<li><strong>packaging</strong>：定义 Maven 项目的打包方式，有 JAR 、WAR 和 EAR 三种格式<a href="http://www.jb51.net/article/35881.htm" target="_blank" rel="noopener">详情见：JAR，WAR，EAR区别</a></li>
+<li><strong>dependencies</strong>：所有依赖在此范围添加，包含众多dependency</li>
+<li><strong>parent</strong>：指定当前项目的父模块或者父工程，使用groupId，artifactId定位项目</li>
+<li><strong>modules</strong>：在父模块中引用子模块，所有子模块均包含在里面</li>
+<li><strong>module</strong>：表示一个子模块，使用相对路径</li>
+</ul>
+<h3 id="父模块包含子模块（包含）"><a href="#父模块包含子模块（包含）" class="headerlink" title="父模块包含子模块（包含）"></a>父模块包含子模块（包含）</h3><p>在用maven管理项目中，可以在当前项目下构建一个子模块。（子模块使用maven构造的话默认继承父模块，若是使用Spring Initializr的话，则需要手动配置父模块）</p>
+<ul>
+<li><strong>建立一个父模块</strong></li>
+</ul>
+<p>在IDEA中建立一个SpringBoot项目，Group选择公司名字，Artifact选择项目名字。建立好之后，POM.xml大概会是一下的样子。</p>
+<p>==值得注意的是==：要将packaging改为pom，因为所有的父模块中的packaging就是pom。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">	&lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;test2&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;test2&lt;/name&gt;</span><br><span class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">	&lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">	&lt;properties&gt;</span><br><span class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">		&lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">	&lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">	&lt;build&gt;</span><br><span class="line">		&lt;plugins&gt;</span><br><span class="line">			&lt;plugin&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">			&lt;/plugin&gt;</span><br><span class="line">		&lt;/plugins&gt;</span><br><span class="line">	&lt;/build&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>由于使用SpringBoot，所以最顶层父项目就是spring-boot-starter-parent。逻辑上不影响项目分层。父项目建立了基本依赖。</p>
+<ul>
+<li><strong>建立子模块</strong></li>
+</ul>
+<ol>
+<li>右键点击父模块，New -&gt; Module -&gt; Maven</li>
+<li>选择maven-archetype-webapp之后，默认继承父模块的GroupId，需要填写artifactId，此处可填写模块的作用。</li>
+<li>一直点击Next，最后Finish，完成子模块构建</li>
+</ol>
+<p>最后生成的pom.xml如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;artifactId&gt;test2&lt;/artifactId&gt;</span><br><span class="line">        &lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">        &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;artifactId&gt;repository&lt;/artifactId&gt;</span><br><span class="line">    &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line"></span><br><span class="line">    &lt;name&gt;repository Maven Webapp&lt;/name&gt;</span><br><span class="line">    &lt;!-- FIXME change it to the project&apos;s website --&gt;</span><br><span class="line">    &lt;url&gt;http://www.example.com&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;</span><br><span class="line">        &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.11&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;finalName&gt;repository&lt;/finalName&gt;</span><br><span class="line">        &lt;pluginManagement&gt;&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span><br><span class="line">            &lt;plugins&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-clean-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.0.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.0.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.7.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.20.1&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;3.2.0&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.5.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.8.2&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">            &lt;/plugins&gt;</span><br><span class="line">        &lt;/pluginManagement&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>这时父模块中将会添加<modules></modules>标签。（可以手动，但大多时候自动）。其中包含了其下的所被继承的子模块，使用<module></module>指定子模块。</p>
+<p>在我的测试项目中建立user，service，repository子模块，他们都继承父模块。又因为父模块继承SpringBoot模块，因此user，service，repository都继承SpringBoot模块，<strong>也就是说user，service，repository都是SpringBoot项目</strong></p>
+<blockquote>
+<p>假设A继承B模块，B继承C模块，那么A也将自动继承C模块。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;modules&gt;</span><br><span class="line">		&lt;module&gt;user&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;service&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;repository&lt;/module&gt;</span><br><span class="line">	&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>子模块A调用子模块B</strong></li>
+</ul>
+<blockquote>
+<p>概述：子模块A依赖子模块B，所以直接在子模块A上添加子模块B的依赖。</p>
+</blockquote>
+<p>完成user，service，repository三个模块之后，每个模块都是独立的一个项目。此时假设user想要调用service模块中的方法，那将怎么做。</p>
+<p><strong>分析</strong>：user模块调用service模块可以表示为<strong>user模块依赖service模块</strong>。因此在此理解基础上，可以为user模块添加一个service模块依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.maven2&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;service&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>这时就可以引入service中的方法了。</p>
+<h3 id="父工程与子工程同级（并列）"><a href="#父工程与子工程同级（并列）" class="headerlink" title="父工程与子工程同级（并列）"></a><strong>父工程与子工程同级（并列）</strong></h3><blockquote>
+<p>父工程与子工程同级的意思是，子工程不在父工程文件夹下，而是与父工程同一级文件夹。</p>
+</blockquote>
+<ul>
+<li><strong>建立父工程</strong></li>
+</ul>
+<p>使用Spring Initializr进行构建项目，步骤同上。建立好之后的pom.xml与上面一样。</p>
+<ul>
+<li><strong>建立子工程</strong></li>
+</ul>
+<p>子工程可以使用maven构建，也可以使用Spring Initializr构建，这两种方法无异。但是在pom.xml中都要使用<parent></parent>指定其父工程是哪一个（使用GroupId，ArtifactId进行定位）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--为子工程指明父工程--&gt;</span><br><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;com.maven&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;test&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.1-SHAPSHOT&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
+<p>此时在maven里的逻辑上已经指明他的父工程，若想使用父工程，则添加父工程依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--在子工程添加父工程的依赖--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.maven&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;test&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>目前，测试时建立两个子工程：TestAdmin和TestUser。他们两个都与父工程TestMaven同级，因此在TestMaven中聚合这两个子工程。使用<modules></modules>，<module></module>中使用相对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--在父工程TestMaven--&gt;</span><br><span class="line">&lt;modules&gt;</span><br><span class="line">		&lt;module&gt;../TestUser&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;../TestAdmin&lt;/module&gt;</span><br><span class="line">		&lt;module&gt;config&lt;/module&gt;</span><br><span class="line">	&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>配置入口类</strong></li>
+</ul>
+<blockquote>
+<p>由于maven中继承是子工程继承自父工程，而父工程聚合子工程，所以<strong>子工程可以添加父工程的依赖，而父工程不能添加子工程依赖</strong>，就像儿子可以依赖父亲，父亲却很少依赖儿子一样。</p>
+</blockquote>
+<p><strong>假设入口类在子工程A</strong></p>
+<p>子工程A默认引用了父工程的依赖，而没有引用子工程B的依赖，因此当启动叻在子工程A中的启动类时，Spring将扫描子工程A和父工程，而不会扫描子工程B，原因就是没有在子工程A中引入子工程B的依赖。</p>
+<blockquote>
+<p>子工程A没理由也没必要引用子工程B，就像A独立开发A模块，B独立开发B模块，最后必须得将A模块依赖B模块，这样功劳岂不都是B的了，因此这样做在逻辑上说不通。</p>
+</blockquote>
+<p><strong>假设入口类在子工程B</strong></p>
+<p>同上</p>
+<p><strong>假设入口类在父工程</strong></p>
+<blockquote>
+<p>当入口类在父工程时，在逻辑上说的过去了，因为子工程A，子工程B本来就是从父工程中分离出来的，最后终究要回到父工程，因此由父工程作为启动类位置较为合适。</p>
+</blockquote>
+<p>但是！！！！！假若入口类直接放在父工程中的src - main - java - com - maven - test的包里，由于父工程不能引用子工程AB，因此启动时，将不会扫描子工程AB，貌似情况比之前还要糟糕了。</p>
+<p>仔细想想，入口类放在父工程下是没错的，但是就是不能直接放在父工程的代码里，那如果是放在父工程的子模块呢？</p>
+<p>试一下，在父工程下建立子模块在前面已经提到过，建立的子模块就是SpringBoot项目。因此将入口类放在子模块中，而在子模块中的pom.xml去引入TestAdmin, TestUser的依赖，好像这样子就可以运行起来了，因为子模块的pom.xml继承自父工程，因此可以直接添加依赖。</p>
+<p>当项目运行起来时，可以看到，在父工程下建立子模块，将这个子模块作为整个项目的入口启动类，这样是可以行得通的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/html&css基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/31/html&css基础/" itemprop="url">HTML&CSS基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:45:04+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><blockquote>
+<p>相对路径就是相对于当前HTML页面所在的位置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;abc/cba/2.gif&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>上述代码中src属性配置的是图片的格式，使用相对路径。如果当前页面所在的文件夹里有abc文件夹，将进入abc文件夹，同时进入abc里的cba文件夹找到2.gif。==可以使用../来返回上一级目录，返回几级目录就写几个../==</p>
+<h2 id="图片格式"><a href="#图片格式" class="headerlink" title="图片格式"></a>图片格式</h2><blockquote>
+<p>JPEG(JPG), GIF, PNG都是图片格式</p>
+</blockquote>
+<ul>
+<li><strong>JPEG格式</strong>：支持颜色比较多，图片可以压缩，但是不支持透明，一般使用JPEG保存照片等颜色丰富的图片</li>
+<li><strong>GIF格式</strong>：支持颜色少，只支持简单的透明（直线型透明），支持动态图，一般使用图片颜色单一或者动态图。</li>
+<li><strong>PNG格式</strong>：支持颜色多，支持复杂透明，一般用于显示颜色复杂的透明图片</li>
+</ul>
+<p>==图片使用原则：==</p>
+<ul>
+<li>效果不一致，使用效果好的</li>
+<li>效果一致，使用小的    </li>
+</ul>
+<h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><blockquote>
+<p>代表网页元数据，给搜索引擎看的，搜索引擎在检索页面时，会同时检索页面中的关键字和描述。</p>
+</blockquote>
+<ul>
+<li><strong>使用meta标签设置网页关键字</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;HTML5&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>HTML5是关键字，也就是说content里面是关键字，name的值是对content的描述。content里可以使用多个关键字，如content=“HTML5，Java，Python”</p>
+<ul>
+<li><strong>使用meta标签指定网页的描述</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;decription&quot; content=&quot;666666博文&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>666666博文是描述</p>
+<ul>
+<li><strong>使用meta标签用来做请求重定向</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;5; url=http://www.baidu.com&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>http-equiv是http协议，然后content里面5表示秒数，等待的时间；url表示目标路径，整个表示5秒以后去到<a href="http://www.baidu.com这个地址。" target="_blank" rel="noopener">http://www.baidu.com这个地址。</a></p>
+<h2 id="内联框架"><a href="#内联框架" class="headerlink" title="内联框架"></a>内联框架</h2><blockquote>
+<p>iframe可以引入一个外部的页面，属性src只想一个外部页面的路径，但在实际开发中不会使用，因为搜索引擎不会检索框架内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;demo2.html&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="超链接-a标签"><a href="#超链接-a标签" class="headerlink" title="超链接-a标签"></a>超链接-a标签</h2><blockquote>
+<p>可以从一个页面跳转到另一个页面</p>
+</blockquote>
+<p>属性：</p>
+<ul>
+<li><strong>href</strong>：表示另一个页面的链接URL，可以使用绝对路径和相对路径<ul>
+<li><strong>href=”mailto:邮件地址”</strong>:自动打开电脑中默认的邮件客户端</li>
+</ul>
+</li>
+<li><strong>target</strong>：规定在何处打开文档<ul>
+<li><strong>_blank</strong>：在另一个新建窗口打开新的页面。</li>
+<li><strong>_self（默认值）</strong>：在当前窗口打开新页面，覆盖原来的页面</li>
+</ul>
+</li>
+</ul>
+<p>==在设置超链接时，如果暂时没有链接，可以使用JavaScripts:;占位，或者#占位，但前者更好，因为后者会回到页面顶部==</p>
+<p><strong>发送邮件的超链接，点击链接后可以自动打开电脑中默认的邮件</strong></p>
+<h2 id="内联和块元素"><a href="#内联和块元素" class="headerlink" title="内联和块元素"></a>内联和块元素</h2><blockquote>
+<p>块元素主要用来做页面的布局，而内联元素主要用来选中文本设置样式，一般情况使用块元素包含内联元素，而不会使用内联元素包含块元素</p>
+</blockquote>
+<ul>
+<li><p>块元素(block element)</p>
+<ul>
+<li>address - 地址</li>
+<li>blockquote - 块引用</li>
+<li>center - 举中对齐块</li>
+<li>dir - 目录列表</li>
+<li>div - 常用块级容易，也是css layout的主要标签</li>
+<li>dl - 定义列表</li>
+<li>fieldset - form控制组</li>
+<li>form - 交互表单</li>
+<li>h1 - 大标题</li>
+<li>h2 - 副标题</li>
+<li>h3 - 3级标题</li>
+<li>h4 - 4级标题</li>
+<li>h5 - 5级标题</li>
+<li>h6 - 6级标题</li>
+<li>hr - 水平分隔线</li>
+<li>isindex - input prompt</li>
+<li>menu - 菜单列表</li>
+<li>noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容</li>
+<li>noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）</li>
+<li>ol - 排序表单</li>
+<li>p - 段落</li>
+<li>pre - 格式化文本</li>
+<li>table - 表格</li>
+<li>ul - 非排序列表</li>
+</ul>
+</li>
+<li><p>内联元素(inline element)</p>
+<ul>
+<li>a - 锚点</li>
+<li>abbr - 缩写</li>
+<li>acronym - 首字</li>
+<li>b - 粗体(不推荐)</li>
+<li>bdo - bidi override</li>
+<li>big - 大字体</li>
+<li>br - 换行</li>
+<li>cite - 引用</li>
+<li>code - 计算机代码(在引用源码的时候需要)</li>
+<li>dfn - 定义字段</li>
+<li>em - 强调</li>
+<li>font - 字体设定(不推荐)</li>
+<li>i - 斜体</li>
+<li>img - 图片</li>
+<li>input - 输入框</li>
+<li>kbd - 定义键盘文本</li>
+<li>label - 表格标签</li>
+<li>q - 短引用</li>
+<li>s - 中划线(不推荐)</li>
+<li>samp - 定义范例计算机代码</li>
+<li>select - 项目选择</li>
+<li>strike - 中划线</li>
+<li>strong - 粗体强调</li>
+<li>sub - 下标</li>
+<li>sup - 上标</li>
+<li>textarea - 多行文本输入框</li>
+<li>tt - 电传文本</li>
+<li>u - 下划线</li>
+<li>var - 定义变量</li>
+<li>small - 小字体文本</li>
+<li>span - 常用内联容器，定义文本内区块
+　</li>
+</ul>
+</li>
+</ul>
+<p>==a标签可以包含任意元素，但不包含自身==</p>
+<p>==p标签不可以包含其他的块元素== </p>
+<h2 id="元素之间的关系"><a href="#元素之间的关系" class="headerlink" title="元素之间的关系"></a>元素之间的关系</h2><ul>
+<li>父元素：直接包含子元素的元素</li>
+<li>子元素：直接被父元素包含的元素</li>
+<li>祖先元素：直接或间接包含后代元素的元素，父元素也是祖先元素</li>
+<li>后代元素：直接或间接被祖先元素包含的元素，子元素也是后代元素</li>
+<li>兄弟元素：拥有相同父元素的元素叫兄弟元素</li>
+</ul>
+<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><blockquote>
+<p>表示元素中的一个特殊的位置</p>
+</blockquote>
+<ul>
+<li><strong>first-letter</strong></li>
+<li><strong>first-line</strong></li>
+<li><strong>:before</strong></li>
+<li><strong>:after</strong></li>
+</ul>
+<blockquote>
+<p>表示子元素的伪类</p>
+</blockquote>
+<ul>
+<li><strong>first-child</strong>：选择第一个子标签</li>
+<li><strong>last-child</strong>：选择最后一个子标签</li>
+<li><strong>nth-child</strong>：选择指定位置的子标签</li>
+</ul>
+<ul>
+<li><strong>first-of-type</strong>：选择相同类型的第一个子元素</li>
+<li><strong>last-of-type</strong>：选择相同类型的最后一个子元素</li>
+<li><strong>nth-of-type</strong>：选择相同类型的任意一个子元素</li>
+</ul>
+<p>==注意==：前三个选择依据是在所有子元素中排列选择，而后三个是在当前类型的子元素中排列选择</p>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><ul>
+<li><strong>元素选择器</strong><ul>
+<li>作用：通过元素选择器可以选中页面中所有指定元素</li>
+<li>语法：标签名{}</li>
+</ul>
+</li>
+<li><strong>id选择器</strong><ul>
+<li>作用：通过元素的id属性值选中唯一的一个元素</li>
+<li>语法：#id属性值{}</li>
+</ul>
+</li>
+<li><p><strong>类选择器</strong></p>
+<ul>
+<li>作用：通过元素的class属性值选中一组元素</li>
+<li>语法：.class属性值{}</li>
+<li>==注意==：可以同时为一个元素设置多个class属性值，多个值之间用空格隔开<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 如下div有两个class属性值 --&gt;</span><br><span class="line">&lt;div class=&quot;class_1 class_2&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>选择器分组</strong></p>
+<ul>
+<li>作用：通过选择器分组可以同时选中多个选择器对应的元素</li>
+<li>语法：选择器1，选择器2，选择器N{}</li>
+</ul>
+</li>
+<li><strong>通配选择器</strong><ul>
+<li>作用：用来选中页面中所有元素</li>
+<li>语法：*{}</li>
+</ul>
+</li>
+<li><strong>复合选择器</strong><ul>
+<li>作用：可以选中同时满足多个选择器的元素</li>
+<li>语法：选择器1选择器2选择器N{}</li>
+<li>==注意==：与选择器分组相类似，但不同的是，多个选择器之间没有分隔符号。对于id选择器，不建议使用复合选择器</li>
+</ul>
+</li>
+<li><p><strong>后代元素选择器</strong></p>
+<ul>
+<li>作用：选中指定元素的后代元素</li>
+<li>语法：祖先元素 后代元素{}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">选择div里的span元素</span><br><span class="line">div span&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>子元素选择器</strong></p>
+<ul>
+<li>作用：选中指定父元素的指定子元素</li>
+<li>语法：父元素&gt;子元素 {}</li>
+<li><strong>注意</strong>：IE6及以下浏览器不支持子元素浏览器</li>
+</ul>
+</li>
+<li><strong>伪类选择器</strong><ul>
+<li>说明：伪类是专门用来表示元素的一种特殊的状态，如a:link, a:visited, a:hover, a:active</li>
+<li>作用：选中指定元素的伪类</li>
+<li>类型：<ul>
+<li>==注意==：开发中，请按照:link，:visited，:hover，:active的顺序。</li>
+<li>:link：表示普通的链接（没访问过的链接）</li>
+<li>:visited：表示访问过的链接<ul>
+<li>原理：浏览器通过历史记录来判断一个链接是否被访问过</li>
+<li>==注意==：由于涉及用户隐私问题，visited伪类只能设置字体颜色（color）</li>
+</ul>
+</li>
+<li>:hover：表示鼠标移入状态。可以为其他元素（如p标签）设置<ul>
+<li>==注意==：IE6中，不支持对超链接以外的元素设置:hover</li>
+</ul>
+</li>
+<li>:active：表示超链接被点击的状态。可以为其他元素（如p标签）设置<ul>
+<li>==注意==：IE6中，不支持对超链接以外的元素设置:active</li>
+</ul>
+</li>
+<li>:focus：获取焦点</li>
+<li>::selection：选中的元素（即鼠标选中的元素）<ul>
+<li>==注意==：在火狐中，使用::-moz-selection（moz表示mozala基金会）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>伪元素选择器</strong><ul>
+<li>类型：<ul>
+<li>:first-letter：首字母</li>
+<li>:first-line：首行</li>
+<li>:before：指定元素前，指的是开始标签到第一个字之间，一般:before都需要结合content这个样式一起使用，通过content可以向before和after位置添加一些内容</li>
+<li>:after：指定元素后，指的是最后一个字都结束标签之间，基本操作如:before</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>子元素选择器</strong><ul>
+<li>类型：<ul>
+<li>:first-child：选中第一个子元素，可以在前面加上元素，指定选择第一个指定子元素，如p:first-child{}表示如果第一个子元素是p标签，则选中，其父类默认是任何元素，即任何元素下的第一个子元素p标签。若想指定其中一个父类，则使用父元素 &gt; 子元素:first-child{}，如div&gt;p{}</li>
+<li>:last-child：选中最后一个元素</li>
+<li>:nth-child：选中任意一个元素，可使用:nth-child(n)表示任意一个，如p:nth-child(2)表示选中第二个p子元素，也可以传一个even（偶数），即:nth-child(even)表示选中偶数个子元素，同理也可以传一个odd（奇数），即:nth-child(odd)表示选中奇数个子元素</li>
+<li>:first-of-type：</li>
+<li>:last-of-type：</li>
+<li>:nth-of-type：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>兄弟元素选择器</strong><ul>
+<li>+：<ul>
+<li>作用：可以选中一个元素后<strong>紧挨着的</strong>指定的兄弟元素</li>
+<li>语法：前一个元素 + <strong>后一个</strong>元素{}，如span + p表示选择span后边紧挨着的第一个p兄弟元素</li>
+</ul>
+</li>
+<li>~：<ul>
+<li>作用：选中后边所有兄弟元素</li>
+<li>语法：前一个 ~ 后边所有，如span ~ p表示选择span标签后面的所有p兄弟元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>否定伪类选择器</strong><ul>
+<li>:not(选择器){}<ul>
+<li>作用：可以从已选中元素中剔除某些指定元素</li>
+<li>语法：:not(选择器)，如p:not(#p1){}表示选中所有p元素，除了id值为p1的元素。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>属性选择器</strong><ul>
+<li>作用：可以根据元素中的属性或者属性值来选取指定元素</li>
+<li>语法：<ul>
+<li>[属性名]：选取含有指定属性的元素</li>
+<li>[属性名=“属性值”]：选取不仅含有指定属性，还必须含有指定属性值的元素</li>
+<li>[属性名^=”属性值”]：选取属性值以指定内容开头的元素</li>
+<li>[属性名$=”属性值”]：选取属性值以指定内容结尾的元素</li>
+<li>[属性名*=“属性名”]：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="选择器优先级："><a href="#选择器优先级：" class="headerlink" title="选择器优先级："></a>选择器优先级：</h3><p>当使用不同选择器，选中同一个元素时，并且设置相同的样式时，这时样式之间产生了冲突，最终采用哪个选择器，决定于选择器优先级（权重），优先级高的优先显示</p>
+<p><strong>规则</strong>：</p>
+<ul>
+<li>可以在样式的最后，添加一个！important，优先级最高 ==（开发中尽量避免）==</li>
+<li>内联样式，优先级：1000</li>
+<li>id选择器，优先级：100</li>
+<li>类和伪类，优先级：10</li>
+<li>元素选择器，优先级：1</li>
+<li>通配*，优先级：0</li>
+<li>继承样式，没有优先级</li>
+</ul>
+<p>当选择器中包含有多个选择器时，需要将多个选择器的优先级（权重）相加然后再比较。但是==注意==：选择器优先级计算不会超过他的最大数量级，如类选择器优先级为10，数量级为十位，即使有十个相同的类选择器，其最多只能加到99个，不会加到100</p>
+<p>如果选择器优先级一样，则按顺序执行，即取最后面一个选择器执行</p>
+<p>==组合选择器优先级是单独计算的==</p>
+<h2 id="样式继承"><a href="#样式继承" class="headerlink" title="样式继承"></a>样式继承</h2><blockquote>
+<p>在css中，祖先元素上的样式，也会被他的后代元素所继承，因此利用继承，可以将一些基本的样式设置给祖先元素，这样所有的后代元素将自动继承这些样式</p>
+</blockquote>
+<p>==注意==：不是所有的样式都会被后代元素继承，如背景相关样式，边框相关的样式，定位相关的样式都不会被继承。但是默认的背景颜色是透明的，即如果父元素使用背景颜色，那么后代元素不是继承了背景颜色，而是父元素的背景颜色透过来了</p>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><blockquote>
+<p>none表示什么都没有</p>
+</blockquote>
+<ul>
+<li>内容区（content）<ul>
+<li>width：使用width设置内容区的宽度</li>
+<li>height：使用height设置内容区的高度</li>
+</ul>
+</li>
+<li>内边距（padding）<ul>
+<li>==注意==：设置内边距，内容区的背景会延伸到内边距</li>
+<li>padding-top</li>
+<li>padding-right</li>
+<li>padding-bottom</li>
+<li>padding-left</li>
+</ul>
+</li>
+<li>边框（border）<ul>
+<li>border-width：边框宽度，可分别指定上，右，下，左顺序的边框宽度；若只有三个值，则上，左右，下；若只有连个值，则上下，左右</li>
+<li>border-color：边框颜色</li>
+<li>border-style：边框样式</li>
+<li>border：（style）（width）（color）</li>
+<li>==注意==：当只写style时，并不是说不用写width和color属性，相反这三个是一个边框所必须的，之所以有时只需要写style就能出来一个边框，是因为大部分浏览器中，对边框的宽度和颜色都有默认值</li>
+</ul>
+</li>
+<li>外边距（margin）<ul>
+<li>指的是盒子与盒子之间的距离，不会影响可见框大小，而会影响盒子位置，因此可以通过外边距可以调整位置。</li>
+<li>==注意==：盒子原本是靠左上位置摆放，所以当设置上和左的margin时，会导致位置发生变化，而设置下和右外边距时，挤兑其他盒子，<strong>可以设置负值</strong></li>
+<li><strong>auto值</strong>：只设置给水平方向的，如果只指定左margin或者右margin值为auto，那么将右或者左设置为最大，如果左，右同时设置auto，则会将两边距设置为相同的值，就可以使元素自动在父元素中居中，</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>外边距重叠：在网页中<strong>垂直</strong>方向的<strong>相邻</strong>外边距会发生外边距重叠</p>
+</blockquote>
+<p>所谓的外边距重叠指的是</p>
+<ul>
+<li>兄弟元素之间的<strong>相邻</strong>外边距会取最大值而不是取两者之和</li>
+<li>父子元素之间的<strong>垂直</strong>外边距<strong>相邻</strong>，则子元素的外边距会设置给父元素</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>使其不相邻：<ul>
+<li>设置一个字母或者别的，将其隔离</li>
+<li>设置父元素一个border，或者padding</li>
+</ul>
+</li>
+<li>使其不垂直：<ul>
+<li>设置一个padding+height</li>
+</ul>
+</li>
+</ul>
+<p>==当元素宽度值为auto时，此时指定内边距不会影响可见框大小==</p>
+<h3 id="内联元素的盒子模型"><a href="#内联元素的盒子模型" class="headerlink" title="内联元素的盒子模型"></a>内联元素的盒子模型</h3><p>==注意==：</p>
+<ul>
+<li>内联元素设置width，height没有用；</li>
+<li>内联元素可以设置水平方向的内边距；</li>
+<li>内联元素可以设置垂直方向的内边距，但不会影响页面布局，即对其他元素不产生影响。</li>
+<li>内联元素可以设置边框，但不会影响页面布局，水平方向的边框会挤兑其他元素，但是垂直方向不会；</li>
+<li>内联元素支持水平方向的外边距，并且当水平方向的相邻外边距不会发生重叠，而是进行求和，即两个水平方向的边距会相加</li>
+<li>内联元素不支持垂直方向的外边距</li>
+</ul>
+<p>总结如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">支持</th>
+<th style="text-align:center">不支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">height</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">padding-top</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">padding-right</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">padding-bottom</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">padding-left</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">border</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">margin-top</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">margin-right</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">margin-bottom</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">margin-left</td>
+<td style="text-align:center">Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="浏览器默认样式"><a href="#浏览器默认样式" class="headerlink" title="浏览器默认样式"></a>浏览器默认样式</h2><blockquote>
+<p>浏览器为了在页面没有样式时，也可以有个更好地显示效果，所以为很多元素设置了一些默认的margin和padding，而他的这些默认样式正常情况下不需要使用，因此我们需要在编写样式之前需要将我们浏览器默认的margin和padding统统去掉。</p>
+</blockquote>
+<h2 id="display和visibility"><a href="#display和visibility" class="headerlink" title="display和visibility"></a>display和visibility</h2><blockquote>
+<p>inline-block可以使一个元素既有inline的特点，又有block的特点</p>
+</blockquote>
+<ul>
+<li><p>display：通过display样式可以修改元素的类型，如将一个内联元素变为块元素</p>
+<ul>
+<li>可选值：<ul>
+<li>inline：可以将一个元素作为内联元素显示</li>
+<li>block：可以将一个元素设置为块元素显示</li>
+<li>inline-block：可以将一个元素设置为行内块元素</li>
+<li>none：对一个元素不显示，并且元素不会在页面中继续占有位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>visibility：规定元素是否可见</p>
+<ul>
+<li>可选值：<ul>
+<li>visable（默认值）：元素可见</li>
+<li>hidden：元素不可见，但是位置依然保持，即虽然没了，但还是占着位置。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><blockquote>
+<p>子元素默认存在于父元素的内容区，理论上呢子元素最大可以等于父元素的大小，但如果子元素大小超过了父元素的内容区，则超过的大小会在父元素以外的位置显示，超出父元素的内容，成为溢出内容，可以通过overflow解决溢出内容</p>
+</blockquote>
+<ul>
+<li><strong>overflow</strong> ：规定当内容溢出元素框时发生的事情<ul>
+<li>可选值：<ul>
+<li><strong>visable</strong>（默认值）：元素不会对溢出内容进行处理；</li>
+<li><strong>hidden</strong>：溢出的内容会被隐藏，不会显示</li>
+<li><strong>scroll</strong>：使用滚动条处理溢出内容，会为父元素添加滚动条，通过拖动滚动条查看完整内容，**该属性不论内容是否溢出，都会添加水平和垂直的滚动条。</li>
+<li><strong>auto</strong>：根据需求自动添加滚动条<ul>
+<li>需要水平时就添加水平</li>
+<li>需要垂直就添加垂直</li>
+<li>都不需要都不加</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><blockquote>
+<p>文档即HTML页面，每个页面即一个文档，</p>
+</blockquote>
+<p>文档流处在网页最底层，表示一个页面的位置，我们创建的元素默认都处在文档流中</p>
+<p>元素在文档流中特点</p>
+<ul>
+<li>块元素<ul>
+<li>块元素在<strong>文档流</strong>中独占一行，并且自上向下排列</li>
+<li>块元素在<strong>文档流</strong>中默认宽度是父元素的100%，而宽度值是auto</li>
+<li>块元素在<strong>文档流</strong>中高度默认被内容区撑开，即有多少内容，高度就有多少</li>
+</ul>
+</li>
+<li>内联元素<ul>
+<li>内联元素在<strong>文档流</strong>中只占自身大小，并且从左向右排列</li>
+<li>内联元素在<strong>文档流</strong>中默认宽度和默认高度都被内容撑开</li>
+</ul>
+</li>
+</ul>
+<h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><blockquote>
+<p>写在浮动之前</p>
+<ul>
+<li>若想让垂直排列的块元素横向排列，可使用display:inline-bloc&gt; k进行转换，这样就会在横向排列，此时若出现两个块元素之间有空&gt; 格，则将两个块元素之间的换行或者空格去掉，让其在HTML中紧挨&gt; 着，因为由于已经转换为inline-block，则空格或者换行就被解析&gt; 为一个文字显示。</li>
+</ul>
+</blockquote>
+<p>如果希望块元素在页面中水平排列，可以是块元素脱离文档流。可以使用<strong>float</strong>使元素浮动，从而脱离文档流。（可比喻气球，水泡）。当脱离文档流时，会发生覆盖，别的元素会顶替其原来的位置</p>
+<p>当一个元素设置浮动以后</p>
+<ul>
+<li>元素会立即脱离文档流，脱离文档流以后，下边的元素会立即向上移动</li>
+<li>元素浮动以后，会尽量向页面的左上或右上漂浮，直到遇到父元素边框或者其他的浮动元素</li>
+<li>如果浮动元素上边是一个没有浮动的块元素，则浮动元素不会超过块元素</li>
+<li>当一行不足以容纳多个浮动元素时，浮动元素会自动换行</li>
+<li>浮动元素不会超过页面结构上边的兄弟元素，最多一边对齐。</li>
+<li><strong>浮动元素不会盖住文字，文字会自动环绕在浮动元素周围</strong></li>
+<li>当块元素脱离文档流之后，其高度和宽度都被内容撑开</li>
+<li>当内联元素脱离文档流之后，会变成块元素，同时其高度和宽度也被内容撑开</li>
+</ul>
+<p><strong>float</strong></p>
+<ul>
+<li>可选值：<ul>
+<li>none（默认）：元素默认在文档流排列</li>
+<li>left：元素立即脱离文档流，立即向左侧浮动</li>
+<li>right：元素立即脱离文档流，立即向右侧浮动</li>
+</ul>
+</li>
+</ul>
+<h2 id="简单布局"><a href="#简单布局" class="headerlink" title="简单布局"></a>简单布局</h2><ul>
+<li>固定布局：在页面中摆放盒子</li>
+<li>自适应布局：根据终端屏幕不同，网页自动调整大小</li>
+</ul>
+<h2 id="高度坍塌问题"><a href="#高度坍塌问题" class="headerlink" title="高度坍塌问题"></a>高度坍塌问题</h2><p>在文档流中，父元素的高度默认是被子元素撑开的，也就是子元素多高，父元素就多高。此时当子元素浮动后，子元素完全脱离文档流，此时子元素无法撑开父元素的高度，导致父元素高度坍塌。</p>
+<ul>
+<li>高度坍塌带来的问题：<ul>
+<li>父元素下的所有元素都会向上移动，这样将会导致页面布局混乱</li>
+</ul>
+</li>
+</ul>
+<p>==在开发中尽量避免高度坍塌==</p>
+<blockquote>
+<p>根据W3C标准，在页面中元素都有一个隐含的属性：Block Formatting Context，简称BFC，该属性可以设置打开或者关闭，默认情况下关闭。<br>当开启BFC时，将有如下特性：</p>
+<ol>
+<li>父元素的外边距不会和子元素重叠</li>
+<li>开启BFC的元素不会被浮动元素所覆盖 </li>
+<li>开启BFC的元素可以包含浮动的子元素</li>
+</ol>
+<p>==注意：在IE6及以下浏览器不支持BFC，但是却有另一个隐含属性：hasLayout，其与BFC类似，所以在IE6中可以通过开启hasLayout：直接将元素的zoom设置为1即可。（zoom表示放大的意思，后边跟一个数值，表示放大几倍==</p>
+</blockquote>
+<ul>
+<li><p>解决方案：</p>
+<ol>
+<li>为父元素设置高度（height）<strong>（不推荐）</strong><ul>
+<li>原因：可以为父元素设置高度，但是一旦父元素高度写死，父元素将不再自适应子元素高度，而当子元素高度变化时，将再次产生高度坍塌</li>
+</ul>
+</li>
+<li>开启BFC隐藏属性：<ul>
+<li>开启方式（间接）：<ul>
+<li>设置元素浮动 <strong>（不推荐）</strong><ul>
+<li>原因：使用这种方式，虽然可以撑开父元素，但是会导致父元素宽度丢失。而且使用这种方式也会导致父元素下元素向上移动。</li>
+</ul>
+</li>
+<li>设置绝对定位 <strong>（不推荐）</strong></li>
+<li>设置元素为inline-block <strong>（不推荐）</strong><ul>
+<li>原因：使用这种方式，虽然可以撑开父元素，但是会导致父元素宽度丢失。却不会使下面元素向上移动</li>
+</ul>
+</li>
+<li>将元素的overflow设置为一个非visible的值 <strong>（推荐）</strong><ul>
+<li>原因：使用这种方式，副作用相对以上几种方式较小，但仍存在副作用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可以直接在高度塌陷的父元素最后，加上一个空白的div，由于这个div并没有浮动，可以撑开父元素高度，并且使用clear属性，基本没有副作用。（即空白div + clear）<strong>（推荐）</strong><ul>
+<li>影响：使用这种方式虽然会解决问题，但添加了多余的div结构</li>
+</ul>
+</li>
+<li><p>可以使用伪类：after，指定元素的后面 <strong>（强烈推荐）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box1:after&#123;</span><br><span class="line">    content:&quot;&quot;;</span><br><span class="line">    display:block;</span><br><span class="line">    clear:both</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用如上代码，将彻底解决高度坍塌问题，并且几乎没有任何副作用（但在IE6中不支持after伪类，所以在iE6不支持，在IE6还是要设置hasLayout，设置zoom：1）</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h2><blockquote>
+<p>在IE6中设置宽度，默认开启hasLayout</p>
+</blockquote>
+<ul>
+<li><p>去掉ul中li的黑点</p>
+<ul>
+<li>设置list-style： none；</li>
+</ul>
+</li>
+<li><p>要想a标签铺满整个li标签，可以这样设置</p>
+<ol>
+<li>display：block （将a标签变为块元素）</li>
+<li>width：100%（设置a标签的宽度占用父元素的100%）</li>
+</ol>
+</li>
+<li>解决高度坍塌：<ul>
+<li>overflow：hidden（可开启BFC，详情见上述）</li>
+</ul>
+</li>
+</ul>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><blockquote>
+<p>希望清除掉其他元素浮动对当前元素的影响，使用clear</p>
+</blockquote>
+<p><strong>clear</strong>：规定元素哪一侧不允许浮动</p>
+<ul>
+<li>可选值：<ul>
+<li>left：该元素左侧不允许浮动</li>
+<li>right：该元素右侧不允许浮动</li>
+<li>none：该元素允许被浮动影响</li>
+<li>both：该元素左右都不允许有浮动出现（清楚对其影响最大的元素的浮动）</li>
+<li>inherit：继承父元素的clear属性</li>
+</ul>
+</li>
+</ul>
+<p>清除元素之后，元素会回到浮动之前的位置</p>
+<h2 id="看视频中的杂碎知识"><a href="#看视频中的杂碎知识" class="headerlink" title="看视频中的杂碎知识"></a>看视频中的杂碎知识</h2><ul>
+<li><p>如果浮动元素上面有块元素的话，则浮动元素将会在块元素下面起作用，而不会与块元素平起平坐。</p>
+<ul>
+<li>解决：在代码里将块元素与浮动元素换一下位置就好</li>
+</ul>
+</li>
+<li><p>让文字垂直居中</p>
+<ul>
+<li>解决：让行高与高度一致。即line-height = height</li>
+</ul>
+</li>
+<li><p>在显示设置宽度时，padding会影响可见框大小，将往外面挤；如果没有显示设置情况下指定padding，宽度会自动设置，往框里面挤</p>
+<ul>
+<li>自己见解：因为在设置宽度的情况下，内容区宽度已经定好了，而再设置padding，则就是在已经设置好的宽度的基础上，往外拓展，所以出现往外面挤；而没有设置width情况下设置padding，此时width默认值是auto，也就是遵循父元素的width。设置padding，则只会对父元素下的子元素起作用，因此会在一个盒子里往里面挤</li>
+</ul>
+</li>
+<li><p>在设置字体的简写属性font时，如果没有设置大小，粗细，斜体，小写大写字母时，其会采用默认值，如果要是采用默认值，则在此之前设置的属性将被覆盖。</p>
+</li>
+<li><p>在设置font是，如font：14px/36px。中14px是字体大小，而36px是行高</p>
+</li>
+<li><p>在IE6中设置浮动时，如果前一个元素是内联元素或者块元素时，那么浮动元素将会往下挤</p>
+<ul>
+<li>解决：让浮动元素在最上面</li>
+</ul>
+</li>
+</ul>
+<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>定位就是指讲指定元素摆放到页面的任意位置，通过position设置元素的定位。</p>
+<ul>
+<li>可选值:<ul>
+<li>static：没有定位</li>
+<li>relative：相对定位</li>
+<li>fixed：绝对定位（固定定位）</li>
+<li>absolute：绝对定位</li>
+</ul>
+</li>
+</ul>
+<p>当开启了定位属性，可以设置<strong>left  right  top bottom</strong>四个偏移量。</p>
+<ul>
+<li>left：元素相对于其定位位置（根据具体情况而定的定位位置）左侧偏移量</li>
+<li>right：元素相对于其定位位置（根据具体情况而定的定位位置）右侧偏移量</li>
+<li>top：元素相对于其定位位置（根据具体情况而定的定位位置）上侧偏移量</li>
+<li>bottom：元素相对于其定位位置（根据具体情况而定的定位位置）下侧偏移量</li>
+</ul>
+<h3 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h3><blockquote>
+<p>position：relative，相对于元素在文档流中<strong>原来的位置</strong>进行定位</p>
+</blockquote>
+<ol>
+<li>当开启相对定位，而不设置偏移量时，元素不会发生任何变化</li>
+<li>相对定位就是相对于元素在文档流中<strong>原来的位置</strong>进行定位</li>
+<li><strong>相对定位的元素不会脱离文档流</strong>，即原来的位置还保留着</li>
+<li>相对定位会使元素提升一个层级，即比普通元素层级高，会盖住文档流里面的元素</li>
+<li>相对定位不会改变元素的性质，块元素还是块元素，内联元素还是内联元素。（跟第三条一样）</li>
+</ol>
+<h3 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h3><blockquote>
+<p>position：absolute，相对于离他最近的开启了定位的祖先元素进行定位的。</p>
+</blockquote>
+<ol>
+<li><strong>开启绝对定位使元素脱离文档流</strong>，即原来的位置不会保留，其下面元素会顶上</li>
+<li>当开启绝对定位，而不设置偏移量时，元素不会发生任何变化</li>
+<li><strong>绝对定位是相对于离他最近的开启了定位（不管是什么定位）的祖先元素进行定位的。如果所有的祖先元素都没有开启定位，则会相对于浏览器窗口定位</strong>。（一般情况，开启了子元素的绝对定位都会同时开启父元素的相对定位）</li>
+<li>绝对定位会使元素提升一个层级</li>
+<li>绝对定位会改变元素的性质<ul>
+<li>内联元素变成块元素，</li>
+<li>其宽度和高度默认都被内容撑开</li>
+</ul>
+</li>
+</ol>
+<h3 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h3><blockquote>
+<p>position：fixed，固定定位是一种特殊的绝对定位，其大部分特点与绝对定位相同</p>
+</blockquote>
+<p>与绝对定位不同：</p>
+<ul>
+<li>固定定位永远相对于相对于浏览器窗口定位</li>
+<li>固定定位会固定在浏览器窗口的某个位置，不会随滚动条滚动。</li>
+<li>在IE6不支持固定定位。</li>
+</ul>
+<h3 id="元素层级"><a href="#元素层级" class="headerlink" title="元素层级"></a>元素层级</h3><p>开启了定位的元素，其层级都会提高，而当层级一样时，则会按照代码结构上的前后顺序，由后面的盖住前面的。</p>
+<p>通过<strong>z-index</strong>可以设置元素的层级</p>
+<blockquote>
+<p>可以为z-index指定一个正整数作为值，该值作为当前元素的层级，层级越高，越优先显示。<strong>对于没有开启定位的元素不能使用z-index</strong></p>
+</blockquote>
+<p>父元素的层级再高，也不会盖住子元素</p>
+<h2 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h2><blockquote>
+<p>opacity可以用来设置元素背景的透明，需要0-1之间的值。0表示完全透明，1表示完全不透明。</p>
+</blockquote>
+<p>opacity在IE8及以下的浏览器中不支持</p>
+<ul>
+<li>解决方法：<ul>
+<li>使用filter属性（IE独有）<ul>
+<li>filter：alpha（opacity=50）：其中opacity需要一个0-100之间的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h3><ul>
+<li><p>background-image：url（）；</p>
+<ul>
+<li>如果背景图片大于元素宽高，默认会显示图片的左上角</li>
+<li>如果背景图片和元素宽高一样大，则会将背景图片全部显示</li>
+<li>如果背景图片小于元素宽高，则会默认将背景图片重复平铺以充    满元素</li>
+<li>可以同时为元素指定背景颜色和背景图片，这种情况下背景颜色    将会作为背景图片的底色。<strong>一般情况下设置背景图片都会同时指    定一个背景颜色</strong></li>
+</ul>
+</li>
+<li><p>background-repeat</p>
+<ul>
+<li>可选值：<ul>
+<li>repeat：水平和垂直都不重复</li>
+<li>repeat-x：水平方向重复</li>
+<li>repeat-y：垂直方向重复</li>
+<li>no-repeat：不重复</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>background-positioin</p>
+<ul>
+<li>0% 0%（默认值）</li>
+<li>top left</li>
+<li>top right</li>
+<li>top center</li>
+<li>center left</li>
+<li>center right</li>
+<li>center center</li>
+<li>bottom left</li>
+<li>bottom right</li>
+<li>bottom center</li>
+<li>x% y%</li>
+<li>xpos ypos（单位是像素或其他css单位，即10px 10px）</li>
+<li>如果只写一个值，那么另一值则为50%(center)</li>
+</ul>
+</li>
+<li><p>background-attachment</p>
+<ul>
+<li>说明：设置背景图像是否固定或随页面的其余部分滚动</li>
+<li>可选值：<ul>
+<li>scroll：默认值，背景图片随着窗口滚动</li>
+<li>fixed：背景图片会固定在某一位置，不随页面滚动</li>
+<li>inherit：</li>
+</ul>
+</li>
+<li>==注意==：当背景图片的background-attachment设置为fixed时，背景图片的定位（background-position）永远相对于浏览器的窗口，即在窗口的相对位置</li>
+<li>==注意==：不随窗口滚动的图片，我们一般都是设置给body，而不设置给其他元素，因为其他元素滚动时，会隐藏这个不随窗口滚动的背景图片。</li>
+</ul>
+</li>
+<li><p>background简写属性：</p>
+<ul>
+<li>通过background属性可以简化属性，比如背景颜色，背景图片，背景位置，背景是否固定等。</li>
+<li>如果不设置相关值，则会保持</li>
+</ul>
+</li>
+</ul>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><blockquote>
+<p>table表示表格（块元素），tr表示一行，td表示一个单元格。</p>
+</blockquote>
+<p>table和td边框之间有个默认距离，可以通过<strong>border-spacing</strong>设置。</p>
+<ul>
+<li>border-spacing：表示table和td之间的距离。如border-spacing：1px。</li>
+<li>border-collapse：可以用来设置边框合并<ul>
+<li>可选值：<ul>
+<li>collapse：合并</li>
+<li>inherit：继承</li>
+</ul>
+</li>
+<li>==注意==：如果设置border-collapse，那么border-spacing自动失效。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>th标签表示表头中的内容，其用法和td一样。</p>
+</blockquote>
+<hr>
+
+<p>有一些情况下表格非常长，这时需要将表格分成三部分，表头，表主体，表格底部</p>
+<ul>
+<li>表头：thead<ul>
+<li>永远显示在表格的最上面</li>
+</ul>
+</li>
+<li>表格主体：tbody<ul>
+<li>永远显示在表格中间</li>
+<li>如果页面中没有写tbody，浏览器会自动在表格中添加tbody，并且将所有的tr放在tbody里。</li>
+</ul>
+</li>
+<li>表格底部：tfoot<ul>
+<li>永远显示在表格底部</li>
+</ul>
+</li>
+</ul>
+<p>==上面提到子元素和父元素相邻的垂直外边距（margin-top，margin-bottom）会发生重叠，子元素的外边距会传递给父元素，此时，使用空的table标签可以隔离父子元素的外边距，阻止外边距的重叠。<strong>同时可以使用CSS伪类：before设置display：table进行相同的设置</strong>。==</p>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><ul>
+<li><p><strong>解决父子元素的垂直外边距重叠问题</strong></p>
+<ul>
+<li>使用：before伪类，设置display：table<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box:before &#123;</span><br><span class="line">    display:table;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>解决父元素高度坍塌问题</strong></p>
+<ul>
+<li>使用：after伪类，设置display：block，同时设置clear：both<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box:after &#123;</span><br><span class="line">    display:block;</span><br><span class="line">    clear: both;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>最终解决方案，<strong>同时使用：after和：before</strong>，因为垂直外边距重叠问题中可以使用clear：both，而父元素坍塌问题中display也可以设置为table，所以同时使用没问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .clearfix:after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: table;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>在select中可以使用optgroup对选项进行分组，同一个optgroup里是一组，在optgroup指定label指定组名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br><span class="line">    &lt;optgroup label=&quot;...&quot;&gt;</span><br><span class="line">        &lt;option&gt;&lt;/option&gt;</span><br><span class="line">    &lt;/optgroup&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="label标签"><a href="#label标签" class="headerlink" title="label标签"></a>label标签</h2><p>label标签里有个for属性，值是其要对应的其他元素的name属性。表示此label和那个元素时一组的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label for=&quot;user&quot;&gt;用户名&lt;/label&gt;</span><br><span class="line">&lt;input name=&quot;user&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="fieldset标签"><a href="#fieldset标签" class="headerlink" title="fieldset标签"></a>fieldset标签</h2><p>在表单中可以使用fieldset来为表单进行分组，可以将表单的同一项放到同一组里</p>
+<h3 id="legend标签"><a href="#legend标签" class="headerlink" title="legend标签"></a>legend标签</h3><p>在fieldset里可以使用legend子标签，来指定组名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;用户信息&lt;/legend&gt;</span><br><span class="line">&lt;/fieldset&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="框架集frameset"><a href="#框架集frameset" class="headerlink" title="框架集frameset"></a>框架集frameset</h2><blockquote>
+<p>使用frameset来创建一个框架集，可以引入多个页面</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset&gt;&lt;/frameset&gt;</span><br></pre></td></tr></table></figure>
+<p>==注意== <strong>frameset和body不能出现在同一页面中</strong></p>
+<ul>
+<li>属性<ul>
+<li>rows：指定框架集中所有框架，一行一行地排列，如rows：50%，50%：表示分两行，上面占一半，下面占一半</li>
+<li>cols：指定框架集中所有框架，一列一列地排列，即有几列写几个数字，如cols：30%，40%，30%：表示三列，每列百分比已指定</li>
+<li>==注意==：可以使用*表示任意。</li>
+</ul>
+</li>
+</ul>
+<p>==对于frameset中，rows和cols必须指定一个==</p>
+<p>其存在问题</p>
+<ol>
+<li>frameset和iframe一样，里面的内容不会被搜索引擎检索</li>
+<li>使用框架集则意味着页面中不能有自己的内容，只能引入其他页面，而每当单独加载一个页面时，浏览器都要重新发送一次请求，引入几个页面就需要发送几次请求。用户体验比较差</li>
+<li>如果非得用，建议使用frameset，不要使用iframe。</li>
+</ol>
+<h3 id="frame标签"><a href="#frame标签" class="headerlink" title="frame标签"></a>frame标签</h3><blockquote>
+<p>在frameset中使用frame子标签来指定要引入的页面</p>
+</blockquote>
+<ul>
+<li>frame是自结束标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset rows=&quot;50%, 50%&quot;&gt;</span><br><span class="line">    &lt;frame src=&quot;01.html&quot;/&gt;</span><br><span class="line">    &lt;frame src=&quot;02.html&quot;/&gt;</span><br><span class="line">&lt;/frameset&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="临时问题"><a href="#临时问题" class="headerlink" title="临时问题"></a>临时问题</h2><p>IE6中对图片格式png24支持度不高，如果使用png24的图片，则会导致透明效果无法正常显示。</p>
+<ul>
+<li>解决：<ul>
+<li>可以使用png8代替png24，但是使用png8代替png24以后，图片清晰度有所下降（但不明显）</li>
+<li>使用JavaScript解决问题。需要向页面中引入外部JavaScript文件，然后再写简单js代码。（DD-belatedPNG_0.0.8a.js）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dd_belatedPNG.fix(&apos;div, img&apos;)//里面传的是图片所在的元素</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="条件hack"><a href="#条件hack" class="headerlink" title="条件hack"></a>条件hack</h2><blockquote>
+<p>有一些特殊的代码我们只需要在特殊的浏览器中执行，而在其他浏览器不执行，这时就可以使用<strong>css hack</strong>解决该问题。</p>
+</blockquote>
+<p><strong>CSS Hack</strong>：一段特殊代码，只在某些浏览器中识别，而其他浏览器不识别，可以通过这种方式为某些浏览器指定特定代码</p>
+<ul>
+<li>条件hack：<ul>
+<li>只对IE浏览器（IE10以下）有效，其他浏览器都会将其识别为注释</li>
+<li>可以指定特定的值，如：if IE 6</li>
+<li>也可以指定大于或者等于或者小于特定值，<ul>
+<li>if lt IE 8：表示IE8以下（不包括IE8）</li>
+<li>if gt IE 8：表示IE8以上（不包括IE8）</li>
+<li>if lte IE 8：表示IE8及IE8以下（包括IE8）</li>
+<li>if gte IE 8：表示IE8及IE8以下（包括IE8）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if IE]&gt;</span><br><span class="line">    &lt;p&gt;为了你的健康，请远离IE&lt;/p&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="属性级Hack"><a href="#属性级Hack" class="headerlink" title="属性级Hack"></a>属性级Hack</h2><blockquote>
+<p>在属性上添加Hack</p>
+</blockquote>
+<p>语法：selector{<hack>?property:value</hack>?;}</p>
+<p>取值：</p>
+<ul>
+<li>_：表示IE6及以下。</li>
+<li>*：表示IE7及以下</li>
+<li>\9：选择IE6+<strong>（写属性的后面）</strong></li>
+<li>\0：选择IE8+及Opera15以下的浏览器<strong>（写属性后面）</strong></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/JDK与JRE区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/04/JDK与JRE区别/" itemprop="url">JDK与JRE区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T09:53:18+08:00">
+                2018-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JDK与JRE的区别与联系"><a href="#JDK与JRE的区别与联系" class="headerlink" title="JDK与JRE的区别与联系"></a>JDK与JRE的区别与联系</h1><h2 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h2><p><strong>JDK</strong>：Java Development Kit，简单来说就是面向开发人员用的软件开发包（Software Development Kit）</p>
+<p><strong>JRE</strong>：Java Runtime Enviroment，就是Java运行环境，面向Java程序的使用者，不是开发者</p>
+<blockquote>
+<p>如果安装JDK，会同时安装两个Jre，一个在JDK所在目录中的/jre文件夹里，另一个在C:\Programe Files\Java目录下的Jre。</p>
+<p>如果只安装Jre的话，那么就不会有JDK所在目录下的Jre，就只会有唯一一个C盘里的Jre</p>
+</blockquote>
+<h2 id="JRE的作用"><a href="#JRE的作用" class="headerlink" title="JRE的作用"></a>JRE的作用</h2><p>Jre就好比于一个PC机，所有window应用程序都在PC机上运行，同样的所有的Java程序都在JRE上面运行。==Jre包含了Java虚拟机，Java基础类库等==，因此提供了运行Java的环境。</p>
+<h2 id="JDK的作用"><a href="#JDK的作用" class="headerlink" title="JDK的作用"></a>JDK的作用</h2><p>JDK是提供给程序员使用的，JDK包含Jre，Javac编译器，还有很多Java程序调试和分析的工具</p>
+<h2 id="为什么JDK要使用两套JRE？"><a href="#为什么JDK要使用两套JRE？" class="headerlink" title="为什么JDK要使用两套JRE？"></a>为什么JDK要使用两套JRE？</h2><p>首先JRE是Java应用程序的运行环境，然后JDK里面的工具几乎都是Java编写的，所以也是Java应用程序，因此JDK目录下也要自附一套JRE，这是用来运行JDK里面的Java应用程序。而C盘下面的JRE是用来运行一般Java应用程序的。</p>
+<h2 id="还需要注意的是"><a href="#还需要注意的是" class="headerlink" title="还需要注意的是"></a>还需要注意的是</h2><ol>
+<li>JVM：Java Virtual Machine。所有的Java程序都会被编译成.class文件，然后.class文件并不直接与计算机操作系统相对应，而是通过JVM与操作系统简介运行（详情看《深入分析JavaWeb技术内幕》以及《深入理解Java虚拟机》）</li>
+<li>JRE：Java Runtime Environment。光有JVM还不能成功执行.class文件，还需要一些类库lib。在安装JDK的目录下面找到JRE目录，里面有两个文件夹bin和lib，可以这样认为bin就是jvm，而lib就是jvm工作时所需要的类库，所以jre=jvm+lib，jvm=bin。==所以在写完Java程序编译成.class文件后，就可以把.class文件和jre一起打包给别人，别人就可以运行我的Java程序了（因为jre里面有运行.class文件的java.exe）==。</li>
+<li>JDK：Java Development Kit。看一下JDK的安装目录。</li>
+</ol>
+<ul>
+<li>bin：最主要的编译器javac.exe</li>
+<li>lib：类库</li>
+<li>db：Java实现的数据库</li>
+<li>include：java和JVM交互用的头文件</li>
+<li>jre：JDK里面Java程序的运行环境。</li>
+<li>src：src类库源码包<blockquote>
+<p>真正运行Java时起作用的bin,include,lib,jre</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>关于JDK详细的目录讲解请参考此链接<a href="http://blog.csdn.net/cxhply/article/details/49308729" target="_blank" rel="noopener">JDk目录详解</a></p>
+<p>关于上文的详细来源，请参考此博文<a href="https://www.cnblogs.com/myitm/archive/2011/05/03/2035942.html" target="_blank" rel="noopener">JDK与Jre的区别</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

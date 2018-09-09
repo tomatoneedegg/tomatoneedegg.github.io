@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[TOC] AOP(又名AspectJ) 面向切面编程，就是说解决代码复用，代码重复问题。AOP专门用于处理系统中分布于各个模块中的交叉问题   下载安装 Eclipse导入Spring-AOP AspectJ使用 AOP概念 AOP注解方式 AOPXML方式  下载安装AspectJ下载与安装  地址：http://www.eclipse.org/aspectj/downloads.php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring之AOP">
+<meta property="og:url" content="http://yoursite.com/2017/05/17/Spring之AOP/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="[TOC] AOP(又名AspectJ) 面向切面编程，就是说解决代码复用，代码重复问题。AOP专门用于处理系统中分布于各个模块中的交叉问题   下载安装 Eclipse导入Spring-AOP AspectJ使用 AOP概念 AOP注解方式 AOPXML方式  下载安装AspectJ下载与安装  地址：http://www.eclipse.org/aspectj/downloads.php">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/05/17/Spring之AOP/有道云笔记汇总/weixinobU7VjpqSbzYjgJiizFuo7Q0yv2w/Pictures/1.jpg">
+<meta property="og:updated_time" content="2018-06-07T17:52:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring之AOP">
+<meta name="twitter:description" content="[TOC] AOP(又名AspectJ) 面向切面编程，就是说解决代码复用，代码重复问题。AOP专门用于处理系统中分布于各个模块中的交叉问题   下载安装 Eclipse导入Spring-AOP AspectJ使用 AOP概念 AOP注解方式 AOPXML方式  下载安装AspectJ下载与安装  地址：http://www.eclipse.org/aspectj/downloads.php">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/17/Spring之AOP/有道云笔记汇总/weixinobU7VjpqSbzYjgJiizFuo7Q0yv2w/Pictures/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/17/Spring之AOP/"/>
+
+
+
+
+
+  <title>Spring之AOP | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/17/Spring之AOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring之AOP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T13:45:04+08:00">
+                2017-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="AOP-又名AspectJ"><a href="#AOP-又名AspectJ" class="headerlink" title="AOP(又名AspectJ)"></a>AOP(又名AspectJ)</h1><blockquote>
+<p>面向切面编程，就是说解决代码复用，代码重复问题。AOP专门用于处理系统中分布于各个模块中的交叉问题</p>
+</blockquote>
+<ul>
+<li><strong>下载安装</strong></li>
+<li><strong>Eclipse导入Spring-AOP</strong></li>
+<li><strong>AspectJ使用</strong></li>
+<li><strong>AOP概念</strong></li>
+<li><strong>AOP注解方式</strong></li>
+<li><strong>AOPXML方式</strong></li>
+</ul>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a><strong>下载安装</strong></h2><p><strong>AspectJ下载与安装</strong></p>
+<ol>
+<li>地址：<a href="http://www.eclipse.org/aspectj/downloads.php" target="_blank" rel="noopener">http://www.eclipse.org/aspectj/downloads.php</a>        </li>
+<li>得到aspectJ-X.X.X.jar文件，然后解压，安装</li>
+<li>安装完成后将 ==安装路径\bin== 添加到PATH环境变量中去，将==安装路径\lib\aspectjrt.jar== 添加到CLASSPATH环境变量中去</li>
+</ol>
+<p><strong>AJDT(AspectJ Develoment Tools)下载安装</strong></p>
+<ol>
+<li><a href="http://www.eclipse.org/ajdt/downloads/" target="_blank" rel="noopener">这里下载</a>：<a href="http://www.eclipse.org/ajdt/downloads/" target="_blank" rel="noopener">http://www.eclipse.org/ajdt/downloads/</a>  一定要对应eclipse的版本，比如eclipse4.3对应aspectJ版本</li>
+<li>有两种安装方式：<ol>
+<li>第一种：把下载解压后的文件，如：ajdt_2.2.3_for_eclipse_4.3  里的features文件下的所有东西复制粘贴到eclipse的feature文件下，还有plugins这个文件一样</li>
+<li>第二种：在eclipse中Help-&gt;Install New SoftWare-&gt;Add-&gt;选择下载好的压缩包，然后click确定，再重启eclipse就可以了</li>
+</ol>
+</li>
+<li>使用时，对于一般Java项目，可以右键-&gt;Configure-&gt;Convert to AspectJ  就可以了<h2 id="Eclipse-XML配置Spring-AOP的命名空间"><a href="#Eclipse-XML配置Spring-AOP的命名空间" class="headerlink" title="Eclipse XML配置Spring-AOP的命名空间"></a><strong>Eclipse XML配置Spring-AOP的命名空间</strong></h2></li>
+<li>(Eclipse项目包中的LIbraries)在spring.jar文件中的META—INF目录中提供了spring.schemas文件，这个文件指定了提供支持的功能的xml元素配置的命名空间定义文件的位置，在这个文件中我们可以找到aop的位置<br><img src="/2017/05/17/Spring之AOP/有道云笔记汇总/weixinobU7VjpqSbzYjgJiizFuo7Q0yv2w/Pictures/1.jpg" alt="image"></li>
+<li>在XML文件中引入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>之后需要在xsi:schemaLocation 中添加位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.springframework.org/schema/aop(空格)http://www.springframework.org/schema/aop/spring-aop-2.5.xsd</span><br></pre></td></tr></table></figure></p>
+<p>而/spring-aop-2.5.xsd就是aop的元素的定义的文件名</p>
+<h2 id="AspectJ使用"><a href="#AspectJ使用" class="headerlink" title="AspectJ使用"></a><strong>AspectJ使用</strong></h2><blockquote>
+<p>在AOP中Java类仍然是普通Java，可以通过编译运行</p>
+</blockquote>
+<ol>
+<li><p>写几个普通Java类，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Hello()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写AspectJ，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public aspect AuthAspect&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>==注意：aspect不用参数==</p>
+<ol start="3">
+<li>点击运行</li>
+</ol>
+<blockquote>
+<p>说一下使用的背后：在已经写好的Java类中各自含有不同的方法，但现在想要在每个方法中添加一段代码，以实现某个检测功能，此时使用AspectJ切面编程能够指定在Java类中添加处理，就类似于一刀切，在每个类的Before或者After或者Around范围进行统一的处理，就不用一个一个地去添加处理代码，更好地实现了代码复用.</p>
+</blockquote>
+<h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a><strong>AOP概念</strong></h2><p><strong>特征：</strong></p>
+<ul>
+<li>各步骤间良好隔离性</li>
+<li>源代码无关性（减少了代码污染)</li>
+</ul>
+<p><strong>专业术语：</strong></p>
+<ul>
+<li><p><strong>切面(aspect):</strong> 组织对个处理，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public aspect HelloTest&#123;</span><br><span class="line">    //其中aspect就是指切面</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>连接点(joinpoint):</strong> 方法的调用，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Before(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">public void authority(JoinPoint jp)&#123;</span><br><span class="line">    //连接点主要作为参数，使用JoinPoint里的proceed()方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>增强处理(Advice):</strong> 有around，after，before等类型，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">before():execution(* org.dbw.app.service.*.*(..))</span><br><span class="line">after():............</span><br><span class="line">around():...........</span><br><span class="line">//第一个* 为返回类型，如int，double等等</span><br><span class="line">//第二个* 为任意类，如Hello类，World类等等</span><br><span class="line">//第三个* 为任意方法，如foo()等等</span><br><span class="line">//括号里为参数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>切入点(Poincut):</strong> 可以插入增强处理(Advice)的连接点，就是说当某个连接点满足某个条件，连接点被添加进增强处理(Advice)时，该连接点编程切入点。如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poincut xxxPoincut():execution(void Org.dbw*.say*())       </span><br><span class="line">//每个方法被调用时都是连接点，如调用void dbwLove.sayLove()方法，此时为连接点(Joincut),但因为加入了增强处理，所以变成了切入点.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="AOP注解"><a href="#AOP注解" class="headerlink" title="AOP注解"></a>AOP注解</h2><blockquote>
+<p>在Eclipse中添加了aop命名空间后才可以进行操作<br>启动@Aspect支持</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy/&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>1. 定义切面Bean</strong></p>
+<p>在Spring容器中配置一个带 ==@Aspect== 注解的Bean，Spring将会自动识别该Bean，并将该Bean作为切面处理，且不会对该Bean进行增强处理(Advice)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Asppect</span><br><span class="line">public class LogAspect&#123;</span><br><span class="line">    //其他内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2. 定义Before增强处理</strong></p>
+<p>用 ==@Before== 修饰一个方法，该方法作为Before增强处理，在目标方法执行前执行所修饰的方法。通常指定一个 ==value属性值== ，该属性值指定一个切入点表达式.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class AuthAspect&#123;</span><br><span class="line">    @Before(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void authority()&#123;</span><br><span class="line">        //其他内容</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. 定义AfterReturning增强处理</strong></p>
+<p>使用 ==@AfterReturn== 修饰一个方法，使其成为AfterReturn增强处理，在目标方法正常完成后执行增强处理。<br>常用属性：<br>==pointcut/value==:指定该切入点对应的切入表达式<br>==returning== ：可获得目标方法的返回值，同时用于表示增强处理方法中可定义与这个同名的形参<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class LogAspect&#123;</span><br><span class="line">    //定义一个AfterReturnning处理，returning属性指定目标方法返回值</span><br><span class="line">    @AfterReturning(returning=&quot;rvt&quot;,pointcut=&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    //形参：形参类型会限制目标方法必须返回指定类型的值或没有返回值，与returnning属性值同名</span><br><span class="line">    public void log(Object rvt)&#123;</span><br><span class="line">        System.out.println(&quot;目标方法返回值&quot;+ rvt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4. 定义AfterThrowing增强处理</strong></p>
+<p>使用@AfterThrowing注解修饰一个方法，使其成为AfterThrowing增强处理<br>常用属性<br>==pointcut/value== 指定切入点对应的切入表达式<br>==throwing==:指定形参名，该形参用于访问目标方法抛出的异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class RepairAspect&#123;</span><br><span class="line">    @AfterThrowing(throwing=&quot;ex&quot; , pointcut=&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void do(Throwable ex)&#123;</span><br><span class="line">        System.out.println(&quot;目标方法抛出的异常&quot;+ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：AfterThrowing处理虽然可以对目标方法的异常进行处理，但这种处理与catch不同。catch捕捉是完全处理异常，而AfterThrowing处理虽然处理了异常，但不能完全处理，该异常仍然会抛给上一级调用者.</p>
+</blockquote>
+<p><strong>5. After增强处理</strong></p>
+<p>使用@After修饰一个方法，使其成为After增强处理             </p>
+<p>与AfterReturning区别: ++AfterReturning增强处理只有在目标方法成功完成后才执行++ ，++而After则不管目标方法如何结束，它都会被执行.++ </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class ReleaseAspect&#123;</span><br><span class="line">    @After(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void release()&#123;</span><br><span class="line">        //其他内容</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>6. Around处理</strong></p>
+<p>使用@Around注解处理，使被修饰方法成为Around处理，近似等于Before和After总和，可以决定目标方法什么时候执行，如何执行，可以阻止目标方法执行。(详细见解看轻量级JavaEE企业应用实战P659)</p>
+<p>用法：当定义一个Around Advice时，==第一个形参必须是ProceedingJoinPoint类型== ++(就是说至少包含一个形参)++ ,调用ProceedingJoinPoint参数的proceed()方法时，还可以传入一个Object[]对象作为参数，该数组中的值将被传入目标方法作为执行目标方法的实参。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class TxAspect&#123;</span><br><span class="line">    @Around(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public Object processTx(ProceedingJoinPoint jp)&#123;</span><br><span class="line">        s.out.print(&quot;执行目标方法前&quot;);</span><br><span class="line">        //创建一个这样的数组，使其成为目标方法的形参</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        //数组作为proceed方法形参，并用Object保留返回值</span><br><span class="line">        Object rvt = jp.proceed(args);</span><br><span class="line">        s.out.print(&quot;执行目标方法后&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/Spring之高级依赖关系设置/" rel="next" title="Spring之高级依赖关系">
+                <i class="fa fa-chevron-left"></i> Spring之高级依赖关系
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/04/多线程/" rel="prev" title="多线程">
+                多线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AOP-又名AspectJ"><span class="nav-number">1.</span> <span class="nav-text">AOP(又名AspectJ)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eclipse-XML配置Spring-AOP的命名空间"><span class="nav-number">1.2.</span> <span class="nav-text">Eclipse XML配置Spring-AOP的命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AspectJ使用"><span class="nav-number">1.3.</span> <span class="nav-text">AspectJ使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP概念"><span class="nav-number">1.4.</span> <span class="nav-text">AOP概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP注解"><span class="nav-number">1.5.</span> <span class="nav-text">AOP注解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
