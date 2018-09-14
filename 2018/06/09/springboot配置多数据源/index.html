@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot配置多数据源">
+<meta property="og:url" content="http://yoursite.com/2018/06/09/springboot配置多数据源/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png">
+<meta property="og:updated_time" content="2018-09-14T05:11:39.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springboot配置多数据源">
+<meta name="twitter:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/09/springboot配置多数据源/"/>
+
+
+
+
+
+  <title>springboot配置多数据源 | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/springboot配置多数据源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springboot配置多数据源</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T22:06:10+08:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="springboot配置多数据源"><a href="#springboot配置多数据源" class="headerlink" title="springboot配置多数据源"></a>springboot配置多数据源</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。</p>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><ul>
+<li>SpringBoot</li>
+<li>Spring Data JPA</li>
+<li>MySQL</li>
+</ul>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><p>在application.properties中进行如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=970329</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=970329</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
+<p>上面代码中前缀为spring.datasource.primary表示主数据库，前缀为spring.datasource.slave表示从数据库，而spring.jpa就是配置一下jpa这块的东西（基本配置）。上面配置的是基本的数据库连接，就像平时项目一样，对数据库的连接。（在此提醒不要太依赖IDEA的智能提醒）</p>
+<p><strong>值得注意的是</strong>，一般配置jdbc的url的时候，是使用<strong>spring.datasource.url</strong> = jdbc:mysql://localhost:3306/XXX这个配置，但是在配置多数据源的时候，使用<strong>spring.datasource.jdbc-url</strong> 。第二个比第一个不同之处在于：第一个是url，第二个是jdbc-url。如果不这样配置，会出现说jdbcUrl is required with driverClassName的异常。</p>
+<h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><blockquote>
+<p>这里提一下。测试中将建立两个实体类。一个是User类，一个是Admin类，其中User放在主数据库，Admin放在从数据库</p>
+</blockquote>
+<p>项目分层结构：</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png" alt="项目结构"></p>
+<p>在项目目录中，我们可以看到在com.shanyu.datasource.entity的包下再分层，一个是primary，一个是slave，primary包下管理主数据库的实体，entity包下管理从数据库的实体。</p>
+<ul>
+<li>com.shanyu.datasource.entity.primary.<strong>User</strong> 实体如下所示</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png" alt="User实体类"></p>
+<ul>
+<li>com.shanyu.datasource.entity.slave.<strong>Admin</strong> 实体类</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png" alt="Admin实体类"></p>
+<h3 id="建立数据操作类（repository）"><a href="#建立数据操作类（repository）" class="headerlink" title="建立数据操作类（repository）"></a>建立数据操作类（repository）</h3><p>数据操作类分组也可以像entity下进行这样的分类，以便进行区分</p>
+<ul>
+<li>UserRepository接口</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png" alt="UserRepository"></p>
+<ul>
+<li>AdminRepository接口</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png" alt="AdminRepository"></p>
+<p>说明一下，使用SpringDataJpa之后，就可以直接通过继承JpaRepository接口实现基本的增删查改操作，同时因为只是接口，因此可以不用加@Repository这个注解，Spring容器就可以识别。当然也可以加。</p>
+<h3 id="配置主从数据源（config）"><a href="#配置主从数据源（config）" class="headerlink" title="配置主从数据源（config）"></a>配置主从数据源（config）</h3><p>在SpringBoot项目中，通过注解@Configuration在一个类上，可对整个项目进行配置。</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png" alt="config项目结构"></p>
+<p>在图上可以知道，config文件夹下并不像entity和Repository下那样进行分层。可以同时对主数据库，从数据库进行配置。其中无论主数据库还是从数据库，都只需要配置一下三个东西。</p>
+<ul>
+<li>dataSource：数据源连接信息（上面配过了）</li>
+<li>entityManagerFactory：实体管理工厂</li>
+<li>transactionManager：事务管理</li>
+</ul>
+<h4 id="对主数据库配置"><a href="#对主数据库配置" class="headerlink" title="对主数据库配置"></a>对主数据库配置</h4><ul>
+<li>MasterDataConfig中配置。</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png" alt="MasterDataConfig"></p>
+<ul>
+<li>@Configuration：表明这是一个SpringBoot下的配置类</li>
+<li>@EnableTransactionManagement：开启事务管理器。</li>
+<li>@EnableJpaRepositories：用于Spring JPA的代码配置。<ul>
+<li>entityManagerFactoryRef：实体管理工厂引用名称，对应到@Bean注解对应方法</li>
+<li>basePackages：用于配置扫描Repository所在的package及子package。即数据操作接口所在package</li>
+</ul>
+</li>
+<li>@ConfigurationProperties：对application.properties配置文件进行扫描</li>
+<li>@Primary：表示在众多相同的Bean中，优先使用@Primary注解的Bean</li>
+<li>@Qualifier：注入对应的Bean。</li>
+</ul>
+<p>在主数据源配置类中，对application.properties中以spring.datasource.primary开头的配置进行扫描读取。并进行dataSource配置。<strong>注意Datasource是java.sql.Datasource</strong>。</p>
+<ul>
+<li>对Datasouce进行配置</li>
+</ul>
+<p>使用DatasourceBuilder进行配置，读取application.properties中以spring.datasource.primary的配置。</p>
+<ul>
+<li>对实体管理工厂进行配置</li>
+</ul>
+<p>实体管理工厂方法中返回LocalContainerEntityManagerFactory。其中builder.packages中指定的是实体类所在的包路径，而builder.properties中使用jpaProperties配置HibernateSetting。在Springboot1.5x以前是使用Datasource作为形参注入到getHibernateSetting中去，而SpringBoot2.0之后就变成了HibernateSetting作为形参了，这是一个坑，很多博客还是停留在SpringBoot1.5x以前并没有进行更新。我也是从一些良心博主中找到的<a href="https://blog.csdn.net/tianyaleixiaowu/article/details/78905149" target="_blank" rel="noopener">原文地址</a></p>
+<ul>
+<li>对事务管理器进行配置</li>
+</ul>
+<p>就使用Jpa的事务管理器就行了，因为Jpa本身支持多数据源配置。</p>
+<h4 id="对从数据库配置"><a href="#对从数据库配置" class="headerlink" title="对从数据库配置"></a>对从数据库配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png" alt="SlaveDataConfig"></p>
+<p>配置从数据库跟配置主数据库基本一致。不同的是扫描application.properties中的前缀是spring.datasource.secondary，同时配置的Repository的路径和Entity的包路径也与主数据库配置不一样。</p>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><h4 id="编写Service层"><a href="#编写Service层" class="headerlink" title="编写Service层"></a>编写Service层</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png" alt="TestService"></p>
+<h4 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png" alt="测试类"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为SpringBoot + SpringDataJPA对多数据源的支持，所以极大地简化了多数据源的配置，让开发配置越来越简单，开发配置成本越来越低。</p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/springboot + maven多模块配置/" rel="next" title="SpringBoot + Maven多模块配置">
+                <i class="fa fa-chevron-left"></i> SpringBoot + Maven多模块配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/12/springboot动态选择数据源/" rel="prev" title="springboot动态选择多数据源">
+                springboot动态选择多数据源 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot配置多数据源"><span class="nav-number">1.</span> <span class="nav-text">springboot配置多数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目框架"><span class="nav-number">1.2.</span> <span class="nav-text">项目框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">1.3.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置数据库连接（application-properties）"><span class="nav-number">1.3.1.</span> <span class="nav-text">配置数据库连接（application.properties）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立实体类（entity）"><span class="nav-number">1.3.2.</span> <span class="nav-text">建立实体类（entity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立数据操作类（repository）"><span class="nav-number">1.3.3.</span> <span class="nav-text">建立数据操作类（repository）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置主从数据源（config）"><span class="nav-number">1.3.4.</span> <span class="nav-text">配置主从数据源（config）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对主数据库配置"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">对主数据库配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对从数据库配置"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">对从数据库配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写测试"><span class="nav-number">1.3.5.</span> <span class="nav-text">编写测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编写Service层"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">编写Service层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写测试类"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">编写测试类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
