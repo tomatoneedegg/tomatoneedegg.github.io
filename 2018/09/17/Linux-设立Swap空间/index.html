@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="Linux设立Swap空间安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：  使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）  1dd if=/dev/zero of=/tmp/swap bs=1M count=1024 bs=1M：表示单位，使用1M单位 count：是数目，与bs合起来就是1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-17T12:32:49.340Z">
+<meta property="og:updated_time" content="2018-09-17T13:12:34.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux设立Swap空间">
 <meta name="twitter:description" content="Linux设立Swap空间安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：  使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）  1dd if=/dev/zero of=/tmp/swap bs=1M count=1024 bs=1M：表示单位，使用1M单位 count：是数目，与bs合起来就是1">
@@ -354,6 +354,31 @@
 <li>查看效果</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon -s</span><br></pre></td></tr></table></figure>
+<p>当然上面设置完成后，一重启就没了，接下来进行永久保存操作</p>
+<ol>
+<li>编辑fstab文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在末尾添加以下内容</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/swap swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>更改swap配置</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在文件末尾添加以下内容</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.swappiness=40</span><br></pre></td></tr></table></figure>
+<p>解释一下，swappiness表示的是什么时候使用swap空间</p>
+<p>swappiness=0表示最大限度使用物理内存，然后才是swap空间</p>
+<p>swappiness=100表示积极使用swap分区，并且把内存的数据及时地搬运到swap空间里面</p>
+<p>（如果是swap处在固态的话，那是最好，如果swap在机器硬盘上，建议这个值小一点）</p>
+<ol start="5">
+<li>重启生效</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
       
     </div>
