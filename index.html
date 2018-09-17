@@ -246,6 +246,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/Linux-设立Swap空间/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/Linux-设立Swap空间/" itemprop="url">JDK与JRE区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T20:31:18+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux设立Swap空间"><a href="#Linux设立Swap空间" class="headerlink" title="Linux设立Swap空间"></a>Linux设立Swap空间</h1><p>安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：</p>
+<ol>
+<li>使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/tmp/swap bs=1M count=1024</span><br></pre></td></tr></table></figure>
+<p>bs=1M：表示单位，使用1M单位</p>
+<p>count：是数目，与bs合起来就是1024M，1G</p>
+<ol start="2">
+<li>格式化这个文件为swap格式：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /tmp/swap</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>启动swap，用swapon命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /tmp/swap</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>查看效果</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon -s</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/SQL 优化（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2234,1055 +2399,6 @@
 <p>仔细想想，入口类放在父工程下是没错的，但是就是不能直接放在父工程的代码里，那如果是放在父工程的子模块呢？</p>
 <p>试一下，在父工程下建立子模块在前面已经提到过，建立的子模块就是SpringBoot项目。因此将入口类放在子模块中，而在子模块中的pom.xml去引入TestAdmin, TestUser的依赖，好像这样子就可以运行起来了，因为子模块的pom.xml继承自父工程，因此可以直接添加依赖。</p>
 <p>当项目运行起来时，可以看到，在父工程下建立子模块，将这个子模块作为整个项目的入口启动类，这样是可以行得通的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/html&css基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/31/html&css基础/" itemprop="url">HTML&CSS基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:45:04+08:00">
-                2018-05-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端基础/" itemprop="url" rel="index">
-                    <span itemprop="name">前端基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><blockquote>
-<p>相对路径就是相对于当前HTML页面所在的位置</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;abc/cba/2.gif&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>上述代码中src属性配置的是图片的格式，使用相对路径。如果当前页面所在的文件夹里有abc文件夹，将进入abc文件夹，同时进入abc里的cba文件夹找到2.gif。==可以使用../来返回上一级目录，返回几级目录就写几个../==</p>
-<h2 id="图片格式"><a href="#图片格式" class="headerlink" title="图片格式"></a>图片格式</h2><blockquote>
-<p>JPEG(JPG), GIF, PNG都是图片格式</p>
-</blockquote>
-<ul>
-<li><strong>JPEG格式</strong>：支持颜色比较多，图片可以压缩，但是不支持透明，一般使用JPEG保存照片等颜色丰富的图片</li>
-<li><strong>GIF格式</strong>：支持颜色少，只支持简单的透明（直线型透明），支持动态图，一般使用图片颜色单一或者动态图。</li>
-<li><strong>PNG格式</strong>：支持颜色多，支持复杂透明，一般用于显示颜色复杂的透明图片</li>
-</ul>
-<p>==图片使用原则：==</p>
-<ul>
-<li>效果不一致，使用效果好的</li>
-<li>效果一致，使用小的    </li>
-</ul>
-<h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><blockquote>
-<p>代表网页元数据，给搜索引擎看的，搜索引擎在检索页面时，会同时检索页面中的关键字和描述。</p>
-</blockquote>
-<ul>
-<li><strong>使用meta标签设置网页关键字</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;HTML5&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>HTML5是关键字，也就是说content里面是关键字，name的值是对content的描述。content里可以使用多个关键字，如content=“HTML5，Java，Python”</p>
-<ul>
-<li><strong>使用meta标签指定网页的描述</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;decription&quot; content=&quot;666666博文&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>666666博文是描述</p>
-<ul>
-<li><strong>使用meta标签用来做请求重定向</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;5; url=http://www.baidu.com&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>http-equiv是http协议，然后content里面5表示秒数，等待的时间；url表示目标路径，整个表示5秒以后去到<a href="http://www.baidu.com这个地址。" target="_blank" rel="noopener">http://www.baidu.com这个地址。</a></p>
-<h2 id="内联框架"><a href="#内联框架" class="headerlink" title="内联框架"></a>内联框架</h2><blockquote>
-<p>iframe可以引入一个外部的页面，属性src只想一个外部页面的路径，但在实际开发中不会使用，因为搜索引擎不会检索框架内容</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;demo2.html&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="超链接-a标签"><a href="#超链接-a标签" class="headerlink" title="超链接-a标签"></a>超链接-a标签</h2><blockquote>
-<p>可以从一个页面跳转到另一个页面</p>
-</blockquote>
-<p>属性：</p>
-<ul>
-<li><strong>href</strong>：表示另一个页面的链接URL，可以使用绝对路径和相对路径<ul>
-<li><strong>href=”mailto:邮件地址”</strong>:自动打开电脑中默认的邮件客户端</li>
-</ul>
-</li>
-<li><strong>target</strong>：规定在何处打开文档<ul>
-<li><strong>_blank</strong>：在另一个新建窗口打开新的页面。</li>
-<li><strong>_self（默认值）</strong>：在当前窗口打开新页面，覆盖原来的页面</li>
-</ul>
-</li>
-</ul>
-<p>==在设置超链接时，如果暂时没有链接，可以使用JavaScripts:;占位，或者#占位，但前者更好，因为后者会回到页面顶部==</p>
-<p><strong>发送邮件的超链接，点击链接后可以自动打开电脑中默认的邮件</strong></p>
-<h2 id="内联和块元素"><a href="#内联和块元素" class="headerlink" title="内联和块元素"></a>内联和块元素</h2><blockquote>
-<p>块元素主要用来做页面的布局，而内联元素主要用来选中文本设置样式，一般情况使用块元素包含内联元素，而不会使用内联元素包含块元素</p>
-</blockquote>
-<ul>
-<li><p>块元素(block element)</p>
-<ul>
-<li>address - 地址</li>
-<li>blockquote - 块引用</li>
-<li>center - 举中对齐块</li>
-<li>dir - 目录列表</li>
-<li>div - 常用块级容易，也是css layout的主要标签</li>
-<li>dl - 定义列表</li>
-<li>fieldset - form控制组</li>
-<li>form - 交互表单</li>
-<li>h1 - 大标题</li>
-<li>h2 - 副标题</li>
-<li>h3 - 3级标题</li>
-<li>h4 - 4级标题</li>
-<li>h5 - 5级标题</li>
-<li>h6 - 6级标题</li>
-<li>hr - 水平分隔线</li>
-<li>isindex - input prompt</li>
-<li>menu - 菜单列表</li>
-<li>noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容</li>
-<li>noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）</li>
-<li>ol - 排序表单</li>
-<li>p - 段落</li>
-<li>pre - 格式化文本</li>
-<li>table - 表格</li>
-<li>ul - 非排序列表</li>
-</ul>
-</li>
-<li><p>内联元素(inline element)</p>
-<ul>
-<li>a - 锚点</li>
-<li>abbr - 缩写</li>
-<li>acronym - 首字</li>
-<li>b - 粗体(不推荐)</li>
-<li>bdo - bidi override</li>
-<li>big - 大字体</li>
-<li>br - 换行</li>
-<li>cite - 引用</li>
-<li>code - 计算机代码(在引用源码的时候需要)</li>
-<li>dfn - 定义字段</li>
-<li>em - 强调</li>
-<li>font - 字体设定(不推荐)</li>
-<li>i - 斜体</li>
-<li>img - 图片</li>
-<li>input - 输入框</li>
-<li>kbd - 定义键盘文本</li>
-<li>label - 表格标签</li>
-<li>q - 短引用</li>
-<li>s - 中划线(不推荐)</li>
-<li>samp - 定义范例计算机代码</li>
-<li>select - 项目选择</li>
-<li>strike - 中划线</li>
-<li>strong - 粗体强调</li>
-<li>sub - 下标</li>
-<li>sup - 上标</li>
-<li>textarea - 多行文本输入框</li>
-<li>tt - 电传文本</li>
-<li>u - 下划线</li>
-<li>var - 定义变量</li>
-<li>small - 小字体文本</li>
-<li>span - 常用内联容器，定义文本内区块</li>
-</ul>
-</li>
-</ul>
-<p>==a标签可以包含任意元素，但不包含自身==</p>
-<p>==p标签不可以包含其他的块元素== </p>
-<h2 id="元素之间的关系"><a href="#元素之间的关系" class="headerlink" title="元素之间的关系"></a>元素之间的关系</h2><ul>
-<li>父元素：直接包含子元素的元素</li>
-<li>子元素：直接被父元素包含的元素</li>
-<li>祖先元素：直接或间接包含后代元素的元素，父元素也是祖先元素</li>
-<li>后代元素：直接或间接被祖先元素包含的元素，子元素也是后代元素</li>
-<li>兄弟元素：拥有相同父元素的元素叫兄弟元素</li>
-</ul>
-<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><blockquote>
-<p>表示元素中的一个特殊的位置</p>
-</blockquote>
-<ul>
-<li><strong>first-letter</strong></li>
-<li><strong>first-line</strong></li>
-<li><strong>:before</strong></li>
-<li><strong>:after</strong></li>
-</ul>
-<blockquote>
-<p>表示子元素的伪类</p>
-</blockquote>
-<ul>
-<li><strong>first-child</strong>：选择第一个子标签</li>
-<li><strong>last-child</strong>：选择最后一个子标签</li>
-<li><strong>nth-child</strong>：选择指定位置的子标签</li>
-</ul>
-<ul>
-<li><strong>first-of-type</strong>：选择相同类型的第一个子元素</li>
-<li><strong>last-of-type</strong>：选择相同类型的最后一个子元素</li>
-<li><strong>nth-of-type</strong>：选择相同类型的任意一个子元素</li>
-</ul>
-<p>==注意==：前三个选择依据是在所有子元素中排列选择，而后三个是在当前类型的子元素中排列选择</p>
-<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><ul>
-<li><strong>元素选择器</strong><ul>
-<li>作用：通过元素选择器可以选中页面中所有指定元素</li>
-<li>语法：标签名{}</li>
-</ul>
-</li>
-<li><strong>id选择器</strong><ul>
-<li>作用：通过元素的id属性值选中唯一的一个元素</li>
-<li>语法：#id属性值{}</li>
-</ul>
-</li>
-<li><p><strong>类选择器</strong></p>
-<ul>
-<li>作用：通过元素的class属性值选中一组元素</li>
-<li>语法：.class属性值{}</li>
-<li>==注意==：可以同时为一个元素设置多个class属性值，多个值之间用空格隔开<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 如下div有两个class属性值 --&gt;</span><br><span class="line">&lt;div class=&quot;class_1 class_2&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><strong>选择器分组</strong></p>
-<ul>
-<li>作用：通过选择器分组可以同时选中多个选择器对应的元素</li>
-<li>语法：选择器1，选择器2，选择器N{}</li>
-</ul>
-</li>
-<li><strong>通配选择器</strong><ul>
-<li>作用：用来选中页面中所有元素</li>
-<li>语法：*{}</li>
-</ul>
-</li>
-<li><strong>复合选择器</strong><ul>
-<li>作用：可以选中同时满足多个选择器的元素</li>
-<li>语法：选择器1选择器2选择器N{}</li>
-<li>==注意==：与选择器分组相类似，但不同的是，多个选择器之间没有分隔符号。对于id选择器，不建议使用复合选择器</li>
-</ul>
-</li>
-<li><p><strong>后代元素选择器</strong></p>
-<ul>
-<li>作用：选中指定元素的后代元素</li>
-<li>语法：祖先元素 后代元素{}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">选择div里的span元素</span><br><span class="line">div span&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><strong>子元素选择器</strong></p>
-<ul>
-<li>作用：选中指定父元素的指定子元素</li>
-<li>语法：父元素&gt;子元素 {}</li>
-<li><strong>注意</strong>：IE6及以下浏览器不支持子元素浏览器</li>
-</ul>
-</li>
-<li><strong>伪类选择器</strong><ul>
-<li>说明：伪类是专门用来表示元素的一种特殊的状态，如a:link, a:visited, a:hover, a:active</li>
-<li>作用：选中指定元素的伪类</li>
-<li>类型：<ul>
-<li>==注意==：开发中，请按照:link，:visited，:hover，:active的顺序。</li>
-<li>:link：表示普通的链接（没访问过的链接）</li>
-<li>:visited：表示访问过的链接<ul>
-<li>原理：浏览器通过历史记录来判断一个链接是否被访问过</li>
-<li>==注意==：由于涉及用户隐私问题，visited伪类只能设置字体颜色（color）</li>
-</ul>
-</li>
-<li>:hover：表示鼠标移入状态。可以为其他元素（如p标签）设置<ul>
-<li>==注意==：IE6中，不支持对超链接以外的元素设置:hover</li>
-</ul>
-</li>
-<li>:active：表示超链接被点击的状态。可以为其他元素（如p标签）设置<ul>
-<li>==注意==：IE6中，不支持对超链接以外的元素设置:active</li>
-</ul>
-</li>
-<li>:focus：获取焦点</li>
-<li>::selection：选中的元素（即鼠标选中的元素）<ul>
-<li>==注意==：在火狐中，使用::-moz-selection（moz表示mozala基金会）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>伪元素选择器</strong><ul>
-<li>类型：<ul>
-<li>:first-letter：首字母</li>
-<li>:first-line：首行</li>
-<li>:before：指定元素前，指的是开始标签到第一个字之间，一般:before都需要结合content这个样式一起使用，通过content可以向before和after位置添加一些内容</li>
-<li>:after：指定元素后，指的是最后一个字都结束标签之间，基本操作如:before</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>子元素选择器</strong><ul>
-<li>类型：<ul>
-<li>:first-child：选中第一个子元素，可以在前面加上元素，指定选择第一个指定子元素，如p:first-child{}表示如果第一个子元素是p标签，则选中，其父类默认是任何元素，即任何元素下的第一个子元素p标签。若想指定其中一个父类，则使用父元素 &gt; 子元素:first-child{}，如div&gt;p{}</li>
-<li>:last-child：选中最后一个元素</li>
-<li>:nth-child：选中任意一个元素，可使用:nth-child(n)表示任意一个，如p:nth-child(2)表示选中第二个p子元素，也可以传一个even（偶数），即:nth-child(even)表示选中偶数个子元素，同理也可以传一个odd（奇数），即:nth-child(odd)表示选中奇数个子元素</li>
-<li>:first-of-type：</li>
-<li>:last-of-type：</li>
-<li>:nth-of-type：</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>兄弟元素选择器</strong><ul>
-<li>+：<ul>
-<li>作用：可以选中一个元素后<strong>紧挨着的</strong>指定的兄弟元素</li>
-<li>语法：前一个元素 + <strong>后一个</strong>元素{}，如span + p表示选择span后边紧挨着的第一个p兄弟元素</li>
-</ul>
-</li>
-<li>~：<ul>
-<li>作用：选中后边所有兄弟元素</li>
-<li>语法：前一个 ~ 后边所有，如span ~ p表示选择span标签后面的所有p兄弟元素</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>否定伪类选择器</strong><ul>
-<li>:not(选择器){}<ul>
-<li>作用：可以从已选中元素中剔除某些指定元素</li>
-<li>语法：:not(选择器)，如p:not(#p1){}表示选中所有p元素，除了id值为p1的元素。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>属性选择器</strong><ul>
-<li>作用：可以根据元素中的属性或者属性值来选取指定元素</li>
-<li>语法：<ul>
-<li>[属性名]：选取含有指定属性的元素</li>
-<li>[属性名=“属性值”]：选取不仅含有指定属性，还必须含有指定属性值的元素</li>
-<li>[属性名^=”属性值”]：选取属性值以指定内容开头的元素</li>
-<li>[属性名$=”属性值”]：选取属性值以指定内容结尾的元素</li>
-<li>[属性名*=“属性名”]：</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="选择器优先级："><a href="#选择器优先级：" class="headerlink" title="选择器优先级："></a>选择器优先级：</h3><p>当使用不同选择器，选中同一个元素时，并且设置相同的样式时，这时样式之间产生了冲突，最终采用哪个选择器，决定于选择器优先级（权重），优先级高的优先显示</p>
-<p><strong>规则</strong>：</p>
-<ul>
-<li>可以在样式的最后，添加一个！important，优先级最高 ==（开发中尽量避免）==</li>
-<li>内联样式，优先级：1000</li>
-<li>id选择器，优先级：100</li>
-<li>类和伪类，优先级：10</li>
-<li>元素选择器，优先级：1</li>
-<li>通配*，优先级：0</li>
-<li>继承样式，没有优先级</li>
-</ul>
-<p>当选择器中包含有多个选择器时，需要将多个选择器的优先级（权重）相加然后再比较。但是==注意==：选择器优先级计算不会超过他的最大数量级，如类选择器优先级为10，数量级为十位，即使有十个相同的类选择器，其最多只能加到99个，不会加到100</p>
-<p>如果选择器优先级一样，则按顺序执行，即取最后面一个选择器执行</p>
-<p>==组合选择器优先级是单独计算的==</p>
-<h2 id="样式继承"><a href="#样式继承" class="headerlink" title="样式继承"></a>样式继承</h2><blockquote>
-<p>在css中，祖先元素上的样式，也会被他的后代元素所继承，因此利用继承，可以将一些基本的样式设置给祖先元素，这样所有的后代元素将自动继承这些样式</p>
-</blockquote>
-<p>==注意==：不是所有的样式都会被后代元素继承，如背景相关样式，边框相关的样式，定位相关的样式都不会被继承。但是默认的背景颜色是透明的，即如果父元素使用背景颜色，那么后代元素不是继承了背景颜色，而是父元素的背景颜色透过来了</p>
-<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><blockquote>
-<p>none表示什么都没有</p>
-</blockquote>
-<ul>
-<li>内容区（content）<ul>
-<li>width：使用width设置内容区的宽度</li>
-<li>height：使用height设置内容区的高度</li>
-</ul>
-</li>
-<li>内边距（padding）<ul>
-<li>==注意==：设置内边距，内容区的背景会延伸到内边距</li>
-<li>padding-top</li>
-<li>padding-right</li>
-<li>padding-bottom</li>
-<li>padding-left</li>
-</ul>
-</li>
-<li>边框（border）<ul>
-<li>border-width：边框宽度，可分别指定上，右，下，左顺序的边框宽度；若只有三个值，则上，左右，下；若只有连个值，则上下，左右</li>
-<li>border-color：边框颜色</li>
-<li>border-style：边框样式</li>
-<li>border：（style）（width）（color）</li>
-<li>==注意==：当只写style时，并不是说不用写width和color属性，相反这三个是一个边框所必须的，之所以有时只需要写style就能出来一个边框，是因为大部分浏览器中，对边框的宽度和颜色都有默认值</li>
-</ul>
-</li>
-<li>外边距（margin）<ul>
-<li>指的是盒子与盒子之间的距离，不会影响可见框大小，而会影响盒子位置，因此可以通过外边距可以调整位置。</li>
-<li>==注意==：盒子原本是靠左上位置摆放，所以当设置上和左的margin时，会导致位置发生变化，而设置下和右外边距时，挤兑其他盒子，<strong>可以设置负值</strong></li>
-<li><strong>auto值</strong>：只设置给水平方向的，如果只指定左margin或者右margin值为auto，那么将右或者左设置为最大，如果左，右同时设置auto，则会将两边距设置为相同的值，就可以使元素自动在父元素中居中，</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>外边距重叠：在网页中<strong>垂直</strong>方向的<strong>相邻</strong>外边距会发生外边距重叠</p>
-</blockquote>
-<p>所谓的外边距重叠指的是</p>
-<ul>
-<li>兄弟元素之间的<strong>相邻</strong>外边距会取最大值而不是取两者之和</li>
-<li>父子元素之间的<strong>垂直</strong>外边距<strong>相邻</strong>，则子元素的外边距会设置给父元素</li>
-</ul>
-<p>解决方法：</p>
-<ul>
-<li>使其不相邻：<ul>
-<li>设置一个字母或者别的，将其隔离</li>
-<li>设置父元素一个border，或者padding</li>
-</ul>
-</li>
-<li>使其不垂直：<ul>
-<li>设置一个padding+height</li>
-</ul>
-</li>
-</ul>
-<p>==当元素宽度值为auto时，此时指定内边距不会影响可见框大小==</p>
-<h3 id="内联元素的盒子模型"><a href="#内联元素的盒子模型" class="headerlink" title="内联元素的盒子模型"></a>内联元素的盒子模型</h3><p>==注意==：</p>
-<ul>
-<li>内联元素设置width，height没有用；</li>
-<li>内联元素可以设置水平方向的内边距；</li>
-<li>内联元素可以设置垂直方向的内边距，但不会影响页面布局，即对其他元素不产生影响。</li>
-<li>内联元素可以设置边框，但不会影响页面布局，水平方向的边框会挤兑其他元素，但是垂直方向不会；</li>
-<li>内联元素支持水平方向的外边距，并且当水平方向的相邻外边距不会发生重叠，而是进行求和，即两个水平方向的边距会相加</li>
-<li>内联元素不支持垂直方向的外边距</li>
-</ul>
-<p>总结如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">支持</th>
-<th style="text-align:center">不支持</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">width</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">height</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">padding-top</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">padding-right</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">padding-bottom</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">padding-left</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">border</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">margin-top</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">margin-right</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">margin-bottom</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">margin-left</td>
-<td style="text-align:center">Y</td>
-</tr>
-</tbody>
-</table>
-<h2 id="浏览器默认样式"><a href="#浏览器默认样式" class="headerlink" title="浏览器默认样式"></a>浏览器默认样式</h2><blockquote>
-<p>浏览器为了在页面没有样式时，也可以有个更好地显示效果，所以为很多元素设置了一些默认的margin和padding，而他的这些默认样式正常情况下不需要使用，因此我们需要在编写样式之前需要将我们浏览器默认的margin和padding统统去掉。</p>
-</blockquote>
-<h2 id="display和visibility"><a href="#display和visibility" class="headerlink" title="display和visibility"></a>display和visibility</h2><blockquote>
-<p>inline-block可以使一个元素既有inline的特点，又有block的特点</p>
-</blockquote>
-<ul>
-<li><p>display：通过display样式可以修改元素的类型，如将一个内联元素变为块元素</p>
-<ul>
-<li>可选值：<ul>
-<li>inline：可以将一个元素作为内联元素显示</li>
-<li>block：可以将一个元素设置为块元素显示</li>
-<li>inline-block：可以将一个元素设置为行内块元素</li>
-<li>none：对一个元素不显示，并且元素不会在页面中继续占有位置</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>visibility：规定元素是否可见</p>
-<ul>
-<li>可选值：<ul>
-<li>visable（默认值）：元素可见</li>
-<li>hidden：元素不可见，但是位置依然保持，即虽然没了，但还是占着位置。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><blockquote>
-<p>子元素默认存在于父元素的内容区，理论上呢子元素最大可以等于父元素的大小，但如果子元素大小超过了父元素的内容区，则超过的大小会在父元素以外的位置显示，超出父元素的内容，成为溢出内容，可以通过overflow解决溢出内容</p>
-</blockquote>
-<ul>
-<li><strong>overflow</strong> ：规定当内容溢出元素框时发生的事情<ul>
-<li>可选值：<ul>
-<li><strong>visable</strong>（默认值）：元素不会对溢出内容进行处理；</li>
-<li><strong>hidden</strong>：溢出的内容会被隐藏，不会显示</li>
-<li><strong>scroll</strong>：使用滚动条处理溢出内容，会为父元素添加滚动条，通过拖动滚动条查看完整内容，**该属性不论内容是否溢出，都会添加水平和垂直的滚动条。</li>
-<li><strong>auto</strong>：根据需求自动添加滚动条<ul>
-<li>需要水平时就添加水平</li>
-<li>需要垂直就添加垂直</li>
-<li>都不需要都不加</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><blockquote>
-<p>文档即HTML页面，每个页面即一个文档，</p>
-</blockquote>
-<p>文档流处在网页最底层，表示一个页面的位置，我们创建的元素默认都处在文档流中</p>
-<p>元素在文档流中特点</p>
-<ul>
-<li>块元素<ul>
-<li>块元素在<strong>文档流</strong>中独占一行，并且自上向下排列</li>
-<li>块元素在<strong>文档流</strong>中默认宽度是父元素的100%，而宽度值是auto</li>
-<li>块元素在<strong>文档流</strong>中高度默认被内容区撑开，即有多少内容，高度就有多少</li>
-</ul>
-</li>
-<li>内联元素<ul>
-<li>内联元素在<strong>文档流</strong>中只占自身大小，并且从左向右排列</li>
-<li>内联元素在<strong>文档流</strong>中默认宽度和默认高度都被内容撑开</li>
-</ul>
-</li>
-</ul>
-<h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><blockquote>
-<p>写在浮动之前</p>
-<ul>
-<li>若想让垂直排列的块元素横向排列，可使用display:inline-bloc&gt; k进行转换，这样就会在横向排列，此时若出现两个块元素之间有空&gt; 格，则将两个块元素之间的换行或者空格去掉，让其在HTML中紧挨&gt; 着，因为由于已经转换为inline-block，则空格或者换行就被解析&gt; 为一个文字显示。</li>
-</ul>
-</blockquote>
-<p>如果希望块元素在页面中水平排列，可以是块元素脱离文档流。可以使用<strong>float</strong>使元素浮动，从而脱离文档流。（可比喻气球，水泡）。当脱离文档流时，会发生覆盖，别的元素会顶替其原来的位置</p>
-<p>当一个元素设置浮动以后</p>
-<ul>
-<li>元素会立即脱离文档流，脱离文档流以后，下边的元素会立即向上移动</li>
-<li>元素浮动以后，会尽量向页面的左上或右上漂浮，直到遇到父元素边框或者其他的浮动元素</li>
-<li>如果浮动元素上边是一个没有浮动的块元素，则浮动元素不会超过块元素</li>
-<li>当一行不足以容纳多个浮动元素时，浮动元素会自动换行</li>
-<li>浮动元素不会超过页面结构上边的兄弟元素，最多一边对齐。</li>
-<li><strong>浮动元素不会盖住文字，文字会自动环绕在浮动元素周围</strong></li>
-<li>当块元素脱离文档流之后，其高度和宽度都被内容撑开</li>
-<li>当内联元素脱离文档流之后，会变成块元素，同时其高度和宽度也被内容撑开</li>
-</ul>
-<p><strong>float</strong></p>
-<ul>
-<li>可选值：<ul>
-<li>none（默认）：元素默认在文档流排列</li>
-<li>left：元素立即脱离文档流，立即向左侧浮动</li>
-<li>right：元素立即脱离文档流，立即向右侧浮动</li>
-</ul>
-</li>
-</ul>
-<h2 id="简单布局"><a href="#简单布局" class="headerlink" title="简单布局"></a>简单布局</h2><ul>
-<li>固定布局：在页面中摆放盒子</li>
-<li>自适应布局：根据终端屏幕不同，网页自动调整大小</li>
-</ul>
-<h2 id="高度坍塌问题"><a href="#高度坍塌问题" class="headerlink" title="高度坍塌问题"></a>高度坍塌问题</h2><p>在文档流中，父元素的高度默认是被子元素撑开的，也就是子元素多高，父元素就多高。此时当子元素浮动后，子元素完全脱离文档流，此时子元素无法撑开父元素的高度，导致父元素高度坍塌。</p>
-<ul>
-<li>高度坍塌带来的问题：<ul>
-<li>父元素下的所有元素都会向上移动，这样将会导致页面布局混乱</li>
-</ul>
-</li>
-</ul>
-<p>==在开发中尽量避免高度坍塌==</p>
-<blockquote>
-<p>根据W3C标准，在页面中元素都有一个隐含的属性：Block Formatting Context，简称BFC，该属性可以设置打开或者关闭，默认情况下关闭。<br>当开启BFC时，将有如下特性：</p>
-<ol>
-<li>父元素的外边距不会和子元素重叠</li>
-<li>开启BFC的元素不会被浮动元素所覆盖 </li>
-<li>开启BFC的元素可以包含浮动的子元素</li>
-</ol>
-<p>==注意：在IE6及以下浏览器不支持BFC，但是却有另一个隐含属性：hasLayout，其与BFC类似，所以在IE6中可以通过开启hasLayout：直接将元素的zoom设置为1即可。（zoom表示放大的意思，后边跟一个数值，表示放大几倍==</p>
-</blockquote>
-<ul>
-<li><p>解决方案：</p>
-<ol>
-<li>为父元素设置高度（height）<strong>（不推荐）</strong><ul>
-<li>原因：可以为父元素设置高度，但是一旦父元素高度写死，父元素将不再自适应子元素高度，而当子元素高度变化时，将再次产生高度坍塌</li>
-</ul>
-</li>
-<li>开启BFC隐藏属性：<ul>
-<li>开启方式（间接）：<ul>
-<li>设置元素浮动 <strong>（不推荐）</strong><ul>
-<li>原因：使用这种方式，虽然可以撑开父元素，但是会导致父元素宽度丢失。而且使用这种方式也会导致父元素下元素向上移动。</li>
-</ul>
-</li>
-<li>设置绝对定位 <strong>（不推荐）</strong></li>
-<li>设置元素为inline-block <strong>（不推荐）</strong><ul>
-<li>原因：使用这种方式，虽然可以撑开父元素，但是会导致父元素宽度丢失。却不会使下面元素向上移动</li>
-</ul>
-</li>
-<li>将元素的overflow设置为一个非visible的值 <strong>（推荐）</strong><ul>
-<li>原因：使用这种方式，副作用相对以上几种方式较小，但仍存在副作用</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>可以直接在高度塌陷的父元素最后，加上一个空白的div，由于这个div并没有浮动，可以撑开父元素高度，并且使用clear属性，基本没有副作用。（即空白div + clear）<strong>（推荐）</strong><ul>
-<li>影响：使用这种方式虽然会解决问题，但添加了多余的div结构</li>
-</ul>
-</li>
-<li><p>可以使用伪类：after，指定元素的后面 <strong>（强烈推荐）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box1:after&#123;</span><br><span class="line">    content:&quot;&quot;;</span><br><span class="line">    display:block;</span><br><span class="line">    clear:both</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用如上代码，将彻底解决高度坍塌问题，并且几乎没有任何副作用（但在IE6中不支持after伪类，所以在iE6不支持，在IE6还是要设置hasLayout，设置zoom：1）</p>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h2><blockquote>
-<p>在IE6中设置宽度，默认开启hasLayout</p>
-</blockquote>
-<ul>
-<li><p>去掉ul中li的黑点</p>
-<ul>
-<li>设置list-style： none；</li>
-</ul>
-</li>
-<li><p>要想a标签铺满整个li标签，可以这样设置</p>
-<ol>
-<li>display：block （将a标签变为块元素）</li>
-<li>width：100%（设置a标签的宽度占用父元素的100%）</li>
-</ol>
-</li>
-<li>解决高度坍塌：<ul>
-<li>overflow：hidden（可开启BFC，详情见上述）</li>
-</ul>
-</li>
-</ul>
-<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><blockquote>
-<p>希望清除掉其他元素浮动对当前元素的影响，使用clear</p>
-</blockquote>
-<p><strong>clear</strong>：规定元素哪一侧不允许浮动</p>
-<ul>
-<li>可选值：<ul>
-<li>left：该元素左侧不允许浮动</li>
-<li>right：该元素右侧不允许浮动</li>
-<li>none：该元素允许被浮动影响</li>
-<li>both：该元素左右都不允许有浮动出现（清楚对其影响最大的元素的浮动）</li>
-<li>inherit：继承父元素的clear属性</li>
-</ul>
-</li>
-</ul>
-<p>清除元素之后，元素会回到浮动之前的位置</p>
-<h2 id="看视频中的杂碎知识"><a href="#看视频中的杂碎知识" class="headerlink" title="看视频中的杂碎知识"></a>看视频中的杂碎知识</h2><ul>
-<li><p>如果浮动元素上面有块元素的话，则浮动元素将会在块元素下面起作用，而不会与块元素平起平坐。</p>
-<ul>
-<li>解决：在代码里将块元素与浮动元素换一下位置就好</li>
-</ul>
-</li>
-<li><p>让文字垂直居中</p>
-<ul>
-<li>解决：让行高与高度一致。即line-height = height</li>
-</ul>
-</li>
-<li><p>在显示设置宽度时，padding会影响可见框大小，将往外面挤；如果没有显示设置情况下指定padding，宽度会自动设置，往框里面挤</p>
-<ul>
-<li>自己见解：因为在设置宽度的情况下，内容区宽度已经定好了，而再设置padding，则就是在已经设置好的宽度的基础上，往外拓展，所以出现往外面挤；而没有设置width情况下设置padding，此时width默认值是auto，也就是遵循父元素的width。设置padding，则只会对父元素下的子元素起作用，因此会在一个盒子里往里面挤</li>
-</ul>
-</li>
-<li><p>在设置字体的简写属性font时，如果没有设置大小，粗细，斜体，小写大写字母时，其会采用默认值，如果要是采用默认值，则在此之前设置的属性将被覆盖。</p>
-</li>
-<li><p>在设置font是，如font：14px/36px。中14px是字体大小，而36px是行高</p>
-</li>
-<li><p>在IE6中设置浮动时，如果前一个元素是内联元素或者块元素时，那么浮动元素将会往下挤</p>
-<ul>
-<li>解决：让浮动元素在最上面</li>
-</ul>
-</li>
-</ul>
-<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>定位就是指讲指定元素摆放到页面的任意位置，通过position设置元素的定位。</p>
-<ul>
-<li>可选值:<ul>
-<li>static：没有定位</li>
-<li>relative：相对定位</li>
-<li>fixed：绝对定位（固定定位）</li>
-<li>absolute：绝对定位</li>
-</ul>
-</li>
-</ul>
-<p>当开启了定位属性，可以设置<strong>left  right  top bottom</strong>四个偏移量。</p>
-<ul>
-<li>left：元素相对于其定位位置（根据具体情况而定的定位位置）左侧偏移量</li>
-<li>right：元素相对于其定位位置（根据具体情况而定的定位位置）右侧偏移量</li>
-<li>top：元素相对于其定位位置（根据具体情况而定的定位位置）上侧偏移量</li>
-<li>bottom：元素相对于其定位位置（根据具体情况而定的定位位置）下侧偏移量</li>
-</ul>
-<h3 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h3><blockquote>
-<p>position：relative，相对于元素在文档流中<strong>原来的位置</strong>进行定位</p>
-</blockquote>
-<ol>
-<li>当开启相对定位，而不设置偏移量时，元素不会发生任何变化</li>
-<li>相对定位就是相对于元素在文档流中<strong>原来的位置</strong>进行定位</li>
-<li><strong>相对定位的元素不会脱离文档流</strong>，即原来的位置还保留着</li>
-<li>相对定位会使元素提升一个层级，即比普通元素层级高，会盖住文档流里面的元素</li>
-<li>相对定位不会改变元素的性质，块元素还是块元素，内联元素还是内联元素。（跟第三条一样）</li>
-</ol>
-<h3 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h3><blockquote>
-<p>position：absolute，相对于离他最近的开启了定位的祖先元素进行定位的。</p>
-</blockquote>
-<ol>
-<li><strong>开启绝对定位使元素脱离文档流</strong>，即原来的位置不会保留，其下面元素会顶上</li>
-<li>当开启绝对定位，而不设置偏移量时，元素不会发生任何变化</li>
-<li><strong>绝对定位是相对于离他最近的开启了定位（不管是什么定位）的祖先元素进行定位的。如果所有的祖先元素都没有开启定位，则会相对于浏览器窗口定位</strong>。（一般情况，开启了子元素的绝对定位都会同时开启父元素的相对定位）</li>
-<li>绝对定位会使元素提升一个层级</li>
-<li>绝对定位会改变元素的性质<ul>
-<li>内联元素变成块元素，</li>
-<li>其宽度和高度默认都被内容撑开</li>
-</ul>
-</li>
-</ol>
-<h3 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h3><blockquote>
-<p>position：fixed，固定定位是一种特殊的绝对定位，其大部分特点与绝对定位相同</p>
-</blockquote>
-<p>与绝对定位不同：</p>
-<ul>
-<li>固定定位永远相对于相对于浏览器窗口定位</li>
-<li>固定定位会固定在浏览器窗口的某个位置，不会随滚动条滚动。</li>
-<li>在IE6不支持固定定位。</li>
-</ul>
-<h3 id="元素层级"><a href="#元素层级" class="headerlink" title="元素层级"></a>元素层级</h3><p>开启了定位的元素，其层级都会提高，而当层级一样时，则会按照代码结构上的前后顺序，由后面的盖住前面的。</p>
-<p>通过<strong>z-index</strong>可以设置元素的层级</p>
-<blockquote>
-<p>可以为z-index指定一个正整数作为值，该值作为当前元素的层级，层级越高，越优先显示。<strong>对于没有开启定位的元素不能使用z-index</strong></p>
-</blockquote>
-<p>父元素的层级再高，也不会盖住子元素</p>
-<h2 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h2><blockquote>
-<p>opacity可以用来设置元素背景的透明，需要0-1之间的值。0表示完全透明，1表示完全不透明。</p>
-</blockquote>
-<p>opacity在IE8及以下的浏览器中不支持</p>
-<ul>
-<li>解决方法：<ul>
-<li>使用filter属性（IE独有）<ul>
-<li>filter：alpha（opacity=50）：其中opacity需要一个0-100之间的值。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h3><ul>
-<li><p>background-image：url（）；</p>
-<ul>
-<li>如果背景图片大于元素宽高，默认会显示图片的左上角</li>
-<li>如果背景图片和元素宽高一样大，则会将背景图片全部显示</li>
-<li>如果背景图片小于元素宽高，则会默认将背景图片重复平铺以充    满元素</li>
-<li>可以同时为元素指定背景颜色和背景图片，这种情况下背景颜色    将会作为背景图片的底色。<strong>一般情况下设置背景图片都会同时指    定一个背景颜色</strong></li>
-</ul>
-</li>
-<li><p>background-repeat</p>
-<ul>
-<li>可选值：<ul>
-<li>repeat：水平和垂直都不重复</li>
-<li>repeat-x：水平方向重复</li>
-<li>repeat-y：垂直方向重复</li>
-<li>no-repeat：不重复</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>background-positioin</p>
-<ul>
-<li>0% 0%（默认值）</li>
-<li>top left</li>
-<li>top right</li>
-<li>top center</li>
-<li>center left</li>
-<li>center right</li>
-<li>center center</li>
-<li>bottom left</li>
-<li>bottom right</li>
-<li>bottom center</li>
-<li>x% y%</li>
-<li>xpos ypos（单位是像素或其他css单位，即10px 10px）</li>
-<li>如果只写一个值，那么另一值则为50%(center)</li>
-</ul>
-</li>
-<li><p>background-attachment</p>
-<ul>
-<li>说明：设置背景图像是否固定或随页面的其余部分滚动</li>
-<li>可选值：<ul>
-<li>scroll：默认值，背景图片随着窗口滚动</li>
-<li>fixed：背景图片会固定在某一位置，不随页面滚动</li>
-<li>inherit：</li>
-</ul>
-</li>
-<li>==注意==：当背景图片的background-attachment设置为fixed时，背景图片的定位（background-position）永远相对于浏览器的窗口，即在窗口的相对位置</li>
-<li>==注意==：不随窗口滚动的图片，我们一般都是设置给body，而不设置给其他元素，因为其他元素滚动时，会隐藏这个不随窗口滚动的背景图片。</li>
-</ul>
-</li>
-<li><p>background简写属性：</p>
-<ul>
-<li>通过background属性可以简化属性，比如背景颜色，背景图片，背景位置，背景是否固定等。</li>
-<li>如果不设置相关值，则会保持</li>
-</ul>
-</li>
-</ul>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><blockquote>
-<p>table表示表格（块元素），tr表示一行，td表示一个单元格。</p>
-</blockquote>
-<p>table和td边框之间有个默认距离，可以通过<strong>border-spacing</strong>设置。</p>
-<ul>
-<li>border-spacing：表示table和td之间的距离。如border-spacing：1px。</li>
-<li>border-collapse：可以用来设置边框合并<ul>
-<li>可选值：<ul>
-<li>collapse：合并</li>
-<li>inherit：继承</li>
-</ul>
-</li>
-<li>==注意==：如果设置border-collapse，那么border-spacing自动失效。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>th标签表示表头中的内容，其用法和td一样。</p>
-</blockquote>
-<hr>
-
-<p>有一些情况下表格非常长，这时需要将表格分成三部分，表头，表主体，表格底部</p>
-<ul>
-<li>表头：thead<ul>
-<li>永远显示在表格的最上面</li>
-</ul>
-</li>
-<li>表格主体：tbody<ul>
-<li>永远显示在表格中间</li>
-<li>如果页面中没有写tbody，浏览器会自动在表格中添加tbody，并且将所有的tr放在tbody里。</li>
-</ul>
-</li>
-<li>表格底部：tfoot<ul>
-<li>永远显示在表格底部</li>
-</ul>
-</li>
-</ul>
-<p>==上面提到子元素和父元素相邻的垂直外边距（margin-top，margin-bottom）会发生重叠，子元素的外边距会传递给父元素，此时，使用空的table标签可以隔离父子元素的外边距，阻止外边距的重叠。<strong>同时可以使用CSS伪类：before设置display：table进行相同的设置</strong>。==</p>
-<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><ul>
-<li><p><strong>解决父子元素的垂直外边距重叠问题</strong></p>
-<ul>
-<li>使用：before伪类，设置display：table<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box:before &#123;</span><br><span class="line">    display:table;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><strong>解决父元素高度坍塌问题</strong></p>
-<ul>
-<li>使用：after伪类，设置display：block，同时设置clear：both<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box:after &#123;</span><br><span class="line">    display:block;</span><br><span class="line">    clear: both;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>最终解决方案，<strong>同时使用：after和：before</strong>，因为垂直外边距重叠问题中可以使用clear：both，而父元素坍塌问题中display也可以设置为table，所以同时使用没问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .clearfix:after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: table;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>在select中可以使用optgroup对选项进行分组，同一个optgroup里是一组，在optgroup指定label指定组名。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br><span class="line">    &lt;optgroup label=&quot;...&quot;&gt;</span><br><span class="line">        &lt;option&gt;&lt;/option&gt;</span><br><span class="line">    &lt;/optgroup&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="label标签"><a href="#label标签" class="headerlink" title="label标签"></a>label标签</h2><p>label标签里有个for属性，值是其要对应的其他元素的name属性。表示此label和那个元素时一组的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label for=&quot;user&quot;&gt;用户名&lt;/label&gt;</span><br><span class="line">&lt;input name=&quot;user&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="fieldset标签"><a href="#fieldset标签" class="headerlink" title="fieldset标签"></a>fieldset标签</h2><p>在表单中可以使用fieldset来为表单进行分组，可以将表单的同一项放到同一组里</p>
-<h3 id="legend标签"><a href="#legend标签" class="headerlink" title="legend标签"></a>legend标签</h3><p>在fieldset里可以使用legend子标签，来指定组名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;用户信息&lt;/legend&gt;</span><br><span class="line">&lt;/fieldset&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="框架集frameset"><a href="#框架集frameset" class="headerlink" title="框架集frameset"></a>框架集frameset</h2><blockquote>
-<p>使用frameset来创建一个框架集，可以引入多个页面</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset&gt;&lt;/frameset&gt;</span><br></pre></td></tr></table></figure>
-<p>==注意== <strong>frameset和body不能出现在同一页面中</strong></p>
-<ul>
-<li>属性<ul>
-<li>rows：指定框架集中所有框架，一行一行地排列，如rows：50%，50%：表示分两行，上面占一半，下面占一半</li>
-<li>cols：指定框架集中所有框架，一列一列地排列，即有几列写几个数字，如cols：30%，40%，30%：表示三列，每列百分比已指定</li>
-<li>==注意==：可以使用*表示任意。</li>
-</ul>
-</li>
-</ul>
-<p>==对于frameset中，rows和cols必须指定一个==</p>
-<p>其存在问题</p>
-<ol>
-<li>frameset和iframe一样，里面的内容不会被搜索引擎检索</li>
-<li>使用框架集则意味着页面中不能有自己的内容，只能引入其他页面，而每当单独加载一个页面时，浏览器都要重新发送一次请求，引入几个页面就需要发送几次请求。用户体验比较差</li>
-<li>如果非得用，建议使用frameset，不要使用iframe。</li>
-</ol>
-<h3 id="frame标签"><a href="#frame标签" class="headerlink" title="frame标签"></a>frame标签</h3><blockquote>
-<p>在frameset中使用frame子标签来指定要引入的页面</p>
-</blockquote>
-<ul>
-<li>frame是自结束标签</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset rows=&quot;50%, 50%&quot;&gt;</span><br><span class="line">    &lt;frame src=&quot;01.html&quot;/&gt;</span><br><span class="line">    &lt;frame src=&quot;02.html&quot;/&gt;</span><br><span class="line">&lt;/frameset&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="临时问题"><a href="#临时问题" class="headerlink" title="临时问题"></a>临时问题</h2><p>IE6中对图片格式png24支持度不高，如果使用png24的图片，则会导致透明效果无法正常显示。</p>
-<ul>
-<li>解决：<ul>
-<li>可以使用png8代替png24，但是使用png8代替png24以后，图片清晰度有所下降（但不明显）</li>
-<li>使用JavaScript解决问题。需要向页面中引入外部JavaScript文件，然后再写简单js代码。（DD-belatedPNG_0.0.8a.js）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dd_belatedPNG.fix(&apos;div, img&apos;)//里面传的是图片所在的元素</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="条件hack"><a href="#条件hack" class="headerlink" title="条件hack"></a>条件hack</h2><blockquote>
-<p>有一些特殊的代码我们只需要在特殊的浏览器中执行，而在其他浏览器不执行，这时就可以使用<strong>css hack</strong>解决该问题。</p>
-</blockquote>
-<p><strong>CSS Hack</strong>：一段特殊代码，只在某些浏览器中识别，而其他浏览器不识别，可以通过这种方式为某些浏览器指定特定代码</p>
-<ul>
-<li>条件hack：<ul>
-<li>只对IE浏览器（IE10以下）有效，其他浏览器都会将其识别为注释</li>
-<li>可以指定特定的值，如：if IE 6</li>
-<li>也可以指定大于或者等于或者小于特定值，<ul>
-<li>if lt IE 8：表示IE8以下（不包括IE8）</li>
-<li>if gt IE 8：表示IE8以上（不包括IE8）</li>
-<li>if lte IE 8：表示IE8及IE8以下（包括IE8）</li>
-<li>if gte IE 8：表示IE8及IE8以下（包括IE8）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if IE]&gt;</span><br><span class="line">    &lt;p&gt;为了你的健康，请远离IE&lt;/p&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="属性级Hack"><a href="#属性级Hack" class="headerlink" title="属性级Hack"></a>属性级Hack</h2><blockquote>
-<p>在属性上添加Hack</p>
-</blockquote>
-<p>语法：selector{<hack>?property:value</hack>?;}</p>
-<p>取值：</p>
-<ul>
-<li>_：表示IE6及以下。</li>
-<li>*：表示IE7及以下</li>
-<li>\9：选择IE6+<strong>（写属性的后面）</strong></li>
-<li>\0：选择IE8+及Opera15以下的浏览器<strong>（写属性后面）</strong></li>
-</ul>
 
           
         
