@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta name="description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot配置多数据源">
 <meta property="og:url" content="http://yoursite.com/2018/06/09/springboot配置多数据源/index.html">
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
-<meta property="og:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta property="og:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png">
-<meta property="og:updated_time" content="2018-09-14T05:11:39.068Z">
+<meta property="og:updated_time" content="2018-09-26T15:32:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot配置多数据源">
-<meta name="twitter:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作配置数据库连接（application.properties）在application.properties中进行如">
+<meta name="twitter:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作">
 <meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
 
 
@@ -352,7 +352,8 @@
 <li>Spring Data JPA</li>
 <li>MySQL</li>
 </ul>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><p>在application.properties中进行如下配置</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><a id="more"></a>
+<h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><p>在application.properties中进行如下配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=970329</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=970329</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
 <p>上面代码中前缀为spring.datasource.primary表示主数据库，前缀为spring.datasource.slave表示从数据库，而spring.jpa就是配置一下jpa这块的东西（基本配置）。上面配置的是基本的数据库连接，就像平时项目一样，对数据库的连接。（在此提醒不要太依赖IDEA的智能提醒）</p>
 <p><strong>值得注意的是</strong>，一般配置jdbc的url的时候，是使用<strong>spring.datasource.url</strong> = jdbc:mysql://localhost:3306/XXX这个配置，但是在配置多数据源的时候，使用<strong>spring.datasource.jdbc-url</strong> 。第二个比第一个不同之处在于：第一个是url，第二个是jdbc-url。如果不这样配置，会出现说jdbcUrl is required with driverClassName的异常。</p>

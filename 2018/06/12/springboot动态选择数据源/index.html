@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737184_20158.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737215_13591.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testservic_1528737397_19408.png">
-<meta property="og:updated_time" content="2018-09-14T05:12:09.304Z">
+<meta property="og:updated_time" content="2018-09-26T15:32:28.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot动态选择多数据源">
 <meta name="twitter:description" content="springboot动态选择数据源前情回顾：  springboot配置多数据源  前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，动态选择数据源不等于主从复制，也不等于读写分离，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础">
@@ -359,6 +359,7 @@
 <li><a href="https://tomatoneedegg.github.io/2018/06/09/springboot%E9%85%8D%E7%BD%AE%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" target="_blank" rel="noopener">springboot配置多数据源</a></li>
 </ul>
 <p>前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，<strong>动态选择数据源不等于主从复制，也不等于读写分离</strong>，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础</p>
+<a id="more"></a>
 <h2 id="基础原理"><a href="#基础原理" class="headerlink" title="基础原理"></a>基础原理</h2><p>既然要动态选择数据源，本质上还是进行动态选择数据库连接。查看一下java.sql.DataSource的接口，会发现有其有返回对应的Connection<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png" alt="DataSource"></p>
 <p>然后在IDEA中按Ctrl + Alt 同时点击getConnection（）方法查看其实现类。在实现类列表中找到AbstractRoutingDataSource这个类，这个类由Spring框架提供实现，点进去</p>
 <p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_getconnect_1528734255_12254.png" alt="getConnectionRouting"></p>

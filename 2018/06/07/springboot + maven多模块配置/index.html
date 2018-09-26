@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置  开始前，先了解一下maven的几个知识点。  groupId：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T05:12:25.328Z">
+<meta property="og:updated_time" content="2018-09-26T15:32:09.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot + Maven多模块配置">
 <meta name="twitter:description" content="最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置  开始前，先了解一下maven的几个知识点。  groupId：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是">
@@ -349,6 +349,7 @@
 <li><strong>modules</strong>：在父模块中引用子模块，所有子模块均包含在里面</li>
 <li><strong>module</strong>：表示一个子模块，使用相对路径</li>
 </ul>
+<a id="more"></a>
 <h3 id="父模块包含子模块（包含）"><a href="#父模块包含子模块（包含）" class="headerlink" title="父模块包含子模块（包含）"></a>父模块包含子模块（包含）</h3><p>在用maven管理项目中，可以在当前项目下构建一个子模块。（子模块使用maven构造的话默认继承父模块，若是使用Spring Initializr的话，则需要手动配置父模块）</p>
 <ul>
 <li><strong>建立一个父模块</strong></li>

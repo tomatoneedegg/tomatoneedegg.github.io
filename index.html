@@ -338,8 +338,7 @@
 
       
         
-          
-            <h1 id="Linux下定期备份数据库"><a href="#Linux下定期备份数据库" class="headerlink" title="Linux下定期备份数据库"></a>Linux下定期备份数据库</h1><blockquote>
+          <h1 id="Linux下定期备份数据库"><a href="#Linux下定期备份数据库" class="headerlink" title="Linux下定期备份数据库"></a>Linux下定期备份数据库</h1><blockquote>
 <p>emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要</p>
 </blockquote>
 <h2 id="使用docker备份数据库"><a href="#使用docker备份数据库" class="headerlink" title="使用docker备份数据库"></a>使用docker备份数据库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &lt;containerId&gt; mysqldump -u&lt;username&gt; -p&lt;password&gt; -h&lt;host&gt; --tables&lt;databaseName&gt; &gt; /path/to/save/your/backup</span><br></pre></td></tr></table></figure>
@@ -349,26 +348,13 @@
 <blockquote>
 <p>我在某篇文章的评论中看到，用mysqldump会被经理骂？然后网上找了下有个mysqlhotcopy工具，<a href="https://blog.csdn.net/maixiaohai/article/details/24838541" target="_blank" rel="noopener">这篇文章</a>说<strong>mysqlhotcopy的优点就是快，缺点就是只支持MyISAM</strong>，然后想了想，项目数据库不使用MyISAM存储引擎，所以就没用mysqlhotcopy来进行备份。</p>
 </blockquote>
-<h2 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h2><h3 id="编写定时任务"><a href="#编写定时任务" class="headerlink" title="编写定时任务"></a>编写定时任务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br></pre></td></tr></table></figure>
-<p>创建一个文件夹保存备份文件以及定时任务需要执行的shell文件（这里放在/home下）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd backup/</span><br><span class="line">vi backup.sh</span><br></pre></td></tr></table></figure>
-<p>进入文件夹，使用vim编辑shell文件，如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">time=`date +%Y%m%d_%H%M%S`</span><br><span class="line">data_dir='/path/to/save/your/task/'</span><br><span class="line"></span><br><span class="line">docker exec -it &lt;containerId&gt; mysqldump -u&lt;username&gt; -p&lt;password&gt; -h&lt;host&gt; --tables&lt;databaseName&gt; &gt; /path/to/save/your/backup/datebasename_$&#123;time&#125;.sql</span><br><span class="line"></span><br><span class="line">old_time=`date --date='8 day ago'+%Y%m%d`</span><br><span class="line">rm -rf /path/to/save/your/backup/databasename_$&#123;old_time&#125;*</span><br></pre></td></tr></table></figure>
-<h3 id="利用crontab创建定时任务"><a href="#利用crontab创建定时任务" class="headerlink" title="利用crontab创建定时任务"></a>利用crontab创建定时任务</h3><p>定时任务使用Linux下的crontab模块，稍微配置一下就可以了</p>
-<ul>
-<li>创建</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加定时任务</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-26/67509590.jpg" alt="添加定时任务"></p>
-<p>在上面图片末尾添加<strong>0 23 <em> </em> Sun /home/backup/backup.sh</strong>，这里使用了crontab表达式，后面紧接着要执行的命令，当然最后是一个shell文件，里面是一个个命令集。</p>
-<p>然后就等待他吧</p>
-<p>若想删除掉定时任务只需要</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -r</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/Linux 定期备份数据库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -512,8 +498,7 @@
 
       
         
-          
-            <h1 id="Linux设立Swap空间"><a href="#Linux设立Swap空间" class="headerlink" title="Linux设立Swap空间"></a>Linux设立Swap空间</h1><p>安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：</p>
+          <h1 id="Linux设立Swap空间"><a href="#Linux设立Swap空间" class="headerlink" title="Linux设立Swap空间"></a>Linux设立Swap空间</h1><p>安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：</p>
 <ol>
 <li>使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）</li>
 </ol>
@@ -532,33 +517,13 @@
 <li>查看效果</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon -s</span><br></pre></td></tr></table></figure>
-<p>当然上面设置完成后，一重启就没了，接下来进行永久保存操作</p>
-<ol>
-<li>编辑fstab文件</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在末尾添加以下内容</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/swap swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>更改swap配置</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>在文件末尾添加以下内容</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.swappiness=40</span><br></pre></td></tr></table></figure>
-<p>解释一下，swappiness表示的是什么时候使用swap空间</p>
-<p>swappiness=0表示最大限度使用物理内存，然后才是swap空间</p>
-<p>swappiness=100表示积极使用swap分区，并且把内存的数据及时地搬运到swap空间里面</p>
-<p>（如果是swap处在固态的话，那是最好，如果swap在机器硬盘上，建议这个值小一点）</p>
-<ol start="5">
-<li>重启生效</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/17/Linux-设立Swap空间/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -984,8 +949,7 @@
 
       
         
-          
-            <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
+          <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
 <h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
 <li>下载ssr</li>
 </ol>
@@ -1011,32 +975,13 @@
 <li>开启ssr</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br></pre></td></tr></table></figure>
-<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>讲完服务端的配置，接下来就要说下客户端配置，例子将会在google上进行配置</p>
-<ol>
-<li>下载google插件：<a href="https://www.switchyomega.com/download/" target="_blank" rel="noopener">SwitchyOmega</a></li>
-</ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/52327757.jpg" alt="安装代理插件"></p>
-<ol start="2">
-<li>将插件插入google中，直接拖动下载的文件到google浏览器的扩展程序中，就会识别</li>
-<li>设置switchyomega</li>
-</ol>
-<ul>
-<li>第一步：配置auto switch</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/44811550.jpg" alt="配置auto switch"></p>
-<p>首先设置情景模式为 proxy，如上图的第一个箭头，然后将 <strong><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></strong>这个url复制粘贴到规则列表地址上，这是被墙的url列表。当代理检测到你要访问里面的url时，认定你将要翻墙。最后点击立即更新情景模式</p>
-<ul>
-<li>第二步：配置proxy</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/33216445.jpg" alt="配置proxy"></p>
-<p>这里配置的是proxy项，代理服务器填127.0.0.1，代理端口是1080，当然代理端口看运营方给你的端口设置。</p>
-<p>到这里基本配置是完了，接下来的可能因每个人的Linux发行版不同而有所差别，笔者用的是 稍微有点低级的deepin（小白用户专用），所以接下来配置跟主流Linux发行版不太一样。</p>
-<h2 id="配置ssr自启动"><a href="#配置ssr自启动" class="headerlink" title="配置ssr自启动"></a>配置ssr自启动</h2><p>其他Linux发行版中 /etc下是应该有rc.local文件的，直接在rc.local文件上配置就行了，但是deepin呢就比较奇葩，他在最新版本没有rc.local，因此得另找门路</p>
-<p>不过，根据官网的wiki <a href="http://wiki.deepin.org/wiki/%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">deepin自启动程序</a>里面介绍到，直接在/etc下创建个rc.local文件，然后配上以下代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-<p>然后修改下文件权限 <strong>sudo chmod +x /etc/rc.local</strong> ，然后重启，就会发现可以了。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/14/Linux下的ssr配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1350,91 +1295,16 @@
 
       
         
-          
-            <h1 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h1><p>参考文章：<a href="https://blog.csdn.net/deeplearnings/article/details/78398526" target="_blank" rel="noopener">mysql主从复制</a></p>
+          <h1 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h1><p>参考文章：<a href="https://blog.csdn.net/deeplearnings/article/details/78398526" target="_blank" rel="noopener">mysql主从复制</a></p>
 <p>做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。</p>
 <p>由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，MySQL的主从复制应该是由两台机进行的，原因是当单机的MySQL已经无法承载其用户体量的时候，应考虑进行读写分离。而在Docker配置两个MySQL纯属练习。目的是掌握核心配置步骤。（讲真，还是因为Docker比较方便）当然，本文还是会讲下如何不使用Docker进行主从配置，其实道理都是一样的。</p>
-<h2 id="Docker容器搭建MySQL主从复制"><a href="#Docker容器搭建MySQL主从复制" class="headerlink" title="Docker容器搭建MySQL主从复制"></a>Docker容器搭建MySQL主从复制</h2><h3 id="Docker下载MySQL"><a href="#Docker下载MySQL" class="headerlink" title="Docker下载MySQL"></a>Docker下载MySQL</h3><ol>
-<li>在Docker上输入命令 <strong>sudo docker search mysql</strong>，当然如果你是root，请无视掉sudo。</li>
-<li>将mysql pull到本地，执行命令 <strong>sudo docker pull mysql:5.6.40</strong>，本例使用mysql:5.6.40，当然什么版本都可以，但是有一点必须注意的是 <strong>主从容器的MySQL版本一定要一致</strong>。</li>
-<li>使用 <strong>sudo docker images</strong> 看看是否已经下载好了~，由于我之前已经下载好了，所以可以看到下图的情况</li>
-</ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901002403.png" alt="Docker images"></p>
-<p>（请忽略掉hello-world~）</p>
-<h3 id="Docker运行MySQL"><a href="#Docker运行MySQL" class="headerlink" title="Docker运行MySQL"></a>Docker运行MySQL</h3><ol>
-<li>在主机下建立/mysql/conf，/mysql/logs，/mysql/data这三个文件夹，同时创建一个slave的文件夹，用来存放从服务器的mysql配置，当然也可以在/mysql/conf下建立两个配置文件：master.cnf，slave.cnf。关于这两个配置文件的内容可以参考这篇文章：<a href="https://blog.csdn.net/linzhiqiang0316/article/details/79249271" target="_blank" rel="noopener">docker配置mysql主从复制</a>。当然整个docker配置也可以参考这个。不过我更倾向于在容器内设置，然后重启这种方法</li>
-<li>运行容器：</li>
-</ol>
-<blockquote>
-<p>运行主容器：<strong>sudo docker run -p 3306:3306 –name mysql-master-5.6.40 -v $PWD/mysql/conf:/etc/mysql/conf.d -v $PWD/mysql/logs:/logs -v $PWD/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=’123456’ -d mysql:5.6.40</strong></p>
-</blockquote>
-<blockquote>
-<p>运行从容器：<strong>sudo docker run -p 3307:3306 –name mysql-slave-5.6.40 -v $PWD/mysql/slave/conf:/etc/mysql/conf.d -v $PWD/mysql/slace/logs:/logs -v $PWS/mysql/slave:/var/lib/mysql -e MYSQL_ROOT_PASSWORF=’123456’-d mysql:5.6.40</strong></p>
-</blockquote>
-<p>解释一下：</p>
-<ul>
-<li>-p：-p参数中，3306:3306，冒号前表示主机的端口，冒号后表示容器的端口，看看从容器就知道了，3307:3306，将容器的3306端口映射到主机的3307端口。</li>
-<li>-v：将主机目录的/mysql/conf挂载到容器的/etc/mysql/conf.d下，（$PWD表示获取当前目录），当然也可以指定文件：-v $PWD/mysql/conf/master.cnf:/etc/mysql/conf.d/master.cnf这样也是可以的</li>
-<li>-e：初始化root用户的密码</li>
-</ul>
-<p>运行结果如下所示：<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901004240.png" alt="docker下运行的容器"></p>
-<h3 id="Docker-MySQL主从配置"><a href="#Docker-MySQL主从配置" class="headerlink" title="Docker MySQL主从配置"></a>Docker MySQL主从配置</h3><h4 id="主容器配置"><a href="#主容器配置" class="headerlink" title="主容器配置"></a>主容器配置</h4><ol>
-<li>进入到容器当中，执行命令<strong>sudo docker exec -it <container-id> bash</container-id></strong>，其中的container-id是上一图中的container-id。首先上图第二个是主容器，所以sudo docker exec -it 477 bash就可以了，container-id不用太长，取前面的2,3位就行。</li>
-<li>进入到容器之后，找到/etc/mysql</li>
-</ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005136.png" alt="容器中的/etc/mysql"></p>
-<p>可以看到下面有这几个东西，我看了网上说在conf.d下写my.cnf~但是我看到my.cnf里的内容。<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005439.png" alt="my.cnf的内容"></p>
-<p>里面明确写了包括这两个文件夹下的东西，所以之前说的master.cnf是可以的，当然我看了下mysql.conf.d下的东西，有一个mysqld.cnf的配置文件，我索性就在下面配置了</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005806.png" alt="mysqld.cnf的配置"></p>
-<p>如上图，重要配置代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql_bin</span><br><span class="line">server-id=226 //默认为1，服务器唯一id，一般取IP的最后一段，我这里参考了上面博客的，只要唯一就行。</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>哦对了，在docker容器里是没有vim和gedit的，这些东西要自行安装，在容器外安装没用，得在容器里安装：执行命令 <strong>apt-get update</strong>之后，再执行命令<strong>apt-get install vim</strong>这样就可以使用vim去编辑了。（好麻烦感觉，在宿舍网络差的10k/s也是很迷人）</p>
-</blockquote>
-<ol start="3">
-<li>主容器重启：</li>
-</ol>
-<p>退出docker容器后，使用命令：<strong>sudo docker restart <container-id></container-id></strong> 进行重启容器</p>
-<h4 id="从容器配置"><a href="#从容器配置" class="headerlink" title="从容器配置"></a>从容器配置</h4><p>从容器配置跟主容器配置基本一致。</p>
-<ol>
-<li>进入容器内</li>
-<li>找到/etc/mysql/mysql.conf.d/mysqld.cnf文件，添加以下代码</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql_bin</span><br><span class="line">server-id=222</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>退出容器，重启容器，sudo docker restart <container-id></container-id></li>
-</ol>
-<p>至此，在容器上的配置已经完成了，此时应转入到mysql里面的配置。</p>
-<h4 id="mysql的主从配置"><a href="#mysql的主从配置" class="headerlink" title="mysql的主从配置"></a>mysql的主从配置</h4><h5 id="主服务器操作"><a href="#主服务器操作" class="headerlink" title="主服务器操作"></a>主服务器操作</h5><ol>
-<li>打开主容器的mysql，连接上之后，打开命令行界面。我使用的是Navicat，所以我这样说，如果各位用惯mysql的纯命令行也行的哈。</li>
-<li>查看主容器状态</li>
-</ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011305.png" alt="mysql主容器状态"></p>
-<p><strong>记住其中的File，Position，待会有用</strong></p>
-<ol start="3">
-<li>授权给从容器</li>
-</ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011453.png" alt="授权"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
-<p>解释一下上面的sql语句：‘slave’@‘%’中slave表示User，即账号名，像root一样。而后面的%表示Host，此时可以填入从服务器的ip地址。identified by ‘123456’表示设置密码。</p>
-<h5 id="从服务器操作"><a href="#从服务器操作" class="headerlink" title="从服务器操作"></a>从服务器操作</h5><p>从服务器只需要配置一下代码即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; change master to master_host=&apos;119.119.119.119&apos;, master_user=&apos;slave&apos;, master_password=&apos;123456&apos;, master_log_file=&apos;mysql_bin.000001&apos;, master_log_pos=&apos;416262&apos;;</span><br></pre></td></tr></table></figure>
-<p>解释一下：</p>
-<ul>
-<li>master_host：这里表示的是主服务器的ip地址</li>
-<li>master_user：这里表示主服务器中登录的账户名，即上述在主服务器中设置的账户</li>
-<li>master_password：这里表示密码，上面主服务器设置的登录密码</li>
-<li>master_log_file：主服务器的日志文件名，在上面需要记住的file，即在主服务器通过show master status查看到的file列</li>
-<li>master_log_pos：主服务器日志开始同步的位置</li>
-</ul>
-<p>然后执行命令 <strong>start slave;</strong>启动从服务器复制功能</p>
-<h4 id="检验从服务器复制功能"><a href="#检验从服务器复制功能" class="headerlink" title="检验从服务器复制功能"></a>检验从服务器复制功能</h4><p>在从服务器中执行命令 <strong>show slave status</strong> ，当Slave_IO和Slave_SQL为Yes时，表示正常执行，否则都是错误的</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123011.png" alt="主服务器测试数据库"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123103.png" alt="从服务器测试数据库"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123236.png" alt="主服务器里的表"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123414.png" alt="从服务器数据表"></p>
-<p>由上图可见，从服务器实现了在主服务器上通过二进制文件进行复制的操作。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/01/MySQL主从复制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1578,97 +1448,14 @@
 
       
         
-          
-            <h1 id="MySQL5-7-JSON新特性"><a href="#MySQL5-7-JSON新特性" class="headerlink" title="MySQL5.7 JSON新特性"></a>MySQL5.7 JSON新特性</h1><h2 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，不太合理，恰巧有伙伴了解到MySQL在5.7版本支持了json的存储，因此把数据库升级到MySQL5.7.x使用JSON这个新特性。不得不说MySQL大有一统数据库的野心，一个关系型数据库，居然支持json形式存储。</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>项目使用SpringBoot，SpringDataJpa。由于SpringDataJpa里面对MySQL5.7的json支持不是很够，因此需要手写sql语句。由于初期并没有考虑MySQL优化这方面，只想着把服务给跑起来，后续再进行优化。因此手写的sql语句并没有顾及到全表扫描等问题。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180828151514.png" alt="JSON操作"></p>
-<p>由上图可以看到，sql语句并没有对优化做出任何努力。这在后续会进行一定的优化。主要目的是为了了解json的函数。图中使用的json函数包括JSON_CONTAINS_PATH，以及查询json字段里面的key，value。sql语句的意思是，如果表单里有某个字段，就查这个字段的值，如果表单里没有这个字段，就跳过去，不查。</p>
-<h2 id="JSON函数"><a href="#JSON函数" class="headerlink" title="JSON函数"></a>JSON函数</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>引用文章<a href="https://blog.csdn.net/wuzuodingfeng/article/details/53693209" target="_blank" rel="noopener">MySQL5.7中对json的支持</a></p>
-<p>从5.7.8开始，MySQL提供了一个原生的json类型，因此json不再以字符串形式存储，而是采用一种允许快速读取文本元素的内部二进制格式。MySQL5.7.8还提供了一些基于json的函数，包括：</p>
-<ul>
-<li>创建JSON：<ul>
-<li>JSON_ARRAY()，</li>
-<li>JSON_MERGE()，</li>
-<li>JSON_OBJECT()</li>
-</ul>
-</li>
-<li>查询JSON：<ul>
-<li>JSON_CONTAINS()，</li>
-<li>JSON_CONTAINS_PATH()，</li>
-<li>JSON_EXTRACT()，</li>
-<li>JSON_KEYS()，</li>
-<li>JSON_SEARCH()</li>
-</ul>
-</li>
-<li>修改JSON：<ul>
-<li>JSON_APPEND()，</li>
-<li>JSON_ARRAY_APPEND()，</li>
-<li>JSON_ARRAY_INSERT(),</li>
-<li>JSON_INSERT(),</li>
-<li>JSON_QUOTE()，</li>
-<li>JSON_REMOVE()，</li>
-<li>JSON_REPLACE(),</li>
-<li>JSON_SET(),</li>
-<li>JSON_UNQUOTE()</li>
-</ul>
-</li>
-<li>获取JSON的META信息：<ul>
-<li>JSON_DEPTH(),</li>
-<li>JSON_LENGTH()</li>
-<li>JSON_TYPE()</li>
-<li>JSON_VALID()</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>在5.7.9之后可以使用column -&gt; path作为JSON_EXTRACT(column, path)的快捷方式，并且可以出现在任何位置。-&gt; 左边的参数是json数据的列名，右边的参数是json数据中的路径表达式，如$.name这样~</p>
-</blockquote>
-<h3 id="JSON类型"><a href="#JSON类型" class="headerlink" title="JSON类型"></a>JSON类型</h3><p>MySQL对JSON类型做了一些限制：</p>
-<ol>
-<li>JSON文本最大长度取决于系统常量：max_allowed_packet。</li>
-<li>JSON列没有默认值</li>
-<li>与其他二进制类型列一样无法创建索引</li>
-</ol>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>由于这篇文章写得足够详细<a href="https://blog.csdn.net/wuzuodingfeng/article/details/53693209" target="_blank" rel="noopener">MySQL对json的支持</a>，因此不再重复造轮子，只写下在项目用到的几个函数。</p>
-<ul>
-<li><p>JSON_CONTAINS_PATH()</p>
-<ul>
-<li>语法：<br>  JSON_CONTAINS_PATH(json_doc,  one_or_all,  path[, path]…)</li>
-<li>说明：<ul>
-<li>结果会返回0或者1，表示指定的json_doc下某个路径或某些路径下是否包含待定的值</li>
-<li>某些参数为NULL返回NULL</li>
-<li>以下情况将报错：<ul>
-<li>json_doc为不合法的json文本</li>
-<li>path参数中包含不合法的路径</li>
-<li>one_or_all参数为非’one’或者’all’的值</li>
-</ul>
-</li>
-<li>如果目标文本中没有指定的路径，则返回0，否则返回值依赖于one_or_all值<ul>
-<li>‘one’：表示json文本（json_doc）中只要存在至少一个指定路径（path）则返回1，否则返回0</li>
-<li>‘all’：表示json文本(json_doc)中必须包含有所有指定的路径才返回1，否则返回0</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>项目中运用：<ul>
-<li>在项目中由于表单是可以随时变化的，而搜索项是不会改变，所以必须得判断该搜索项对应一个表单里面的路径是否存在，如果存在再去找对应的字段；如果不存在，则不会去寻找，跳到下一个条件。如上图。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>JSON_EXTRACT()</p>
-<ul>
-<li>语法：<br>  JSON_EXTRACT(json_doc, path[, path]…)</li>
-<li>说明：<ul>
-<li>返回json_doc中与path参数    </li>
-<li>MySQL5.7.9以后的版本支持’-&gt;’操作符作为本函数两个参数的便捷写法。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          
+          <h1 id="MySQL5-7-JSON新特性"><a href="#MySQL5-7-JSON新特性" class="headerlink" title="MySQL5.7 JSON新特性"></a>MySQL5.7 JSON新特性</h1><h2 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，不太合理，恰巧有伙伴了解到MySQL在5.7版本支持了json的存储，因此把数据库升级到MySQL5.7.x使用JSON这个新特性。不得不说MySQL大有一统数据库的野心，一个关系型数据库，居然支持json形式存储。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/MySQL5.7 JSON新特性/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1812,85 +1599,20 @@
 
       
         
-          
-            <h1 id="SpringBoot-Quartz-定时任务"><a href="#SpringBoot-Quartz-定时任务" class="headerlink" title="SpringBoot Quartz 定时任务"></a>SpringBoot Quartz 定时任务</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。</p>
+          <h1 id="SpringBoot-Quartz-定时任务"><a href="#SpringBoot-Quartz-定时任务" class="headerlink" title="SpringBoot Quartz 定时任务"></a>SpringBoot Quartz 定时任务</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。</p>
 <ul>
 <li>创建实现org.quartz.Job接口的java类，其中只有一个方法：<strong>execute (JobExecutionContext context) throws JobExecutionException</strong>，将要实现的任务逻辑添加进execute这个方法里</li>
 <li>创建JobDetail</li>
 <li>创建触发器（CronTrigger）</li>
 <li>Scheduler开启定时任务</li>
 </ul>
-<h2 id="名词阐述"><a href="#名词阐述" class="headerlink" title="名词阐述"></a>名词阐述</h2><h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><p>是一个接口，只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务，JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中；</p>
-<h3 id="JobDetail"><a href="#JobDetail" class="headerlink" title="JobDetail"></a>JobDetail</h3><p>Quartz在每次执行Job时，都重新创建一个Job实例，所以它不直接接受一个Job的实例，相反它接收一个Job实现类，以便运行时通过newInstance()的反射机制实例化Job。因此需要通过一个类来描述Job的实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息，JobDetail承担了这一角色。</p>
-<h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><p>是一个类，描述触发Job执行的时间触发规则。主要有SimpleTrigger和CronTrigger这两个子类。当仅需触发一次或者以固定时间间隔周期执行，SimpleTrigger是最适合的选择；而CronTrigger则可以通过Cron表达式定义出各种复杂时间规则的调度方案：如每早晨9:00执行，周一、周三、周五下午5:00执行等；</p>
-<h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p>代表一个Quartz的独立运行容器，Trigger和JobDetail可以注册到Scheduler中，两者在Scheduler中拥有各自的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据，Trigger的组及名称必须唯一，JobDetail的组和名称也必须唯一（但可以和Trigger的组和名称相同，因为它们是不同类型的）。Scheduler定义了多个接口方法，允许外部通过组及名称访问和控制容器中Trigger和JobDetail。</p>
-<h2 id="项目需求"><a href="#项目需求" class="headerlink" title="项目需求"></a>项目需求</h2><p>近期做的一个项目中，有一个这样的需求，活动报名通道需要根据预设好的截止时间结束活动报名，截止时间可以为空，时间格式是yyyy-MM-dd HH:mm:ss</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>加入Quartz，需要以下两个依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;quartz&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.3.0&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;5.0.7.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在将quartz应用到项目之前，还了解到quartz可应用于单任务以及多任务</p>
-<h3 id="单任务"><a href="#单任务" class="headerlink" title="单任务"></a>单任务</h3><p><a href="https://blog.csdn.net/zahngjialiang/article/details/78690932" target="_blank" rel="noopener">参考别人的文章</a></p>
-<p>虽然单任务不是项目需求所要求的解决方案，还是写一下，以后需要的时候可以翻出来看看，而单任务在我解决项目需求前，曾动手实验了一番，正是因为跑过代码，才发现单任务不太适合这个项目需求</p>
-<p>单任务即整个项目就只有一个定时任务，与用户数量无关，比如定时清理数据库日志，定时全站通告等等</p>
-<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableScheduling</span><br><span class="line">public class ScheduleTask &#123;</span><br><span class="line">    public void scheduleTest() &#123;</span><br><span class="line">        System.out.println(&quot;scheduleTest&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class QuartzConfigration &#123;</span><br><span class="line"></span><br><span class="line">    //设置任务</span><br><span class="line">    @Bean(name = &quot;jobDetail&quot;)  </span><br><span class="line">    public MethodInvokingJobDetailFactoryBean detailFactoryBean(ScheduleTask task) &#123;</span><br><span class="line">        // ScheduleTask为需要执行的任务</span><br><span class="line">        MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();  </span><br><span class="line">        /* </span><br><span class="line">         *  是否并发执行 </span><br><span class="line">         *  例如每5s执行一次任务，但是当前任务还没有执行完，就已经过了5s了， </span><br><span class="line">         *  如果此处为true，则下一个任务会bing执行，如果此处为false，则下一个任务会等待上一个任务执行完后，再开始执行 </span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setConcurrent(true);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setName(&quot;scheduler&quot;);// 设置任务的名字(必须）</span><br><span class="line">        jobDetail.setGroup(&quot;scheduler_group&quot;);// 设置任务的分组，这些属性都可以存储在数据库中，在多任务的时候使用（必须）</span><br><span class="line"></span><br><span class="line">        /* </span><br><span class="line">         * 这两行代码表示执行task对象中的scheduleTest方法。定时执行的逻辑都在scheduleTest。</span><br><span class="line">         */  </span><br><span class="line">        jobDetail.setTargetObject(task);  </span><br><span class="line"></span><br><span class="line">        jobDetail.setTargetMethod(&quot;scheduleTest&quot;); //用字符串指明了要执行的方法</span><br><span class="line">        return jobDetail;  </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    //设置触发器</span><br><span class="line">    @Bean(name = &quot;jobTrigger&quot;)  </span><br><span class="line">    public CronTriggerFactoryBean cronJobTrigger(MethodInvokingJobDetailFactoryBean jobDetail) &#123;  </span><br><span class="line">        CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();  </span><br><span class="line">        tigger.setJobDetail(jobDetail.getObject());  </span><br><span class="line">        tigger.setCronExpression(&quot;0/6 * * * * ?&quot;);// 表示每隔6秒钟执行一次，cron表达式</span><br><span class="line">        tigger.setName(&quot;myTigger&quot;);// trigger的name  </span><br><span class="line">        return tigger;  </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //设置scheduler，触发任务</span><br><span class="line">    @Bean(name = &quot;scheduler&quot;)  </span><br><span class="line">    public SchedulerFactoryBean schedulerFactory(Trigger cronJobTrigger) &#123;  </span><br><span class="line">        SchedulerFactoryBean bean = new SchedulerFactoryBean();</span><br><span class="line">        //设置是否任意一个已定义的Job会覆盖现在的Job。默认为false，即已定义的Job不会覆盖现有的Job。</span><br><span class="line">        bean.setOverwriteExistingJobs(true);  </span><br><span class="line">        // 延时启动，应用启动5秒后  ，定时器才开始启动</span><br><span class="line">        bean.setStartupDelay(5);  </span><br><span class="line">        // 注册定时触发器  </span><br><span class="line">        bean.setTriggers(cronJobTrigger);  </span><br><span class="line">        return bean;  </span><br><span class="line">    &#125;</span><br><span class="line">    //多任务时的Scheduler，动态设置Trigger。一个SchedulerFactoryBean可能会有多个Trigger</span><br><span class="line">    @Bean(name = &quot;multitaskScheduler&quot;) </span><br><span class="line">    public SchedulerFactoryBean schedulerFactoryBean()&#123;  </span><br><span class="line">        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();   </span><br><span class="line">        return schedulerFactoryBean;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述设置时，会在项目启动的5秒之后，每隔6秒执行一次啊ScheduleTask中的scheduleTest方法。若想动态改变cron表达式，可以重新生成一个trigger，schedule重新规划这个触发器</p>
-<h4 id="动态改变cron表达式"><a href="#动态改变cron表达式" class="headerlink" title="动态改变cron表达式"></a>动态改变cron表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">    @GetMapping(&quot;/&#123;prod&#125;/quart&quot;)</span><br><span class="line">    public String quartzTest(@PathVariable Integer prod) throws SchedulerException&#123;</span><br><span class="line">         //获取这个触发器</span><br><span class="line">         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         //触发器中的cron表达式</span><br><span class="line">         String currentCron = trigger.getCronExpression();// 当前Trigger使用的  </span><br><span class="line">         System.err.println(&quot;当前trigger使用的-&quot;+currentCron);</span><br><span class="line">        </span><br><span class="line">         //改变cron表达式，1秒钟执行一次</span><br><span class="line">         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(&quot;0/1 * * * * ?&quot;);  </span><br><span class="line">         </span><br><span class="line">         // 按新的cronExpression表达式重新构建trigger  </span><br><span class="line">         trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         trigger = trigger.getTriggerBuilder().withIdentity(cronTrigger.getKey())  </span><br><span class="line">                 .withSchedule(scheduleBuilder).build();  </span><br><span class="line">                 </span><br><span class="line">         // 按新的trigger重新设置job执行  </span><br><span class="line">         scheduler.rescheduleJob(cronTrigger.getKey(), trigger);  </span><br><span class="line">        return prod+&quot;-这是quartz测试&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>上述的单任务在项目启动时就会启动，但是在项目往往的场景是项目启动时，不要你启动，而只需要用户指定启动的时候，启动某一特定的任务。因此这一动态多任务相比单任务要简单得多</p>
-<h4 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png" alt="实现了Job接口的任务"></p>
-<p>实际情况是，有多少个任务就有多少个类实现Job这个接口</p>
-<p>上面图片，实现了通过传一个id过来，去数据查找，然后更新。我的处理使将id作为Job的name，然后传过来，再将其转换为Integer类型。若遇到更多的参数的话，应通过使用JobDetail的JobDataMap传输过来，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDetail job = JobBuilder.newJob(。。。).withIdentity(..., ...).build();</span><br><span class="line">job.getJobDataMap().putAsString(&quot;key&quot;, &quot;value&quot;);</span><br></pre></td></tr></table></figure>
-<p>这种方式传入参数是Quartz比较推荐的。然后再execute方法里再通过JobDataMap取出来，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDataMap map = context.getJobDetail().getJobDataMap()</span><br><span class="line">map.getString(&quot;key&quot;);</span><br></pre></td></tr></table></figure>
-<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png" alt="开启任务配置"></p>
-<p>上图步骤如下：</p>
-<ul>
-<li>先使用JobBuilder将任务放进去，同时设置name，group，得到一个JobDetail</li>
-<li>然后通过CronScheduleBuilder设置触发日期</li>
-<li>接着使用TriggerBuilder获取一个触发器</li>
-<li>Scheduler去规划这个Job和这个触发器什么时候触发</li>
-</ul>
-<p>基本步骤如上，当然项目还使用了其他的方法，如下：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png" alt="其他方法"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png" alt="其他方法"></p>
-<p>综合上图可以看到，要找到一个任务，只需传入name和group，得到一个JobKey，再通过JobKey获取这个JobDetail。Quartz就是这么简单操作</p>
-<h2 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h2><p>既然提及到定时任务，就不得不提一下Cron表达式，<a href="https://www.cnblogs.com/javahr/p/8318728.html" target="_blank" rel="noopener">详情请参考这篇文章</a>，参考一下大神的博客，受益匪浅</p>
-<blockquote>
-<p>Cron表达式是一个字符串，以5或者6个空格隔开，分成6或者7个域，每一个域代表一个含义</p>
-</blockquote>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>Cron从左到右：<strong>秒 分 时 日 月 星期 年份</strong></p>
-<h3 id="各字段含义"><a href="#各字段含义" class="headerlink" title="各字段含义"></a>各字段含义</h3><ul>
-<li>秒：0~59的整数，允许，- * /四个字符</li>
-<li>分：0~59的整数，允许，- * /四个字符</li>
-<li>时：0~23的整数，允许, - * /四个字符</li>
-<li>日：1~31的整数，允许，- * / L W C ？八个字符</li>
-<li>月：1~12的整数，或者JAN-DEC，允许, - * /四个字符</li>
-<li>星期：1~7的整数，或者SUN-SAT，允许，- * / L C # ? 八个字符</li>
-<li>年：1970~2099，允许，- * /四个字符</li>
-</ul>
-<blockquote>
-<p>注意：<br>*：表示匹配任意值<br>?：只能用在日和星期这两个地方，<br>-：表示范围，如分钟可用5-20 表示5到20分钟<br>/：表示起始时间开始触发，然后每隔固定时间触发一次，如5/20：可表示5分钟触发一次，而下一次触发为25分钟，再下一次为45分钟<br>，：表示列出枚举值<br>L：表示最后，只能出现在日和星期这两个地方，例如5L表示最后一个周四触发<br>W：表示有效工作日（周一到周五），只能出现在日，系统将在离指定日期的最近有效工作日触发，比如5W，如果5号是周六，将在最近的周五触发，如果5号是在周日，将在最近的周一触发。</p>
-<p>#：表示用于确定每个月第几个星期几，比如：4#2    表示某月的第2个星期三</p>
-</blockquote>
-<h2 id="Quartz和SpringTask区别"><a href="#Quartz和SpringTask区别" class="headerlink" title="Quartz和SpringTask区别"></a>Quartz和SpringTask区别</h2><ol>
-<li>第一个也是最重要的一个，就是精确度：</li>
-</ol>
-<p>Quarz的精确度可以精确到某年某月某日某时某分某秒，而SpringTask或者别的Timer不行，看了下SpringTask源码，只能够让我们精确到某月某日某时某分某秒以及星期，相比于Quartz差了很多，这也是我一开始尝试SpringTask后，遇到这个坑，再转去Quartz的。</p>
-<ol start="2">
-<li>对异常的处理：</li>
-</ol>
-<p>Quartz在某次执行任务过程中抛出异常，不影响下一次任务执行。</p>
-<p>SpringTask一旦某个任务执行过程出现异常，整个任务周期结束，不再执行</p>
-<ol start="3">
-<li>任务执行过程</li>
-</ol>
-<p>Quartz采用多线程，而Task默认采用单线程串行执行，若任务时间长，后续任务无法展开。</p>
-<ol start="4">
-<li>部署</li>
-</ol>
-<p>这个区别还没遇到过，Quartz采用集群方式，分布式部署到多台机器，分配执行定时任务。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在项目中，用上了Quartz以及用之前踩过的坑，能够深入理解到定时任务调度这块还是Quartz做的比较好。在理解过程中，应该寻着源码去探究。如果一个异常跑出来了，这就是学习机会，这可以通过打印出来的堆栈信息一步一步去看里面设置了什么东西。尽量避免面向百度编程吧233333333333</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/SpringBoot Quartz 定时任务/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2034,119 +1756,18 @@
 
       
         
-          
-            <h1 id="springboot动态选择数据源"><a href="#springboot动态选择数据源" class="headerlink" title="springboot动态选择数据源"></a>springboot动态选择数据源</h1><p>前情回顾：</p>
+          <h1 id="springboot动态选择数据源"><a href="#springboot动态选择数据源" class="headerlink" title="springboot动态选择数据源"></a>springboot动态选择数据源</h1><p>前情回顾：</p>
 <ul>
 <li><a href="https://tomatoneedegg.github.io/2018/06/09/springboot%E9%85%8D%E7%BD%AE%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" target="_blank" rel="noopener">springboot配置多数据源</a></li>
 </ul>
 <p>前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，<strong>动态选择数据源不等于主从复制，也不等于读写分离</strong>，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础</p>
-<h2 id="基础原理"><a href="#基础原理" class="headerlink" title="基础原理"></a>基础原理</h2><p>既然要动态选择数据源，本质上还是进行动态选择数据库连接。查看一下java.sql.DataSource的接口，会发现有其有返回对应的Connection<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png" alt="DataSource"></p>
-<p>然后在IDEA中按Ctrl + Alt 同时点击getConnection（）方法查看其实现类。在实现类列表中找到AbstractRoutingDataSource这个类，这个类由Spring框架提供实现，点进去</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_getconnect_1528734255_12254.png" alt="getConnectionRouting"></p>
-<p>在上图，由determineTargetDataSource实现了getConnection方法，点进去<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_determinet_1528734325_2914.png" alt="determineTargetDataSource"></p>
-<p>上图中，<strong>determineCurrentLookupKey</strong>是一个抽象方法，其返回值可以通过传给resolvedDataSource从而决定一个连接的DataSource。而resolvedDataSource是一个Map&lt;Object, Object&gt;类型，其中约摸估计应该包含有用户所定义的所有的数据库DataSource。然后点击resolvedDataSource可以看到其是一个Map&lt;Object, Object&gt;<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_resolvedda_1528734670_10043.png" alt="resolvedDataSource"></p>
-<p>继续往下看，看到一个方法afterPropertiesSet，里面会对resolvedDataSource进行初始化操作</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_afterprope_1528734764_5131.png" alt="afterPropertiesSet"></p>
-<p>其中的resolvedDataSource的值是由targetDataSource设置二来，而targetDataSource也是一个Map&lt;Object, Object&gt;类型。</p>
-<p>看到这里，相信大家都应该知道要做什么了，先把流程理一下</p>
-<ol>
-<li>继承AbstractRoutingDataSource，并将所有的数据库（包括主从数据库）的DataSource设置进targetDataSource，设置格式为Map&lt;Obejct, Object&gt;，第一个Object表示一个Key，将通过determinLookupKey进行筛选，第二个Object就是数据源</li>
-<li>然后targetDataSources将自身设置给resolvedDataSources</li>
-<li>通过重写determineLookupKey（）方法，选择相应的数据源的key值。</li>
-<li>用户通过某种自定义的方法动态选择数据源（这里使用AOP）</li>
-</ol>
-<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><ul>
-<li>springboot框架</li>
-<li>SpringDataJPA</li>
-<li>Lombok</li>
-<li>Aspect</li>
-</ul>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>在前面我们知道如何配置多数据源，而配置多数据源又是动态选择数据源的基础，但是此处配置又与前面有所不同（进度条充足，请继续食用）</p>
-<p>在开始介绍之前，首先来看一下项目结构：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testdataso_1528709353_11090.png" alt="TestDataSource2结构"></p>
-<h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=root</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=root</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
-<p>数据库连接这块与前面没有什么不同之处，为了方便，我们使用同一服务下的不同库进行模拟演示</p>
-<h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><p>在前面配置多数据源的时候，我是将entity下再进行分层primary和slave，这样是方便演示，实际上这在多数据源中是不需要进行再分包的，可以直接在entity建立实体，如下图</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png" alt="Entity结构"></p>
-<ul>
-<li>User类；</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png" alt="User类"></p>
-<ul>
-<li>Admin类</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png" alt="Admin类"></p>
-<h3 id="建立数据操作类"><a href="#建立数据操作类" class="headerlink" title="建立数据操作类"></a>建立数据操作类</h3><p>数据操作类也不必像配置多数据源一样进行分层，可以直接在repository下建立</p>
-<ul>
-<li>repository分类</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_repository_1528718694_32169.png" alt="repository分类"></p>
-<ul>
-<li>UserRepository</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface UserRepository extends JpaRepository&lt;User, Integer&gt;&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>AdminRepository</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface AdminRepository extends JpaRepository&lt;Admin, Integer&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="配置动态数据源"><a href="#配置动态数据源" class="headerlink" title="配置动态数据源"></a>配置动态数据源</h3><p>动态数据源配置与配置多数据源的不太一样，前者是以后者为基础的，话不多说，先贴图</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png" alt="动态数据源配置结构"></p>
-<p>说明：</p>
-<ul>
-<li>Datasource：自定义一个注解</li>
-<li>DatasourceAspect：自定义的一个切面</li>
-<li>DatasourceConfig：用来扫描配置文件中所配置的多个数据源，并生成Bean</li>
-<li>DatasourceType：定义一个枚举类，里面有所要表示的各种配置类的名称</li>
-<li>DynamicDatasource：继承了AbstractRoutingDatasource，并且实现了其抽象类determineCurrentLookupKey方法</li>
-<li>DynamicDatasourceConfig：动态选择数据源的配置类</li>
-<li>DynamicDatasourceHolder：动态数据源决策类</li>
-</ul>
-<h4 id="DataSourceConfig"><a href="#DataSourceConfig" class="headerlink" title="DataSourceConfig"></a>DataSourceConfig</h4><p>有多少个数据源，就配置多少个Bean<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528735484_4303.png" alt="DataSourceConfig"></p>
-<h4 id="DynamicDataSouceConfig"><a href="#DynamicDataSouceConfig" class="headerlink" title="DynamicDataSouceConfig"></a>DynamicDataSouceConfig</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableTransactionManagement</span><br><span class="line">@EnableJpaRepositories(</span><br><span class="line">        entityManagerFactoryRef = &quot;dynamicEntityManagerFactory&quot;,</span><br><span class="line">        basePackages = &#123;&quot;com.shanyu.datasource.repository&quot;&#125;</span><br><span class="line">)</span><br><span class="line">public class DynamicDatasourceConfig &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private JpaProperties jpaProperties;</span><br><span class="line">    </span><br><span class="line">    @Bean</span><br><span class="line">    @Primary</span><br><span class="line">    public AbstractRoutingDataSource routingDataSource(</span><br><span class="line">            @Qualifier(&quot;masterDatasource&quot;)DataSource masterDatasource,</span><br><span class="line">            @Qualifier(&quot;slaveDatasource&quot;)DataSource slaveDatasource</span><br><span class="line">    ) &#123;</span><br><span class="line">        System.out.println(&quot;---------begin-------------&quot;);</span><br><span class="line">        DynamicDatasource dynamicDatasource = new DynamicDatasource();</span><br><span class="line">        Map&lt;Object, Object&gt; targetDatasource = new HashMap&lt;Object, Object&gt;();</span><br><span class="line">        targetDatasource.put(DatasourceType.MASTER.type(), masterDatasource);</span><br><span class="line">        targetDatasource.put(DatasourceType.SLAVE.type(), slaveDatasource);</span><br><span class="line">        dynamicDatasource.setTargetDataSources(targetDatasource);//设置targetDataSources</span><br><span class="line">        dynamicDatasource.setDefaultTargetDataSource(masterDatasource);//设置默认的targetDataSources</span><br><span class="line">        System.out.println(&quot;------------end-------------&quot;);</span><br><span class="line">        return dynamicDatasource;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactoryBean&quot;)</span><br><span class="line">    @Primary</span><br><span class="line">    public LocalContainerEntityManagerFactoryBean dynamicEntityFactoryBean(EntityManagerFactoryBuilder entityManagerFactoryBuilder,</span><br><span class="line">                                                                                         DataSource dataSource) &#123;</span><br><span class="line">        return entityManagerFactoryBuilder.dataSource(dataSource)</span><br><span class="line">                .packages(&quot;com.shanyu.datasource.entity&quot;)</span><br><span class="line">                .properties(jpaProperties.getProperties())</span><br><span class="line">                .persistenceUnit(&quot;dynamicDataSource&quot;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactory&quot;)</span><br><span class="line">    public EntityManagerFactory dynamicEntityFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder, DataSource dataSource) &#123;</span><br><span class="line">        return this.dynamicEntityFactoryBean(entityManagerFactoryBuilder, dataSource).getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;transactionManager&quot;)</span><br><span class="line">    public PlatformTransactionManager transactionManager(@Qualifier(&quot;dynamicEntityManagerFactory&quot;) EntityManagerFactory entityManagerFactory) &#123;</span><br><span class="line"></span><br><span class="line">        return new JpaTransactionManager(entityManagerFactory);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>DynamicDataSourceConfig里面也是主要配置三个东西</p>
-<ul>
-<li>配置动态的DataSource（将key值与DataSource设置成targetDataSource）</li>
-<li>配置EntityManagerFactory（实体管理工厂）</li>
-<li>配置TransactionManager（事务管理器）</li>
-</ul>
-<p>配置动态的DataSource需要依赖DynamicDataSource去提供一个key值，在里面同时将key值与相应的数据源匹配到一起，比如key值为master，value就是masterDataSource；key值是slave，value就是slaveDataSource。</p>
-<p>其中在配置EntityManagerFactory中遇到一个坑，就是现在如代码所示在dynamicEntityFactoryBean这个方法里，通过builder去构建一个LocalContainerEntityManagerFactoryBean，但是如果直接在dynamicEntityFactoryBean里直接构建一个EntityMangerFactory时，是得通过builer.build().getObject()的方法进行构建的，**但是，getObject()在此方法中会产生NullPointerException的空指针异常。具体原因不是特别清楚，如果将其分开来的话，就如上面代码所示，通过一个dynamicEntityFactory方法可以构建一个EntityManagerFactory，这样就可以运行，至于为什么前者不行，还有待深入研究。</p>
-<p>之后配置事务管理器，就直接将EntityManagerFactory这个Bean注入进去就可以了。</p>
-<blockquote>
-<p>以上关于动态数据源在哪里的配置就已经结束了，但是怎么动态选择数据源的问题将在下面解决</p>
-</blockquote>
-<h4 id="DataSourceType"><a href="#DataSourceType" class="headerlink" title="DataSourceType"></a>DataSourceType</h4><blockquote>
-<p>在DataSourceType里定义了Map&lt;Object, Opject&gt;结构里的key值，随后可以动态选择key值，然后通过DynamicDataSourceHolder决策类进行设置。</p>
-</blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528736661_3737.png" alt="DataSourceType"></p>
-<p>其是一个Enum类，MASTER表示masterDataSource，SLAVE表示slaveDataSource</p>
-<h4 id="DynamicDataSource"><a href="#DynamicDataSource" class="headerlink" title="DynamicDataSource"></a>DynamicDataSource</h4><blockquote>
-<p>继承自AbstractRoutingDataSource，并且重写了determineCurrentLookupKey方法</p>
-</blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528736796_16364.png" alt="DynamicDataSource"></p>
-<p>就简单地选择了一下，其依赖DynamicDataSourceHolder决策类，通过决策类进行选择，如果决策类里有，就返回，否则默认返回masterDataSource。</p>
-<h4 id="DynamicDataSourceHolder"><a href="#DynamicDataSourceHolder" class="headerlink" title="DynamicDataSourceHolder"></a>DynamicDataSourceHolder</h4><blockquote>
-<p>动态数据源的决策，如果用户选择了某个数据库连接，那么DataSourceType将会通过设值到DynamicDataSourceHolder，然后determineCurrentLookupKey将会取出Holder里面的值，然后再源码层面上将这个key值取出targetDataSource里面对应的DataSource，并getConnection。</p>
-</blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528737061_22288.png" alt="DynamicDataSourceHolder"></p>
-<h4 id="注解DataSource和切面DataSourceAspect"><a href="#注解DataSource和切面DataSourceAspect" class="headerlink" title="注解DataSource和切面DataSourceAspect"></a>注解DataSource和切面DataSourceAspect</h4><blockquote>
-<p>在本次测试项目中，将通过AOP进行动态的数据源选择</p>
-</blockquote>
-<ul>
-<li>注解DataSource</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737184_20158.png" alt="DataSourceAnnotation"></p>
-<ul>
-<li>切面DataSourceAspect</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737215_13591.png" alt="DataSourceAspect"></p>
-<p>用完清除是个好习惯~</p>
-<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><p>由于自定义了一个@DataSource，此注解应用在service层，因此，将其注解在service层，就能实现动态选择数据源</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testservic_1528737397_19408.png" alt="testService"></p>
-<p>由于尽量模拟读写分离，因此读就从SLAVE读，而写就写进MASTER。</p>
-<p>至此，关于sprinboot动态选择数据源就已经介绍到这里，下次继续向读写分离进发，最近考试月2333333333333333333</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/12/springboot动态选择数据源/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2290,85 +1911,20 @@
 
       
         
-          
-            <h1 id="springboot配置多数据源"><a href="#springboot配置多数据源" class="headerlink" title="springboot配置多数据源"></a>springboot配置多数据源</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。</p>
+          <h1 id="springboot配置多数据源"><a href="#springboot配置多数据源" class="headerlink" title="springboot配置多数据源"></a>springboot配置多数据源</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。</p>
 <h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><ul>
 <li>SpringBoot</li>
 <li>Spring Data JPA</li>
 <li>MySQL</li>
 </ul>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><p>在application.properties中进行如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=970329</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=970329</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
-<p>上面代码中前缀为spring.datasource.primary表示主数据库，前缀为spring.datasource.slave表示从数据库，而spring.jpa就是配置一下jpa这块的东西（基本配置）。上面配置的是基本的数据库连接，就像平时项目一样，对数据库的连接。（在此提醒不要太依赖IDEA的智能提醒）</p>
-<p><strong>值得注意的是</strong>，一般配置jdbc的url的时候，是使用<strong>spring.datasource.url</strong> = jdbc:mysql://localhost:3306/XXX这个配置，但是在配置多数据源的时候，使用<strong>spring.datasource.jdbc-url</strong> 。第二个比第一个不同之处在于：第一个是url，第二个是jdbc-url。如果不这样配置，会出现说jdbcUrl is required with driverClassName的异常。</p>
-<h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><blockquote>
-<p>这里提一下。测试中将建立两个实体类。一个是User类，一个是Admin类，其中User放在主数据库，Admin放在从数据库</p>
-</blockquote>
-<p>项目分层结构：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png" alt="项目结构"></p>
-<p>在项目目录中，我们可以看到在com.shanyu.datasource.entity的包下再分层，一个是primary，一个是slave，primary包下管理主数据库的实体，entity包下管理从数据库的实体。</p>
-<ul>
-<li>com.shanyu.datasource.entity.primary.<strong>User</strong> 实体如下所示</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png" alt="User实体类"></p>
-<ul>
-<li>com.shanyu.datasource.entity.slave.<strong>Admin</strong> 实体类</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png" alt="Admin实体类"></p>
-<h3 id="建立数据操作类（repository）"><a href="#建立数据操作类（repository）" class="headerlink" title="建立数据操作类（repository）"></a>建立数据操作类（repository）</h3><p>数据操作类分组也可以像entity下进行这样的分类，以便进行区分</p>
-<ul>
-<li>UserRepository接口</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png" alt="UserRepository"></p>
-<ul>
-<li>AdminRepository接口</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png" alt="AdminRepository"></p>
-<p>说明一下，使用SpringDataJpa之后，就可以直接通过继承JpaRepository接口实现基本的增删查改操作，同时因为只是接口，因此可以不用加@Repository这个注解，Spring容器就可以识别。当然也可以加。</p>
-<h3 id="配置主从数据源（config）"><a href="#配置主从数据源（config）" class="headerlink" title="配置主从数据源（config）"></a>配置主从数据源（config）</h3><p>在SpringBoot项目中，通过注解@Configuration在一个类上，可对整个项目进行配置。</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png" alt="config项目结构"></p>
-<p>在图上可以知道，config文件夹下并不像entity和Repository下那样进行分层。可以同时对主数据库，从数据库进行配置。其中无论主数据库还是从数据库，都只需要配置一下三个东西。</p>
-<ul>
-<li>dataSource：数据源连接信息（上面配过了）</li>
-<li>entityManagerFactory：实体管理工厂</li>
-<li>transactionManager：事务管理</li>
-</ul>
-<h4 id="对主数据库配置"><a href="#对主数据库配置" class="headerlink" title="对主数据库配置"></a>对主数据库配置</h4><ul>
-<li>MasterDataConfig中配置。</li>
-</ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png" alt="MasterDataConfig"></p>
-<ul>
-<li>@Configuration：表明这是一个SpringBoot下的配置类</li>
-<li>@EnableTransactionManagement：开启事务管理器。</li>
-<li>@EnableJpaRepositories：用于Spring JPA的代码配置。<ul>
-<li>entityManagerFactoryRef：实体管理工厂引用名称，对应到@Bean注解对应方法</li>
-<li>basePackages：用于配置扫描Repository所在的package及子package。即数据操作接口所在package</li>
-</ul>
-</li>
-<li>@ConfigurationProperties：对application.properties配置文件进行扫描</li>
-<li>@Primary：表示在众多相同的Bean中，优先使用@Primary注解的Bean</li>
-<li>@Qualifier：注入对应的Bean。</li>
-</ul>
-<p>在主数据源配置类中，对application.properties中以spring.datasource.primary开头的配置进行扫描读取。并进行dataSource配置。<strong>注意Datasource是java.sql.Datasource</strong>。</p>
-<ul>
-<li>对Datasouce进行配置</li>
-</ul>
-<p>使用DatasourceBuilder进行配置，读取application.properties中以spring.datasource.primary的配置。</p>
-<ul>
-<li>对实体管理工厂进行配置</li>
-</ul>
-<p>实体管理工厂方法中返回LocalContainerEntityManagerFactory。其中builder.packages中指定的是实体类所在的包路径，而builder.properties中使用jpaProperties配置HibernateSetting。在Springboot1.5x以前是使用Datasource作为形参注入到getHibernateSetting中去，而SpringBoot2.0之后就变成了HibernateSetting作为形参了，这是一个坑，很多博客还是停留在SpringBoot1.5x以前并没有进行更新。我也是从一些良心博主中找到的<a href="https://blog.csdn.net/tianyaleixiaowu/article/details/78905149" target="_blank" rel="noopener">原文地址</a></p>
-<ul>
-<li>对事务管理器进行配置</li>
-</ul>
-<p>就使用Jpa的事务管理器就行了，因为Jpa本身支持多数据源配置。</p>
-<h4 id="对从数据库配置"><a href="#对从数据库配置" class="headerlink" title="对从数据库配置"></a>对从数据库配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png" alt="SlaveDataConfig"></p>
-<p>配置从数据库跟配置主数据库基本一致。不同的是扫描application.properties中的前缀是spring.datasource.secondary，同时配置的Repository的路径和Entity的包路径也与主数据库配置不一样。</p>
-<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><h4 id="编写Service层"><a href="#编写Service层" class="headerlink" title="编写Service层"></a>编写Service层</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png" alt="TestService"></p>
-<h4 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png" alt="测试类"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为SpringBoot + SpringDataJPA对多数据源的支持，所以极大地简化了多数据源的配置，让开发配置越来越简单，开发配置成本越来越低。</p>
-
-          
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/09/springboot配置多数据源/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

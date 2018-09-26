@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png">
-<meta property="og:updated_time" content="2018-09-14T05:12:17.592Z">
+<meta property="og:updated_time" content="2018-09-26T15:32:19.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot Quartz 定时任务">
 <meta name="twitter:description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
@@ -347,6 +347,7 @@
 <li>创建触发器（CronTrigger）</li>
 <li>Scheduler开启定时任务</li>
 </ul>
+<a id="more"></a>
 <h2 id="名词阐述"><a href="#名词阐述" class="headerlink" title="名词阐述"></a>名词阐述</h2><h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><p>是一个接口，只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务，JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中；</p>
 <h3 id="JobDetail"><a href="#JobDetail" class="headerlink" title="JobDetail"></a>JobDetail</h3><p>Quartz在每次执行Job时，都重新创建一个Job实例，所以它不直接接受一个Job的实例，相反它接收一个Job实现类，以便运行时通过newInstance()的反射机制实例化Job。因此需要通过一个类来描述Job的实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息，JobDetail承担了这一角色。</p>
 <h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><p>是一个类，描述触发Job执行的时间触发规则。主要有SimpleTrigger和CronTrigger这两个子类。当仅需触发一次或者以固定时间间隔周期执行，SimpleTrigger是最适合的选择；而CronTrigger则可以通过Cron表达式定义出各种复杂时间规则的调度方案：如每早晨9:00执行，周一、周三、周五下午5:00执行等；</p>

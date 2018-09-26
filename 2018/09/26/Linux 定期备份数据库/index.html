@@ -87,7 +87,7 @@
 <meta property="og:description" content="Linux下定期备份数据库 emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要  使用docker备份数据库1docker exec -it &amp;lt;containerId&amp;gt; mysqldump -u&amp;lt;username&amp;gt; -p&amp;lt;password&amp;gt; -h&amp;lt;host&amp;gt; --tables">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-26/67509590.jpg">
-<meta property="og:updated_time" content="2018-09-26T15:15:30.835Z">
+<meta property="og:updated_time" content="2018-09-26T15:30:48.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下定期备份数据库">
 <meta name="twitter:description" content="Linux下定期备份数据库 emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要  使用docker备份数据库1docker exec -it &amp;lt;containerId&amp;gt; mysqldump -u&amp;lt;username&amp;gt; -p&amp;lt;password&amp;gt; -h&amp;lt;host&amp;gt; --tables">
@@ -347,6 +347,7 @@
 <blockquote>
 <p>我在某篇文章的评论中看到，用mysqldump会被经理骂？然后网上找了下有个mysqlhotcopy工具，<a href="https://blog.csdn.net/maixiaohai/article/details/24838541" target="_blank" rel="noopener">这篇文章</a>说<strong>mysqlhotcopy的优点就是快，缺点就是只支持MyISAM</strong>，然后想了想，项目数据库不使用MyISAM存储引擎，所以就没用mysqlhotcopy来进行备份。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h2><h3 id="编写定时任务"><a href="#编写定时任务" class="headerlink" title="编写定时任务"></a>编写定时任务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br></pre></td></tr></table></figure>
 <p>创建一个文件夹保存备份文件以及定时任务需要执行的shell文件（这里放在/home下）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd backup/</span><br><span class="line">vi backup.sh</span><br></pre></td></tr></table></figure>

@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123103.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123236.png">
 <meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123414.png">
-<meta property="og:updated_time" content="2018-09-14T05:12:31.852Z">
+<meta property="og:updated_time" content="2018-09-26T15:31:56.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL主从复制">
 <meta name="twitter:description" content="MySQL主从复制参考文章：mysql主从复制 做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。 由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，">
@@ -350,6 +350,7 @@
         <h1 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h1><p>参考文章：<a href="https://blog.csdn.net/deeplearnings/article/details/78398526" target="_blank" rel="noopener">mysql主从复制</a></p>
 <p>做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。</p>
 <p>由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，MySQL的主从复制应该是由两台机进行的，原因是当单机的MySQL已经无法承载其用户体量的时候，应考虑进行读写分离。而在Docker配置两个MySQL纯属练习。目的是掌握核心配置步骤。（讲真，还是因为Docker比较方便）当然，本文还是会讲下如何不使用Docker进行主从配置，其实道理都是一样的。</p>
+<a id="more"></a>
 <h2 id="Docker容器搭建MySQL主从复制"><a href="#Docker容器搭建MySQL主从复制" class="headerlink" title="Docker容器搭建MySQL主从复制"></a>Docker容器搭建MySQL主从复制</h2><h3 id="Docker下载MySQL"><a href="#Docker下载MySQL" class="headerlink" title="Docker下载MySQL"></a>Docker下载MySQL</h3><ol>
 <li>在Docker上输入命令 <strong>sudo docker search mysql</strong>，当然如果你是root，请无视掉sudo。</li>
 <li>将mysql pull到本地，执行命令 <strong>sudo docker pull mysql:5.6.40</strong>，本例使用mysql:5.6.40，当然什么版本都可以，但是有一点必须注意的是 <strong>主从容器的MySQL版本一定要一致</strong>。</li>

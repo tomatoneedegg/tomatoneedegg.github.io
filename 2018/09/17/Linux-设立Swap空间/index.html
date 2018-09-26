@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="Linux设立Swap空间安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：  使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）  1dd if=/dev/zero of=/tmp/swap bs=1M count=1024 bs=1M：表示单位，使用1M单位 count：是数目，与bs合起来就是1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-17T13:12:34.223Z">
+<meta property="og:updated_time" content="2018-09-26T15:31:06.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux设立Swap空间">
 <meta name="twitter:description" content="Linux设立Swap空间安装完Linux后再划分交换分区是可以的，下面以1G大小的文件为例：  使用dd命令在某个目录下新建一个1G的文件（以/tmp下的文件为例，但在实际使用中，不要这样，因为/tmp目录的数据在重启后丢失）  1dd if=/dev/zero of=/tmp/swap bs=1M count=1024 bs=1M：表示单位，使用1M单位 count：是数目，与bs合起来就是1">
@@ -354,6 +354,7 @@
 <li>查看效果</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon -s</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>当然上面设置完成后，一重启就没了，接下来进行永久保存操作</p>
 <ol>
 <li>编辑fstab文件</li>
