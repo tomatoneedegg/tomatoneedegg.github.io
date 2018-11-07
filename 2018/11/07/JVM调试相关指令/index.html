@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="title: JVM调试指令date: 2018-11-07 23:00:45tags:categories: JVM JVM调试指令 关于JVM的一些相关指令，记录下来用于调试，同时往后会有补充使用示例   jps(Java Virtual Machine Process Status Tool)  jps主要用来输出JVM中运行的进程状态信息 1jps [options] [hostid] o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stuartd&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2018/11/07/JVM调试相关指令/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="title: JVM调试指令date: 2018-11-07 23:00:45tags:categories: JVM JVM调试指令 关于JVM的一些相关指令，记录下来用于调试，同时往后会有补充使用示例   jps(Java Virtual Machine Process Status Tool)  jps主要用来输出JVM中运行的进程状态信息 1jps [options] [hostid] o">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/45435512.jpg">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/65410527.jpg">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/50322567.jpg">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/82936986.jpg">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/83092858.jpg">
+<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/10669205.jpg">
+<meta property="og:updated_time" content="2018-11-07T15:00:40.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stuartd&#39;s Blog">
+<meta name="twitter:description" content="title: JVM调试指令date: 2018-11-07 23:00:45tags:categories: JVM JVM调试指令 关于JVM的一些相关指令，记录下来用于调试，同时往后会有补充使用示例   jps(Java Virtual Machine Process Status Tool)  jps主要用来输出JVM中运行的进程状态信息 1jps [options] [hostid] o">
+<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/45435512.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/07/JVM调试相关指令/"/>
+
+
+
+
+
+  <title> | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/JVM调试相关指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T23:00:40+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>title: JVM调试指令<br>date: 2018-11-07 23:00:45<br>tags:<br>categories: JVM</p>
+<h1 id="JVM调试指令"><a href="#JVM调试指令" class="headerlink" title="JVM调试指令"></a>JVM调试指令</h1><blockquote>
+<p>关于JVM的一些相关指令，记录下来用于调试，同时往后会有补充使用示例</p>
+</blockquote>
+<ul>
+<li><strong>jps</strong>(Java Virtual Machine Process Status Tool)</li>
+</ul>
+<p>jps主要用来输出JVM中运行的进程状态信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [options] [hostid]</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名，Jar包和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出mian类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jstack</strong></li>
+</ul>
+<p>jstack主要用来查看某个Java进程内的线程堆栈信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-F 当正常输出的请求不被响应时，强制输出线程堆栈</span><br><span class="line">-l (<span class="keyword">long</span> listings)打印出额外的锁信息，在发生死锁时可以用jstack -l pid 来观察锁持有情况</span><br><span class="line">-m (mix mode)混合模式，不仅输出Java堆栈信息，还会输出C/C++堆栈信息</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jmap</strong> （Java Memory Map)</li>
+</ul>
+<p>jmap查看堆内存使用情况，用于显示当前Java堆和永久代的详细信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jmap [options] pid</span><br><span class="line">jmap [options] executable core</span><br><span class="line">jmap [options] [server-id@remote-hostaname-or-ip]</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-dump 生成Java堆转储快照</span><br><span class="line">-heap 显示Java堆详细信息</span><br><span class="line">-F 如果对-dump没有反应，则该选项强制生成堆转储快照</span><br><span class="line">-finalizerinfo 显示在F-Queue中等待Finalizer线程执行finalize方法的对象</span><br><span class="line">-histo 显示堆中对象统计信息</span><br><span class="line">-permstat 以ClassLoader为统计口径显示永久代内存状态</span><br></pre></td></tr></table></figure>
+<p>假设一个Java进程pid: 123</p>
+<p>查看堆详细信息：jmap -heap 123</p>
+<p>生成dump文件：jmap -dump:file=~/java/dump/test.prof 123</p>
+<p>查看当前堆中对象统计信息：jmap -histo 123</p>
+<ul>
+<li><strong>jhat</strong> (Java Heap Analysis Tool)</li>
+</ul>
+<p>用于分析使用jmap生成的dump文件，是JDK自带的工具</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jhat -J -Xmx512m [file]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jstat</strong> (Java Virtual Machine Statistics Monitoring Tool)</li>
+</ul>
+<p>用于监视虚拟机运行时状态信息的命令，可以显示虚拟机进程中的类装载，内存，垃圾收集，JIT编译</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [options] vmid [insterval] [count]</span><br></pre></td></tr></table></figure>
+<p>[options]    操作参数选项说明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">-class 类加载的行为统计（包括类装载，卸载，及总空间和耗费时间</span><br><span class="line">    Loaded 加载class数量</span><br><span class="line">    Bytes class字节大小</span><br><span class="line">    Unloaded 未加载class数量</span><br><span class="line">    Bytes 未加载class大小</span><br><span class="line">    Time 加载时间</span><br><span class="line">    </span><br><span class="line">-compiler Hotpot JIT编译器行为统计</span><br><span class="line">	Compiled 编译数量</span><br><span class="line">	Failed 编译失败数量</span><br><span class="line">	Invalid 无效数量</span><br><span class="line">	Time 编译耗时</span><br><span class="line">	FailedType 失败类型</span><br><span class="line">	FailedMethod 失败方法的权限定名</span><br><span class="line">	</span><br><span class="line">-gc 垃圾回收堆的行为统计，包括Eden区，两个Survivor区，老年代，永久代容量，已用空间，GC时间等</span><br><span class="line">	S0C (Survivor 0 Capacity) Survivor 0 区的总容量</span><br><span class="line">	S1C (Survivor 1 Capacity) Survivor 1 区的总容量</span><br><span class="line">	S0U (Survivor 0 Used) Survivor 0 区的已使用容量</span><br><span class="line">	S1U (Survivor 1 Used) Survivor 1 区的已使用容量</span><br><span class="line">	EC (Eden Capacity) Eden区的总容量</span><br><span class="line">	EU (Eden Used) Eden区的已使用容量</span><br><span class="line">	OC (Old Capacity) Old区的总容量</span><br><span class="line">	OU (Old Used) Old区的已使用容量</span><br><span class="line">	MC (Method Capacity) 方法区总容量</span><br><span class="line">	MU (Method Used) 方法区已使用容量</span><br><span class="line">	CCSC (Compress Capacity Space Capacity) 压缩类空间容量</span><br><span class="line">	CCSU (Compress Capacity Space Used) 压缩类空间已使用容量</span><br><span class="line">	YGC (Younger GC) YoungerGC次数</span><br><span class="line">	YGCT (Youger GC Time) YoungerGC时间</span><br><span class="line">	FGC (Full GC) Full GC次数</span><br><span class="line">	FGCT (Full GC Time) Full GC 时间</span><br><span class="line">	GCT (GC Time) GC总时间</span><br><span class="line">	</span><br><span class="line">-gccapacity 与gc行为基本一致，不过更侧重于Java堆使用各个区域的最大最小空间</span><br><span class="line">	NGCMN (New Generation Capacity Mini) 新生代最小容量</span><br><span class="line">	NGCMX (New Generation Capacity Max) 新生代最大容量</span><br><span class="line">	NGC (New Generation Capacity) 当前新生代容量</span><br><span class="line">	S0C 同上</span><br><span class="line">	S1C 同上</span><br><span class="line">	EC 同上</span><br><span class="line">	OGCMN (Old Generation Capacity Mini) 老年代最小容量</span><br><span class="line">	OGCMX (Old Generation Capacity Max) 老年代最大容量</span><br><span class="line">	OGC (Old Genneration Capacity) 老年代总容量</span><br><span class="line">	OC (Old space Capacity) 当前老年代容量</span><br><span class="line">	MCMN (Meta Capacity Mini) 元数据区最小容量</span><br><span class="line">	MCMX (Meta Capacity Max) 元数据区最大容量</span><br><span class="line">	MC (Meta Capacity) 元数据区大小</span><br><span class="line">	CCSMN (Compress Class Space Mini) 压缩类空间最小容量</span><br><span class="line">	CCSMX (Compress Class Space Max) 压缩类空间最大容量</span><br><span class="line">	CCSC (Compress Class Space Capacity) 当前压缩类空间大小</span><br><span class="line">	YGC 同上</span><br><span class="line">	FGC 同上</span><br><span class="line">	</span><br><span class="line">-gcutil 与gc行为基本一致，不过更关注已使用空间占总空间的百分比</span><br><span class="line">	S0 Survivor 0 区</span><br><span class="line">	S1 Survivor 1 区</span><br><span class="line">	E  Eden 区</span><br><span class="line">	O  Old 区</span><br><span class="line">	M  Meta 区</span><br><span class="line">	CCS 压缩类空间</span><br><span class="line">	YGC Younger GC 次数</span><br><span class="line">	YGCT Younger GC 时间</span><br><span class="line">	FGC Full GC 次数</span><br><span class="line">	FGCT Full GC 时间</span><br><span class="line">	GCT GC 时间</span><br><span class="line">	</span><br><span class="line">-gccause 与gcutil功能一样，但会额外输出上一次GC产生的原因</span><br><span class="line">	列出参数基本一致</span><br><span class="line">	LGCC (Last GC Cause) 引起上一次GC的原因</span><br><span class="line">	</span><br><span class="line">-gcnew 监视新生代GC状况</span><br><span class="line">	TT (Tenuring threshold) 晋升阀值（即对象在新生代存活的次数：以一次YoungerGC为一次）</span><br><span class="line">	MTT (Max Tenuring threshold) 最大晋升阀值</span><br><span class="line">	DSS (Desired Survivor Size) 期望的Survivor区大小</span><br><span class="line">	</span><br><span class="line">-gcnewcapacity 与gcnew基本一致，但更关注新生代的相应空间</span><br><span class="line">-gcold 监视老年代GC状况（java8 已经移除了永久代）</span><br><span class="line">-gcoldcapacity 与gcold基本一致，但更关注老年代的相应空间</span><br><span class="line">-printcompilation 输出已被JIT编译的方法</span><br></pre></td></tr></table></figure>
+<p>jstat -gc pid</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/45435512.jpg" alt="-gc选项"></p>
+<p>jstat -gccapacity 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/65410527.jpg" alt="-gccapacity"></p>
+<p>jstat -gcutil 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/50322567.jpg" alt="-gcutil"></p>
+<p>jstat -gccause 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/82936986.jpg" alt="-gccause"></p>
+<p>jstat -gcnew 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/83092858.jpg" alt="-gcnew"></p>
+<p>jstat -gcnewcapacity 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/10669205.jpg" alt="-gcnewcapacity"></p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/26/Linux 定期备份数据库/" rel="next" title="Linux下定期备份数据库">
+                <i class="fa fa-chevron-left"></i> Linux下定期备份数据库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM调试指令"><span class="nav-number">1.</span> <span class="nav-text">JVM调试指令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

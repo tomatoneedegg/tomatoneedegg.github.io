@@ -246,6 +246,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/JVM调试相关指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/07/JVM调试相关指令/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T23:00:40+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title: JVM调试指令<br>date: 2018-11-07 23:00:45<br>tags:<br>categories: JVM</p>
+<h1 id="JVM调试指令"><a href="#JVM调试指令" class="headerlink" title="JVM调试指令"></a>JVM调试指令</h1><blockquote>
+<p>关于JVM的一些相关指令，记录下来用于调试，同时往后会有补充使用示例</p>
+</blockquote>
+<ul>
+<li><strong>jps</strong>(Java Virtual Machine Process Status Tool)</li>
+</ul>
+<p>jps主要用来输出JVM中运行的进程状态信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [options] [hostid]</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名，Jar包和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出mian类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jstack</strong></li>
+</ul>
+<p>jstack主要用来查看某个Java进程内的线程堆栈信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-F 当正常输出的请求不被响应时，强制输出线程堆栈</span><br><span class="line">-l (<span class="keyword">long</span> listings)打印出额外的锁信息，在发生死锁时可以用jstack -l pid 来观察锁持有情况</span><br><span class="line">-m (mix mode)混合模式，不仅输出Java堆栈信息，还会输出C/C++堆栈信息</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jmap</strong> （Java Memory Map)</li>
+</ul>
+<p>jmap查看堆内存使用情况，用于显示当前Java堆和永久代的详细信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jmap [options] pid</span><br><span class="line">jmap [options] executable core</span><br><span class="line">jmap [options] [server-id@remote-hostaname-or-ip]</span><br></pre></td></tr></table></figure>
+<p>options选项说明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-dump 生成Java堆转储快照</span><br><span class="line">-heap 显示Java堆详细信息</span><br><span class="line">-F 如果对-dump没有反应，则该选项强制生成堆转储快照</span><br><span class="line">-finalizerinfo 显示在F-Queue中等待Finalizer线程执行finalize方法的对象</span><br><span class="line">-histo 显示堆中对象统计信息</span><br><span class="line">-permstat 以ClassLoader为统计口径显示永久代内存状态</span><br></pre></td></tr></table></figure>
+<p>假设一个Java进程pid: 123</p>
+<p>查看堆详细信息：jmap -heap 123</p>
+<p>生成dump文件：jmap -dump:file=~/java/dump/test.prof 123</p>
+<p>查看当前堆中对象统计信息：jmap -histo 123</p>
+<ul>
+<li><strong>jhat</strong> (Java Heap Analysis Tool)</li>
+</ul>
+<p>用于分析使用jmap生成的dump文件，是JDK自带的工具</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jhat -J -Xmx512m [file]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jstat</strong> (Java Virtual Machine Statistics Monitoring Tool)</li>
+</ul>
+<p>用于监视虚拟机运行时状态信息的命令，可以显示虚拟机进程中的类装载，内存，垃圾收集，JIT编译</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [options] vmid [insterval] [count]</span><br></pre></td></tr></table></figure>
+<p>[options]    操作参数选项说明</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">-class 类加载的行为统计（包括类装载，卸载，及总空间和耗费时间</span><br><span class="line">    Loaded 加载class数量</span><br><span class="line">    Bytes class字节大小</span><br><span class="line">    Unloaded 未加载class数量</span><br><span class="line">    Bytes 未加载class大小</span><br><span class="line">    Time 加载时间</span><br><span class="line">    </span><br><span class="line">-compiler Hotpot JIT编译器行为统计</span><br><span class="line">	Compiled 编译数量</span><br><span class="line">	Failed 编译失败数量</span><br><span class="line">	Invalid 无效数量</span><br><span class="line">	Time 编译耗时</span><br><span class="line">	FailedType 失败类型</span><br><span class="line">	FailedMethod 失败方法的权限定名</span><br><span class="line">	</span><br><span class="line">-gc 垃圾回收堆的行为统计，包括Eden区，两个Survivor区，老年代，永久代容量，已用空间，GC时间等</span><br><span class="line">	S0C (Survivor 0 Capacity) Survivor 0 区的总容量</span><br><span class="line">	S1C (Survivor 1 Capacity) Survivor 1 区的总容量</span><br><span class="line">	S0U (Survivor 0 Used) Survivor 0 区的已使用容量</span><br><span class="line">	S1U (Survivor 1 Used) Survivor 1 区的已使用容量</span><br><span class="line">	EC (Eden Capacity) Eden区的总容量</span><br><span class="line">	EU (Eden Used) Eden区的已使用容量</span><br><span class="line">	OC (Old Capacity) Old区的总容量</span><br><span class="line">	OU (Old Used) Old区的已使用容量</span><br><span class="line">	MC (Method Capacity) 方法区总容量</span><br><span class="line">	MU (Method Used) 方法区已使用容量</span><br><span class="line">	CCSC (Compress Capacity Space Capacity) 压缩类空间容量</span><br><span class="line">	CCSU (Compress Capacity Space Used) 压缩类空间已使用容量</span><br><span class="line">	YGC (Younger GC) YoungerGC次数</span><br><span class="line">	YGCT (Youger GC Time) YoungerGC时间</span><br><span class="line">	FGC (Full GC) Full GC次数</span><br><span class="line">	FGCT (Full GC Time) Full GC 时间</span><br><span class="line">	GCT (GC Time) GC总时间</span><br><span class="line">	</span><br><span class="line">-gccapacity 与gc行为基本一致，不过更侧重于Java堆使用各个区域的最大最小空间</span><br><span class="line">	NGCMN (New Generation Capacity Mini) 新生代最小容量</span><br><span class="line">	NGCMX (New Generation Capacity Max) 新生代最大容量</span><br><span class="line">	NGC (New Generation Capacity) 当前新生代容量</span><br><span class="line">	S0C 同上</span><br><span class="line">	S1C 同上</span><br><span class="line">	EC 同上</span><br><span class="line">	OGCMN (Old Generation Capacity Mini) 老年代最小容量</span><br><span class="line">	OGCMX (Old Generation Capacity Max) 老年代最大容量</span><br><span class="line">	OGC (Old Genneration Capacity) 老年代总容量</span><br><span class="line">	OC (Old space Capacity) 当前老年代容量</span><br><span class="line">	MCMN (Meta Capacity Mini) 元数据区最小容量</span><br><span class="line">	MCMX (Meta Capacity Max) 元数据区最大容量</span><br><span class="line">	MC (Meta Capacity) 元数据区大小</span><br><span class="line">	CCSMN (Compress Class Space Mini) 压缩类空间最小容量</span><br><span class="line">	CCSMX (Compress Class Space Max) 压缩类空间最大容量</span><br><span class="line">	CCSC (Compress Class Space Capacity) 当前压缩类空间大小</span><br><span class="line">	YGC 同上</span><br><span class="line">	FGC 同上</span><br><span class="line">	</span><br><span class="line">-gcutil 与gc行为基本一致，不过更关注已使用空间占总空间的百分比</span><br><span class="line">	S0 Survivor 0 区</span><br><span class="line">	S1 Survivor 1 区</span><br><span class="line">	E  Eden 区</span><br><span class="line">	O  Old 区</span><br><span class="line">	M  Meta 区</span><br><span class="line">	CCS 压缩类空间</span><br><span class="line">	YGC Younger GC 次数</span><br><span class="line">	YGCT Younger GC 时间</span><br><span class="line">	FGC Full GC 次数</span><br><span class="line">	FGCT Full GC 时间</span><br><span class="line">	GCT GC 时间</span><br><span class="line">	</span><br><span class="line">-gccause 与gcutil功能一样，但会额外输出上一次GC产生的原因</span><br><span class="line">	列出参数基本一致</span><br><span class="line">	LGCC (Last GC Cause) 引起上一次GC的原因</span><br><span class="line">	</span><br><span class="line">-gcnew 监视新生代GC状况</span><br><span class="line">	TT (Tenuring threshold) 晋升阀值（即对象在新生代存活的次数：以一次YoungerGC为一次）</span><br><span class="line">	MTT (Max Tenuring threshold) 最大晋升阀值</span><br><span class="line">	DSS (Desired Survivor Size) 期望的Survivor区大小</span><br><span class="line">	</span><br><span class="line">-gcnewcapacity 与gcnew基本一致，但更关注新生代的相应空间</span><br><span class="line">-gcold 监视老年代GC状况（java8 已经移除了永久代）</span><br><span class="line">-gcoldcapacity 与gcold基本一致，但更关注老年代的相应空间</span><br><span class="line">-printcompilation 输出已被JIT编译的方法</span><br></pre></td></tr></table></figure>
+<p>jstat -gc pid</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/45435512.jpg" alt="-gc选项"></p>
+<p>jstat -gccapacity 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/65410527.jpg" alt="-gccapacity"></p>
+<p>jstat -gcutil 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/50322567.jpg" alt="-gcutil"></p>
+<p>jstat -gccause 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/82936986.jpg" alt="-gccause"></p>
+<p>jstat -gcnew 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/83092858.jpg" alt="-gcnew"></p>
+<p>jstat -gcnewcapacity 11685</p>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-11-7/10669205.jpg" alt="-gcnewcapacity"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/Linux 定期备份数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1806,163 +1983,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/springboot配置多数据源/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/09/springboot配置多数据源/" itemprop="url">springboot配置多数据源</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T22:06:10+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="springboot配置多数据源"><a href="#springboot配置多数据源" class="headerlink" title="springboot配置多数据源"></a>springboot配置多数据源</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。</p>
-<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><ul>
-<li>SpringBoot</li>
-<li>Spring Data JPA</li>
-<li>MySQL</li>
-</ul>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/09/springboot配置多数据源/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2013,7 +2033,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
