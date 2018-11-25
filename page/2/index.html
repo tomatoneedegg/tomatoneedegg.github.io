@@ -246,6 +246,480 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/一台电脑管理多个ssh key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/一台电脑管理多个ssh key/" itemprop="url">一台电脑管理多个ssh key</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T22:37:04+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/随记/" itemprop="url" rel="index">
+                    <span itemprop="name">随记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一台电脑管理多个ssh-key"><a href="#一台电脑管理多个ssh-key" class="headerlink" title="一台电脑管理多个ssh key"></a>一台电脑管理多个ssh key</h1><p>最近运维那边管理服务器，考虑到服务器的账号密码的安全性，因此考虑使用免密钥登录，使用ssh进行登录。然后麻烦就来了，因为我有一些github需要ssh，而此时我并不知道如何去管理多个ssh账号，因此略显狼狈，闲下来写写博客时，才想到整理一篇这样的文章，以备日后使用</p>
+<h2 id="生成ssh-key"><a href="#生成ssh-key" class="headerlink" title="生成ssh key"></a>生成ssh key</h2><p>使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;mail@company.com&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-t：指定使用rsa算法生成ssh的key</li>
+<li>-C：指定账户</li>
+</ul>
+<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901130457.png" alt="第一回车"></p>
+<p>在第一个回车时指定生成的文件名或者指定生成文件存放的位置，这里我指定不同的文件名就好，无需指定文件位置，例如github的就指定github_rsa就好了，如果是gitLab的就gitLab_rsa</p>
+<h2 id="设置ssh的代理"><a href="#设置ssh的代理" class="headerlink" title="设置ssh的代理"></a>设置ssh的代理</h2><ol>
+<li>查看代理</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+<p>如果提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure></p>
+<p>则表示系统没有代理任何key，可以添加一个ssh代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec ssh-agent bash</span><br></pre></td></tr></table></figure>
+<p>如果已经有了代理，使用以下代码进行删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -D</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加私钥"><a href="#添加私钥" class="headerlink" title="添加私钥"></a>添加私钥</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add /c/Users/PC/.ssh/github_rsa</span><br><span class="line">ssh-add /c/Users/PC/.ssh/ubuntu_rsa</span><br></pre></td></tr></table></figure>
+<h2 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h2><p>在github上添加对应的公钥，在服务器添加对应的公钥</p>
+<h2 id="新建编辑一个config文件"><a href="#新建编辑一个config文件" class="headerlink" title="新建编辑一个config文件"></a>新建编辑一个config文件</h2><p>在.ssh目录下新建一个config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /c/Users/PC/.ssh/config</span><br></pre></td></tr></table></figure>
+<p>然后往config文件里添加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /c/Users/PC/.ssh/github_rsa</span><br><span class="line">    user git</span><br><span class="line"></span><br><span class="line">Host &lt;你的服务器ip&gt;</span><br><span class="line">    HostName &lt;你的服务器ip&gt;</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /c/Users/PC/.ssh/ubuntu_rsa</span><br><span class="line">    user ubuntu</span><br></pre></td></tr></table></figure>
+<p>上面是我的config文件里配置，其内容根据具体情况而定，保存之后，通过<strong>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></strong>进行测试</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/MySQL主从复制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/MySQL主从复制/" itemprop="url">MySQL主从复制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T12:38:04+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h1><p>参考文章：<a href="https://blog.csdn.net/deeplearnings/article/details/78398526" target="_blank" rel="noopener">mysql主从复制</a></p>
+<p>做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。</p>
+<p>由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，MySQL的主从复制应该是由两台机进行的，原因是当单机的MySQL已经无法承载其用户体量的时候，应考虑进行读写分离。而在Docker配置两个MySQL纯属练习。目的是掌握核心配置步骤。（讲真，还是因为Docker比较方便）当然，本文还是会讲下如何不使用Docker进行主从配置，其实道理都是一样的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/01/MySQL主从复制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/MySQL5.7 JSON新特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/MySQL5.7 JSON新特性/" itemprop="url">MySQL5.7 JSON新特性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T20:37:04+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="MySQL5-7-JSON新特性"><a href="#MySQL5-7-JSON新特性" class="headerlink" title="MySQL5.7 JSON新特性"></a>MySQL5.7 JSON新特性</h1><h2 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，不太合理，恰巧有伙伴了解到MySQL在5.7版本支持了json的存储，因此把数据库升级到MySQL5.7.x使用JSON这个新特性。不得不说MySQL大有一统数据库的野心，一个关系型数据库，居然支持json形式存储。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/MySQL5.7 JSON新特性/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/SpringBoot Quartz 定时任务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1750,423 +2224,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/17/Spring之AOP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/17/Spring之AOP/" itemprop="url">Spring之AOP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T13:45:04+08:00">
-                2017-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="AOP-又名AspectJ"><a href="#AOP-又名AspectJ" class="headerlink" title="AOP(又名AspectJ)"></a>AOP(又名AspectJ)</h1><blockquote>
-<p>面向切面编程，就是说解决代码复用，代码重复问题。AOP专门用于处理系统中分布于各个模块中的交叉问题</p>
-</blockquote>
-<ul>
-<li><strong>下载安装</strong></li>
-<li><strong>Eclipse导入Spring-AOP</strong></li>
-<li><strong>AspectJ使用</strong></li>
-<li><strong>AOP概念</strong></li>
-<li><strong>AOP注解方式</strong></li>
-<li><strong>AOPXML方式</strong></li>
-</ul>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a><strong>下载安装</strong></h2><p><strong>AspectJ下载与安装</strong></p>
-<ol>
-<li>地址：<a href="http://www.eclipse.org/aspectj/downloads.php" target="_blank" rel="noopener">http://www.eclipse.org/aspectj/downloads.php</a>        </li>
-<li>得到aspectJ-X.X.X.jar文件，然后解压，安装</li>
-<li>安装完成后将 ==安装路径\bin== 添加到PATH环境变量中去，将==安装路径\lib\aspectjrt.jar== 添加到CLASSPATH环境变量中去</li>
-</ol>
-<p><strong>AJDT(AspectJ Develoment Tools)下载安装</strong></p>
-<ol>
-<li><a href="http://www.eclipse.org/ajdt/downloads/" target="_blank" rel="noopener">这里下载</a>：<a href="http://www.eclipse.org/ajdt/downloads/" target="_blank" rel="noopener">http://www.eclipse.org/ajdt/downloads/</a>  一定要对应eclipse的版本，比如eclipse4.3对应aspectJ版本</li>
-<li>有两种安装方式：<ol>
-<li>第一种：把下载解压后的文件，如：ajdt_2.2.3_for_eclipse_4.3  里的features文件下的所有东西复制粘贴到eclipse的feature文件下，还有plugins这个文件一样</li>
-<li>第二种：在eclipse中Help-&gt;Install New SoftWare-&gt;Add-&gt;选择下载好的压缩包，然后click确定，再重启eclipse就可以了</li>
-</ol>
-</li>
-<li>使用时，对于一般Java项目，可以右键-&gt;Configure-&gt;Convert to AspectJ  就可以了<h2 id="Eclipse-XML配置Spring-AOP的命名空间"><a href="#Eclipse-XML配置Spring-AOP的命名空间" class="headerlink" title="Eclipse XML配置Spring-AOP的命名空间"></a><strong>Eclipse XML配置Spring-AOP的命名空间</strong></h2></li>
-<li>(Eclipse项目包中的LIbraries)在spring.jar文件中的META—INF目录中提供了spring.schemas文件，这个文件指定了提供支持的功能的xml元素配置的命名空间定义文件的位置，在这个文件中我们可以找到aop的位置<br><img src="/2017/05/17/Spring之AOP/有道云笔记汇总/weixinobU7VjpqSbzYjgJiizFuo7Q0yv2w/Pictures/1.jpg" alt="image"></li>
-<li>在XML文件中引入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>之后需要在xsi:schemaLocation 中添加位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.springframework.org/schema/aop(空格)http://www.springframework.org/schema/aop/spring-aop-2.5.xsd</span><br></pre></td></tr></table></figure></p>
-<p>而/spring-aop-2.5.xsd就是aop的元素的定义的文件名</p>
-<h2 id="AspectJ使用"><a href="#AspectJ使用" class="headerlink" title="AspectJ使用"></a><strong>AspectJ使用</strong></h2><blockquote>
-<p>在AOP中Java类仍然是普通Java，可以通过编译运行</p>
-</blockquote>
-<ol>
-<li><p>写几个普通Java类，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Hello()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写AspectJ，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public aspect AuthAspect&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>==注意：aspect不用参数==</p>
-<ol start="3">
-<li>点击运行</li>
-</ol>
-<blockquote>
-<p>说一下使用的背后：在已经写好的Java类中各自含有不同的方法，但现在想要在每个方法中添加一段代码，以实现某个检测功能，此时使用AspectJ切面编程能够指定在Java类中添加处理，就类似于一刀切，在每个类的Before或者After或者Around范围进行统一的处理，就不用一个一个地去添加处理代码，更好地实现了代码复用.</p>
-</blockquote>
-<h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a><strong>AOP概念</strong></h2><p><strong>特征：</strong></p>
-<ul>
-<li>各步骤间良好隔离性</li>
-<li>源代码无关性（减少了代码污染)</li>
-</ul>
-<p><strong>专业术语：</strong></p>
-<ul>
-<li><p><strong>切面(aspect):</strong> 组织对个处理，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public aspect HelloTest&#123;</span><br><span class="line">    //其中aspect就是指切面</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>连接点(joinpoint):</strong> 方法的调用，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Before(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">public void authority(JoinPoint jp)&#123;</span><br><span class="line">    //连接点主要作为参数，使用JoinPoint里的proceed()方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>增强处理(Advice):</strong> 有around，after，before等类型，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">before():execution(* org.dbw.app.service.*.*(..))</span><br><span class="line">after():............</span><br><span class="line">around():...........</span><br><span class="line">//第一个* 为返回类型，如int，double等等</span><br><span class="line">//第二个* 为任意类，如Hello类，World类等等</span><br><span class="line">//第三个* 为任意方法，如foo()等等</span><br><span class="line">//括号里为参数</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>切入点(Poincut):</strong> 可以插入增强处理(Advice)的连接点，就是说当某个连接点满足某个条件，连接点被添加进增强处理(Advice)时，该连接点编程切入点。如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poincut xxxPoincut():execution(void Org.dbw*.say*())       </span><br><span class="line">//每个方法被调用时都是连接点，如调用void dbwLove.sayLove()方法，此时为连接点(Joincut),但因为加入了增强处理，所以变成了切入点.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="AOP注解"><a href="#AOP注解" class="headerlink" title="AOP注解"></a>AOP注解</h2><blockquote>
-<p>在Eclipse中添加了aop命名空间后才可以进行操作<br>启动@Aspect支持</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy/&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>1. 定义切面Bean</strong></p>
-<p>在Spring容器中配置一个带 ==@Aspect== 注解的Bean，Spring将会自动识别该Bean，并将该Bean作为切面处理，且不会对该Bean进行增强处理(Advice)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Asppect</span><br><span class="line">public class LogAspect&#123;</span><br><span class="line">    //其他内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>2. 定义Before增强处理</strong></p>
-<p>用 ==@Before== 修饰一个方法，该方法作为Before增强处理，在目标方法执行前执行所修饰的方法。通常指定一个 ==value属性值== ，该属性值指定一个切入点表达式.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class AuthAspect&#123;</span><br><span class="line">    @Before(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void authority()&#123;</span><br><span class="line">        //其他内容</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>3. 定义AfterReturning增强处理</strong></p>
-<p>使用 ==@AfterReturn== 修饰一个方法，使其成为AfterReturn增强处理，在目标方法正常完成后执行增强处理。<br>常用属性：<br>==pointcut/value==:指定该切入点对应的切入表达式<br>==returning== ：可获得目标方法的返回值，同时用于表示增强处理方法中可定义与这个同名的形参<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class LogAspect&#123;</span><br><span class="line">    //定义一个AfterReturnning处理，returning属性指定目标方法返回值</span><br><span class="line">    @AfterReturning(returning=&quot;rvt&quot;,pointcut=&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    //形参：形参类型会限制目标方法必须返回指定类型的值或没有返回值，与returnning属性值同名</span><br><span class="line">    public void log(Object rvt)&#123;</span><br><span class="line">        System.out.println(&quot;目标方法返回值&quot;+ rvt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>4. 定义AfterThrowing增强处理</strong></p>
-<p>使用@AfterThrowing注解修饰一个方法，使其成为AfterThrowing增强处理<br>常用属性<br>==pointcut/value== 指定切入点对应的切入表达式<br>==throwing==:指定形参名，该形参用于访问目标方法抛出的异常</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class RepairAspect&#123;</span><br><span class="line">    @AfterThrowing(throwing=&quot;ex&quot; , pointcut=&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void do(Throwable ex)&#123;</span><br><span class="line">        System.out.println(&quot;目标方法抛出的异常&quot;+ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：AfterThrowing处理虽然可以对目标方法的异常进行处理，但这种处理与catch不同。catch捕捉是完全处理异常，而AfterThrowing处理虽然处理了异常，但不能完全处理，该异常仍然会抛给上一级调用者.</p>
-</blockquote>
-<p><strong>5. After增强处理</strong></p>
-<p>使用@After修饰一个方法，使其成为After增强处理             </p>
-<p>与AfterReturning区别: ++AfterReturning增强处理只有在目标方法成功完成后才执行++ ，++而After则不管目标方法如何结束，它都会被执行.++ </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class ReleaseAspect&#123;</span><br><span class="line">    @After(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public void release()&#123;</span><br><span class="line">        //其他内容</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>6. Around处理</strong></p>
-<p>使用@Around注解处理，使被修饰方法成为Around处理，近似等于Before和After总和，可以决定目标方法什么时候执行，如何执行，可以阻止目标方法执行。(详细见解看轻量级JavaEE企业应用实战P659)</p>
-<p>用法：当定义一个Around Advice时，==第一个形参必须是ProceedingJoinPoint类型== ++(就是说至少包含一个形参)++ ,调用ProceedingJoinPoint参数的proceed()方法时，还可以传入一个Object[]对象作为参数，该数组中的值将被传入目标方法作为执行目标方法的实参。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class TxAspect&#123;</span><br><span class="line">    @Around(&quot;execution(* org.dbw.app.service.*.*(..))&quot;)</span><br><span class="line">    public Object processTx(ProceedingJoinPoint jp)&#123;</span><br><span class="line">        s.out.print(&quot;执行目标方法前&quot;);</span><br><span class="line">        //创建一个这样的数组，使其成为目标方法的形参</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        //数组作为proceed方法形参，并用Object保留返回值</span><br><span class="line">        Object rvt = jp.proceed(args);</span><br><span class="line">        s.out.print(&quot;执行目标方法后&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/Spring之高级依赖关系设置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/25/Spring之高级依赖关系设置/" itemprop="url">Spring之高级依赖关系</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T13:45:04+08:00">
-                2017-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Spring之高级依赖关系"><a href="#Spring之高级依赖关系" class="headerlink" title="Spring之高级依赖关系"></a>Spring之高级依赖关系</h1><blockquote>
-<p>概述：</p>
-<ol>
-<li><p>调用getter方法：使用PropertyPathFactoryBean</p>
-</li>
-<li><p>访问类或者对象的Field值：使用FieldRetrievingFactoryBean</p>
-</li>
-<li><p>调用普通方法：使用MethodInvokingFactoryBean.</p>
-</li>
-</ol>
-</blockquote>
-<ul>
-<li><h3 id="调用getter方法"><a href="#调用getter方法" class="headerlink" title="调用getter方法"></a>调用getter方法</h3>使用PropertyPathFactoryBean获取目标的getter方法返回值。<br>==setTargetObject(Object targetObject)== 指定使用哪个对象，调用哪个Bean<br>==setPropertyPath(String propertyPath)== 指定使用Bean的哪个getter方法<br>如： 返回值作为bean<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;son1&quot; class=&quot;org.springframework.beans.factory.PropertyPathFactoryBean&quot;&gt;</span><br><span class="line">    //指定使用哪个bean，这里value指定使用id为person的bean</span><br><span class="line">    &lt;property name=&quot;targetBeanName&quot; value=&quot;person&quot;/&gt;</span><br><span class="line">    //指定使用哪个getter方法，这里value指定使用person的bean的getAge方法</span><br><span class="line">    &lt;property name=&quot;propertyPath&quot; value=&quot;age&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如：返回值注入另一个bean<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;son2&quot; class=&quot;org.dbw.app.service.Son&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;age&quot;&gt;</span><br><span class="line">        //person.son.age代表获取person。getSon().getAge()</span><br><span class="line">        &lt;bean id=&quot;person.son.age&quot; class=&quot;org.springframework.beans.factory.config.PropertyPathFactoryBean&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><h3 id="访问类或对象的Field值"><a href="#访问类或对象的Field值" class="headerlink" title="访问类或对象的Field值"></a>访问类或对象的Field值</h3>使用FieldRetrievingFactoryBean访问类的静态Field或对象的实例Field值</li>
-</ul>
-<p>==setTargetClass(String targetClass)== 指定调用哪个类<br>==setTargetObject(Object targetObject)== 指定使用哪个对象<br>==setTargetField(String targetField)== 指定访问哪个Field<br>==setStaticField(String staticField)== 同时指定取哪个类的哪个静态Field值</p>
-<p>如：访问类的静态Field<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;theAge1&quot; class=&quot;org.springframework.beans.factory.config.FieldRetrievingFactoryBean&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;targetClass&quot; value=&quot;java.sql.Connection&quot;/&gt;</span><br><span class="line">    &lt;property name=&quot;targetField&quot; value=&quot;TRANSACTION SETIALIZABLE&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
-<p>如：访问对象的Field<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;theAge2&quot; class=&quot;org.springframework.beans.factory.config.FieldRetrievingFactoryBean&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;targetObject&quot; value=&quot;org.dbw.app.service.chinese&quot;/&gt;</span><br><span class="line">    &lt;property name=&quot;targetField&quot; value=&quot;XXXX&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><h3 id="调用普通方法"><a href="#调用普通方法" class="headerlink" title="调用普通方法"></a>调用普通方法</h3>使用MethodInvokingFactoryBean，调用任意类的类方法，也可以调用任意对象的实例方法                                     </li>
-</ul>
-<p>==setTargetObject(Object targetObject)== 指定调用哪个对象<br>==setTargetClass(String targetClass)== 指定调用哪个类<br>==setTargetMethod(String targetMethod)== 指定调用哪个方法<br>==setArguments(Object[] argument)== 指定方法的参数</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2212,7 +2274,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
