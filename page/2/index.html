@@ -246,6 +246,182 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/Linux下的ssr配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/Linux下的ssr配置/" itemprop="url">Linux下ssr配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T12:39:04+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
+<li>下载ssr</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.texfox.com/ssr</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将ssr移动到/usr/local/bin文件下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv ssr /usr/local/bin</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>修改文件的权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 766 /usr/local/bin/ssr</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>ssr install</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr install</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>ssr config，将从运营商获取的配置json信息填入里面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr config</span><br></pre></td></tr></table></figure>
+<p>这个操作会调起一个gedit的文本编辑器，将节点json信息配置到里面去就ok</p>
+<ol start="6">
+<li>开启ssr</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/14/Linux下的ssr配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/一台电脑管理多个ssh key/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1702,528 +1878,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/多线程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/04/多线程/" itemprop="url">多线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T04:15:18+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>[TOC]</p>
-<h2 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h2><blockquote>
-<p>使用继承Thread类的方法来创建线程类时，多个线程间无法共享线程类的实例变量</p>
-</blockquote>
-<p>步骤：</p>
-<ol>
-<li>定义Thread类的子类</li>
-<li>重写Thread类的run方法，此方法的方法体代表了线程需完成的任务</li>
-<li>创建Thread类子类的实例，如new FirstThread（）</li>
-<li>调用实例的start()方法启动线程</li>
-</ol>
-<p>由上面步骤可知，由于每次创建线程都需要创建一个新的对象，所以每个线程的实例变量不一样</p>
-<h2 id="实现Runable接口"><a href="#实现Runable接口" class="headerlink" title="实现Runable接口"></a>实现Runable接口</h2><blockquote>
-<p>使用Runable接口的方式创建的多线程可以共享线程类的实例变量</p>
-</blockquote>
-<p>步骤：</p>
-<ol>
-<li>定义Runable接口的实现类</li>
-<li>重写Runable接口的run方法</li>
-<li>创建Runable实现类的实例，并将此实例作为Thread的target来创建Thread对象</li>
-<li>调用该Thread对象的start方法</li>
-</ol>
-<p>由上面步骤可知，程序创建的Runable对象只是Thread的target而已，而多个线程可以共享一个target，所以多个线程可以共享同一个线程类的实例变量</p>
-<h2 id="使用Callable和Future创建线程"><a href="#使用Callable和Future创建线程" class="headerlink" title="使用Callable和Future创建线程"></a>使用Callable和Future创建线程</h2><blockquote>
-<p>使用Callable和Future创建线程可以共享线程类的实例变量</p>
-</blockquote>
-<p>步骤：</p>
-<ol>
-<li>创建Callable接口的实现类</li>
-<li>实现call()方法，也可以使用Lambda表达式创建Callable对象</li>
-<li>使用FutrueTask类包装Callable对象</li>
-<li>将FutureTask对象作为Thread对象的target启动新线程</li>
-<li>调用FutureTask对象的get()方法获得子线程执行并结束后的返回值</li>
-</ol>
-<p>由上面步骤可知，一个Callable表示一个执行体，而FutureTask是用来去除Callable里的返回值，所以当有两个FutrueTask使用同一个Callable时，这时就会出现和Runable的情况</p>
-<h2 id="线程运行阻塞"><a href="#线程运行阻塞" class="headerlink" title="线程运行阻塞"></a>线程运行阻塞</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">进入阻塞</th>
-<th style="text-align:center">解除阻塞</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">调用sleep方法</td>
-<td style="text-align:center">调用sleep方法超过了指定时间</td>
-</tr>
-<tr>
-<td style="text-align:center">调用了一个阻塞式IO方法</td>
-<td style="text-align:center">阻塞式IO方法已经返回</td>
-</tr>
-<tr>
-<td style="text-align:center">试图获取一个同步监视器</td>
-<td style="text-align:center">成功获取同步监视器</td>
-</tr>
-<tr>
-<td style="text-align:center">等待某个通知（notify）</td>
-<td style="text-align:center">正在等待某个通知，其他线程发出了一个通知</td>
-</tr>
-<tr>
-<td style="text-align:center">调用了线程的suspend方法将其挂起</td>
-<td style="text-align:center">线程被调用了resume方法</td>
-</tr>
-</tbody>
-</table>
-<p>线程从阻塞状态只能进入就绪状态，无法直接进入运行状态</p>
-<h2 id="线程死亡"><a href="#线程死亡" class="headerlink" title="线程死亡"></a>线程死亡</h2><ul>
-<li>run()或call()方法完成，线程结束</li>
-<li>线程抛出一个未捕获的Exception或者Error</li>
-<li>直接调用stop()方法结束——不推荐使用，容易造成死锁</li>
-</ul>
-<p>isAlive()：判断是否已经死亡。（实例方法）</p>
-<blockquote>
-<p>不要对已经死亡的线程重新start（），因为死亡就是死亡了，无法再运行了</p>
-</blockquote>
-<h2 id="控制线程"><a href="#控制线程" class="headerlink" title="控制线程"></a>控制线程</h2><h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><p>描述：让一个线程等待另一个线程完成。当一个线程（调用者）调用了其他线程的join的方法（被join线程），调用者将被阻塞，直到被join线程执行完为止</p>
-<p>形式：</p>
-<ul>
-<li>join(): 等待被join线程完成</li>
-<li>join(long millis): 等待被join线程完成时间为millis毫秒。若在millis毫秒内没完成，则不再等待。</li>
-<li>join(long millis, int nanos): 等待被join线程的时间最长为millis毫秒加nanos毫微秒。</li>
-</ul>
-<h3 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h3><p>描述：后台运行，为其他线程提供服务。又称“守护线程”，“精灵线程”。如JVM垃圾回收线程</p>
-<p>特征：如果前台所有线程死亡，后台线程自动死亡。</p>
-<p>具体操作：调用Thread对象的setDaemon(true)方法指定线程为后台线程</p>
-<blockquote>
-<p>setDaemon(true)必须在start()方法前调用</p>
-</blockquote>
-<h3 id="sleep"><a href="#sleep" class="headerlink" title="sleep()"></a>sleep()</h3><blockquote>
-<p>静态方法</p>
-</blockquote>
-<p>描述：让当前正在执行的线程暂停一段时间，并进入阻塞状态</p>
-<p>形式：</p>
-<ul>
-<li>static void sleep(long millis): 暂停millis毫秒</li>
-<li>static void sleep(long millis, int nanos): 暂停millis毫秒 + nanos毫微秒</li>
-</ul>
-<h3 id="yield"><a href="#yield" class="headerlink" title="yield()"></a>yield()</h3><blockquote>
-<p>静态方法</p>
-</blockquote>
-<p>描述：让当前正在执行的线程暂停一段时间，并进入就绪状态，并等待CPU调度</p>
-<p>具体操作：调用Thread类的yield方法</p>
-<p>注意：当某个线程调用了yield方法暂停后，只有优先级与当前线程相同，或者优先级比当前线程更高的处于就绪状态线程才会获得执行机会</p>
-<h4 id="sleep和yield区别"><a href="#sleep和yield区别" class="headerlink" title="sleep和yield区别"></a>sleep和yield区别</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">sleep</th>
-<th style="text-align:center">yield</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">暂停线程，给其他线程执行机会，不理会优先级</td>
-<td style="text-align:center">暂停线程，只给优先级相同或更高的线程执行机会</td>
-</tr>
-<tr>
-<td style="text-align:center">暂停后转入阻塞状态</td>
-<td style="text-align:center">强制当前线程进入就绪状态</td>
-</tr>
-<tr>
-<td style="text-align:center">声明抛出InterruptException异常</td>
-<td style="text-align:center">不声明抛出任何异常</td>
-</tr>
-<tr>
-<td style="text-align:center">比yield更好移植性</td>
-<td style="text-align:center">不建议使用yield控制并发线程执行</td>
-</tr>
-</tbody>
-</table>
-<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><blockquote>
-<p>synchronized关键字可以修饰方法，可以修饰代码块，但不能修饰构造器，成员变量等</p>
-</blockquote>
-<ul>
-<li>使用同步代码块</li>
-</ul>
-<p>语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">synchronized(obj) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>语法格式中，synchronized后括号中的obj就是同步监视器，含义是：线程开始执行同步代码块之前，必须先获得对同步监视器的锁定</p>
-<p>==推荐使用共享资源充当同步监视器==</p>
-<ul>
-<li>使用同步方法</li>
-</ul>
-<p>语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void Xxx() &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于synchronized修饰的实例方法而言，没必要显式指定同步监视器，被修饰的实例方法叫做同步方法，而同步方法的同步监视器是this，也就是调用该方法的对象。</p>
-<p>如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Account &#123;</span><br><span class="line">    public synchronized void draw() &#123;</span><br><span class="line">        ....</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void main(String[] args) &#123;</span><br><span class="line">        Account account = new Account();</span><br><span class="line">        account.draw();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述代码中，synchronized修饰了Account的draw这个实例方法，同时将Account这个对象当做同步监视器。原因就是因为draw是实例方法，而只有Account对象能调用draw方法，所以同步监视器就是调用draw方法的对象，即Account对象。</p>
-<p>特征：</p>
-<ul>
-<li>该类的对象可以被多个线程安全地访问</li>
-<li>每个线程调用该对象的任意方法之后都将得到正确结果，原因是因为，同步监视器就是该对象</li>
-<li>每个线程调用该对象的任意方法之后，该对象状态依然保持合理状态，原因也是因为同步监视器就是该对象</li>
-</ul>
-<p>由于线程安全是以降低运行效率为代价运行的，为了减少这个代价，应注意：</p>
-<ul>
-<li>不要对线程安全类所有方法都进行同步，即不要所有的方法都加上synchronized关键字，只对会改变竞争资源的方法进行同步。</li>
-<li>若可变类有两种运行环境：单线程和多线程，则应该为该可变类提供两种版本，即线程不安全版本和线程安全版本。单线程中使用线程不安全版本保证性能，在多线程版本中使用线程安全版本保证安全</li>
-</ul>
-<h2 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h2><h3 id="传统线程通信"><a href="#传统线程通信" class="headerlink" title="传统线程通信"></a>传统线程通信</h3><p>描述：传统线程通信，可以借助Object类的wait()，notify()和notifyAll()三个方法。</p>
-<blockquote>
-<p>wait(), notify()和notifyAll()不属于Thread类，而是Object类，而且三个方法必须由同步监视器对象调用</p>
-</blockquote>
-<ul>
-<li>synchronized修饰的同步方法：由于同步方法的同步监视器就是该方法所在类的实例，所以可以在同步方法中直接调用</li>
-<li>synchronized修饰的同步代码块：由于synchronized括号后面才是同步监视器对象，所以必须使用该对象调用</li>
-</ul>
-<h4 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h4><p>描述：是当前线程等待，直到其他线程notify或者notifyAll。</p>
-<p>形式：</p>
-<ul>
-<li>wait()</li>
-<li>wait(long millis)</li>
-<li>wait(long millis, int nanos)</li>
-</ul>
-<h4 id="notify"><a href="#notify" class="headerlink" title="notify()"></a>notify()</h4><p>描述：唤醒在此同步监视器上等待的单个线程。若所有线程都在等待，则随机唤醒一个</p>
-<h4 id="notifyAll"><a href="#notifyAll" class="headerlink" title="notifyAll()"></a>notifyAll()</h4><p>描述：唤醒在此同步监视器上等待的所有线程</p>
-<h3 id="使用Lock-Condition控制线程通信"><a href="#使用Lock-Condition控制线程通信" class="headerlink" title="使用Lock-Condition控制线程通信"></a>使用Lock-Condition控制线程通信</h3><p>描述：若使用Lock保证同步的话，那么就得使用Condition类来保持通信</p>
-<p>形式：Condition实例被绑定在一个Lock对象上，所以必须得通过Lock对象的newCondition方法返回一个Condition对象。</p>
-<p>与传统线程通信对比：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">传统线程通信</th>
-<th style="text-align:center">Lock-Condition通信</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">wait()</td>
-<td style="text-align:center">await()</td>
-</tr>
-<tr>
-<td style="text-align:center">notify()</td>
-<td style="text-align:center">signal()</td>
-</tr>
-<tr>
-<td style="text-align:center">notifyAll()</td>
-<td style="text-align:center">signalAll()</td>
-</tr>
-</tbody>
-</table>
-<h3 id="使用BlockingQueue控制线程通信"><a href="#使用BlockingQueue控制线程通信" class="headerlink" title="使用BlockingQueue控制线程通信"></a>使用BlockingQueue控制线程通信</h3><p>描述：Java里有一个BlockingQueue接口，作为线程同步的工具。</p>
-<p>特征：当生产者线程视图向BlockingQueue中放入元素时，如果该队列已满，则该生产者线程被阻塞；当消费者线程试图从BlockingQueue中取出元素时，如果队列已空，则消费者线程被阻塞</p>
-<p>实现类：</p>
-<ul>
-<li>ArrayBlockingQueue: 数组</li>
-<li>LinkedBlockingQueue：链表</li>
-<li>PriorityBlockingQueue：根据大小自然排序</li>
-<li>SynchronusQueue：同步队列</li>
-<li>DelayQueue：</li>
-</ul>
-<p>内部方法：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">抛出异常</th>
-<th style="text-align:center">不同返回值</th>
-<th style="text-align:center">阻塞线程</th>
-<th style="text-align:center">指定超时时长</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">队尾插入元素</td>
-<td style="text-align:center">add(e)</td>
-<td style="text-align:center">offer(e)</td>
-<td style="text-align:center">put(e)</td>
-<td style="text-align:center">offer(e, time, unit)</td>
-</tr>
-<tr>
-<td style="text-align:center">队头删除元素</td>
-<td style="text-align:center">remove()</td>
-<td style="text-align:center">poll()</td>
-<td style="text-align:center">take()</td>
-<td style="text-align:center">poll(time, unit)</td>
-</tr>
-<tr>
-<td style="text-align:center">获取但不删除元素</td>
-<td style="text-align:center">element()</td>
-<td style="text-align:center">peek()</td>
-<td style="text-align:center">无</td>
-<td style="text-align:center">无</td>
-</tr>
-</tbody>
-</table>
-<h2 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h2><p>描述：Java使用ThreadGroup表示线程组，可以对一批线程进行分类管理。对线程组的控制相当于控制这一批线程。默认情况下，子线程和创建它的父线程在同一个线程组里。如main线程创建了B线程，但没有指定B线程的线程组，那么B线程则属于main线程所在的线程组</p>
-<p>特征：一旦某个线程加入某个线程组，直到死亡，这个线程都是属于这个线程组，中途不可以改变，所以Thread类没有提供setThreadGroup()改变线程组</p>
-<p>形式：</p>
-<blockquote>
-<p>可以通过Thread类的构造器设置线程所属的线程组</p>
-</blockquote>
-<ul>
-<li>Thread(ThreadGroup group, Runable target): 指定属于group线程组</li>
-<li>Thread(ThreadGroup group, Runable target, String name): 指定属于group线程组，并命名name</li>
-<li>Thread(ThreadGroup group, String name)</li>
-</ul>
-<p>ThreadGroup构造器：</p>
-<ul>
-<li>ThreadGroup(String name): 指定线程组名字</li>
-<li>ThreadGroup(ThreadGroup parent, String name): 指定线程组名字，指定父线程组</li>
-</ul>
-<p>ThreadGroup方法：</p>
-<ul>
-<li>int activeCount(): 返回组中活动线程数目</li>
-<li>interrupt(): 中断组中所有线程</li>
-<li>isDaemon(): 判断此线程组是否是后台线程组</li>
-<li>setDaemon(): 把线程组设置为后台线程组</li>
-<li>setMaxPriority(int priority): 设置线程组最高优先级</li>
-</ul>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>描述：在系统启动时即创建大量空闲线程。当该线程结束任务后不是死亡，而是再次返回线程池成为空闲状态</p>
-<p>启动：</p>
-<blockquote>
-<p>使用Executors工厂类产生线程池</p>
-</blockquote>
-<p>Executors静态工厂类：</p>
-<ul>
-<li>ExecutorService newCachedThreadPool(): 具有缓存功能线程池</li>
-<li>ExecutorService newFixedThreadExecutor(): 可重用，固定线程数的线程池</li>
-<li>ExecutorService newSingleThreadExecutor(): 单线程线程池</li>
-<li>ScheduledExecutorService newScheduledThreadPool(int corePoolSize): 创建具有指定线程数的线程池, 并且可以指定延迟</li>
-<li>ScheduledExecutorService newSingleThreadScheduledExecutor(): 创建只有一个线程的线程池，可以指定延迟执行</li>
-<li>ExecutorService newWorkStealingPool(int parallelism): 创建持有足够线程的线程池来支持给定的并行级别</li>
-<li>ExecutorService newWorkStealingPool(): 前一个方法的简化版</li>
-</ul>
-<p>如上所示，前三个返回ExecutorService，中间两个返回ScheduledExecutorService</p>
-<p>==ExecutorService对象代表尽快执行线程的线程池==</p>
-<ul>
-<li>Future&lt;?&gt; submit(Runnable task): Runnable对象提交给线程池，线程池有空时执行任务</li>
-<li>Futrue<t> submit(Runnable task, T result): 同上，其中result显式指定线程执行结束后的返回值</t></li>
-<li>Future<t> submit(Callable<t> task): Callable对象交给线程池，线程池将有空时执行，其中Future代表Callable对象里call()方法的返回值</t></t></li>
-</ul>
-<p>==ScheduledExecutorService对象代表在指定延迟后或周期性地执行线程任务的线程池==</p>
-<ul>
-<li>ScheduledFuture<v> schedule(Callable<v> callable, long delay, TimeUnit unit): 指定callable任务在延迟delay后执行</v></v></li>
-<li>ScheduleFuture&lt;?&gt; schedule(Runnable command, long delay, TimeUnit unit): 指定command任务在延迟delay后执行</li>
-<li>ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit): 指定command任务将在delay延迟后执行，并且设定频率(period)重复执行，即在initialDelay后开始执行，依次在initialDelay+period, initialDelay+2*period, ……处重复执行</li>
-<li>ScheduleFuture&lt;?&gt; scheduleWithFixedDelay(Runable command, long initialDelay, long delay, TimeUnit unit)</li>
-</ul>
-<p>==用完一个线程池后，应调用shutdown()来关闭==</p>
-<p>步骤：</p>
-<ol>
-<li>调用Executors类的静态工厂方法创建一个ExecutorService或者ScheduledExecutorService对象，该对象代表一个线程</li>
-<li>创建Runnable实现类或者Callable实现类实例，作为线程任务执行体</li>
-<li>用ExecutorService或者ScheduleExecutorService对象的submit()方法提交Runnable实例或者Callable实例，这样让Runnable和Callable实例放入线程池里</li>
-<li>不想提交任何线程时，调用ExecutorService的shutdown()方法关闭</li>
-</ol>
-<h3 id="ForkJoinPool"><a href="#ForkJoinPool" class="headerlink" title="ForkJoinPool"></a>ForkJoinPool</h3><blockquote>
-<p>ForkJoinPool是ExecutorService的实现类</p>
-</blockquote>
-<p>描述：将一个任务拆分成多个“小任务”并行计算，再把多个“小任务”的结果合并成总的计算结果。</p>
-<p>ForkJoinPool构造器：</p>
-<ul>
-<li>ForkJoinPool(int parallelism): 创建一个包含parallelism个并行线程的ForkJoinPool</li>
-<li>ForkJoinPool(): 默认使用Runtime。availableProcessors()方法返回值作为parallelism参数创建ForkJoinPool。就是可用的处理器吧，如4核CPU，然后parallelism就是4</li>
-</ul>
-<p>==重点了解一下ForkJoinTask==</p>
-<p>ForkJoinTask是一个抽象类，其下还有两个抽象类：</p>
-<ul>
-<li>RecursiveAction：代表有返回值的任务</li>
-<li>RecursiveTask: 代表没有返回值的任务</li>
-</ul>
-<p>步骤：</p>
-<ol>
-<li>创建ForkJoinPool实例</li>
-<li>调用ForkJoinPool的submit(ForkJoinTask task)或者invoke(ForkJoinTask task)方法执行指定任务。</li>
-</ol>
-<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p>描述：隔离多线程程序的竞争资源，又名线程局部变量</p>
-<p>功能：为每一个使用变量的线程提供一个变量值的副本，使每一个线程可以独立改变自己副本，而不与其他线程冲突。</p>
-<p>方法：</p>
-<ul>
-<li>T get(): 返回当前线程中线程局部变量的值</li>
-<li>void remove(): 删除当前线程中线程局部变量的值</li>
-<li>void set(T value): 设置线程中线程局部变量的值</li>
-</ul>
-<p>ThreadLocal与同步机制区别：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">同步机制</th>
-<th style="text-align:center">ThreadLocal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">同步机制是解决通信问题</td>
-<td style="text-align:center">ThreadLocal是避免多线程间对共享资源的竞争</td>
-</tr>
-<tr>
-<td style="text-align:center">正面解决问题</td>
-<td style="text-align:center">侧面避免问题</td>
-</tr>
-</tbody>
-</table>
-<h2 id="包装线程不安全集合"><a href="#包装线程不安全集合" class="headerlink" title="包装线程不安全集合"></a>包装线程不安全集合</h2><p>线程不安全集合：</p>
-<ul>
-<li>ArrayList</li>
-<li>LinkedList</li>
-<li>HashSet</li>
-<li>TreeSet</li>
-<li>HashMap</li>
-<li>TreeMap</li>
-<li>…..</li>
-</ul>
-<p>上述可以使用Collections的类方法包装成线程安全集合</p>
-<p>synchronizedCollection(Collection<t> c)<br>synchronizedList(List<t> list)<br>synchronizedMap(Map&lt;K, V&gt; m)<br>synchronizedSet(Set<t> s)<br>synchronizedSortedMap(SortedMap&lt;K,V&gt; m)<br>synchronizedSortedSet(SortedSet&lt;K,V&gt; m)</t></t></t></p>
-<p>如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap m = Collection.synchronizedMap(new HashMap());</span><br></pre></td></tr></table></figure>
-<h2 id="线程安全集合"><a href="#线程安全集合" class="headerlink" title="线程安全集合"></a>线程安全集合</h2><blockquote>
-<p>本知识不多做介绍，详细可以参考疯狂Java讲义 760页</p>
-</blockquote>
-<ul>
-<li>以Concurrent开头的集合类：代表了支持并发访问的集合</li>
-<li>以CopyOnWrite开头的集合类：略</li>
-</ul>
-<p>一般使用Concurrent开头集合类，而CopyOnWrite开头的性能较差</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2274,7 +1928,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
