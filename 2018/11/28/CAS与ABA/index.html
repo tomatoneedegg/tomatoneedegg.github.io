@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://img.blog.tomapple.cn/18-11-28/43945501.jpg">
 <meta property="og:image" content="http://img.blog.tomapple.cn/18-11-28/92518734.jpg">
 <meta property="og:image" content="http://img.blog.tomapple.cn/18-11-28/77408465.jpg">
-<meta property="og:updated_time" content="2018-11-28T15:09:36.000Z">
+<meta property="og:updated_time" content="2018-11-28T15:10:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CAS与ABA">
 <meta name="twitter:description" content="CAS算法与ABA问题 在学习多线程，总是绕不开CAS的，可以说整个JUC的基础之一就是CAS算法，但是CAS里有个ABA问题，这个关注一下。  CAS算法CAS(Compare And Swap)，比较并且交换。 在了解CAS之前，先来了解一下乐观锁，悲观锁，这里讲个大概:  乐观锁：乐观地认为每次执行都是成功的，如果失败了，那就重试吧 悲观锁：悲观地认为每次执行都会有问题，因此在每次执行时都会">
@@ -353,6 +353,7 @@
 <li>悲观锁：悲观地认为每次执行都会有问题，因此在每次执行时都会使用锁去让线程进行等待，尽管这会降低性能</li>
 </ul>
 <p>而乐观锁就是用到了CAS机制。</p>
+<a id="more"></a>
 <p>CAS算法：</p>
 <ul>
 <li><p><strong>有三个参数，V, E, N。</strong></p>
