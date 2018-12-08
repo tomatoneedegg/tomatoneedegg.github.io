@@ -86,19 +86,19 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="SQL 优化（一）优化SQL一般步骤 通过show status命令了解各种SQL的执行频率 定位执行效率较低的SQL语句 通过EXPLAIN分析低效SQL的执行计划 通过show profile分析SQL 通过trace分析优化器如何选择执行计划 确定问题并采取相应的优化措施  通过show status命令了解各种SQL的执行频率1show [session|global] status; 该">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-9/38184190.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-11/31750654.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-11/64260682.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/21274102.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/46978529.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/59716600.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/44376876.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/84608899.jpg">
-<meta property="og:updated_time" content="2018-09-14T05:47:51.683Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-9/38184190.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-11/31750654.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-11/64260682.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-13/21274102.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-13/46978529.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-13/59716600.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-13/44376876.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-13/84608899.jpg">
+<meta property="og:updated_time" content="2018-12-08T06:24:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL优化（一）">
 <meta name="twitter:description" content="SQL 优化（一）优化SQL一般步骤 通过show status命令了解各种SQL的执行频率 定位执行效率较低的SQL语句 通过EXPLAIN分析低效SQL的执行计划 通过show profile分析SQL 通过trace分析优化器如何选择执行计划 确定问题并采取相应的优化措施  通过show status命令了解各种SQL的执行频率1show [session|global] status; 该">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-9/38184190.jpg">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/18-9-9/38184190.jpg">
 
 
 
@@ -284,7 +284,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T13:47:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T18:01:45+08:00">
                 2018-09-14
               </time>
             
@@ -386,7 +386,7 @@
 </ul>
 <h3 id="通过EXPLAIN分析低效SQL的执行计划"><a href="#通过EXPLAIN分析低效SQL的执行计划" class="headerlink" title="通过EXPLAIN分析低效SQL的执行计划"></a>通过EXPLAIN分析低效SQL的执行计划</h3><p>定位到低效的SQL语句之后，通过EXPLAIN或者DESC获取MySQL是如何执行这些语句的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN [select|update|delete sql语句]</span><br></pre></td></tr></table></figure>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-9/38184190.jpg" alt="示例结果"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-9/38184190.jpg" alt="示例结果"></p>
 <p>由图中我们可以看出其中有几列是需要我们去理解的</p>
 <ul>
 <li>select_type：表示SELECT的类型，常见取值如下，<ul>
@@ -452,33 +452,33 @@
 <ol>
 <li>首先执行一个语句 <strong>select * from test.tb_account;</strong>这是个查找全部的语句</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-11/31750654.jpg" alt="查询"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-11/31750654.jpg" alt="查询"></p>
 <ol start="2">
 <li>执行完毕后，通过<strong>show profiles</strong>语句拿到当前SQL的QueryID为3；</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-11/64260682.jpg" alt="show profiles结果"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-11/64260682.jpg" alt="show profiles结果"></p>
 <ol start="3">
 <li>通过<strong>show profile for query</strong>可以看到执行过程中的每个线程的状态和消耗时间</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/21274102.jpg" alt="结果"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/21274102.jpg" alt="结果"></p>
 <p>（因为之前那个可视化工具用的太慢，所以换到WorkBench来了，之所以用可视化，还不是因为懒）</p>
 <ol start="4">
 <li>通过第三步获取最消耗时间的线程状态后，通过选择类型来看看MySQL在使用什么资源上耗费过高的时间</li>
 </ol>
 <p><strong>执行 show profile cpu for query 3;</strong></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/46978529.jpg" alt="cpu profile"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/46978529.jpg" alt="cpu profile"></p>
 <h3 id="通过trace-分析优化器如何选择执行计划"><a href="#通过trace-分析优化器如何选择执行计划" class="headerlink" title="通过trace 分析优化器如何选择执行计划"></a>通过trace 分析优化器如何选择执行计划</h3><p>MySQL 5.6提供了对SQL的跟踪trace，通过trace文件进一步了解为什么优化器选择A计划，而不选择B计划。</p>
 <p>使用方式：</p>
 <ol>
 <li>打开trace，设置格式为JSON，设置trace最大能够使用的内存大小，避免因内存过小而不能够完整显示</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/59716600.jpg" alt="打开trace，设置格式"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/44376876.jpg" alt="设置最大内存"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/59716600.jpg" alt="打开trace，设置格式"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/44376876.jpg" alt="设置最大内存"></p>
 <ol start="2">
 <li>执行想做trace的SQL语句</li>
 <li>检查INFORMATION_SCHEMA.OPTIMIZER_TRACE</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-13/84608899.jpg" alt="检查"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/84608899.jpg" alt="检查"></p>
 <h3 id="确定问题并采取相应优化措施"><a href="#确定问题并采取相应优化措施" class="headerlink" title="确定问题并采取相应优化措施"></a>确定问题并采取相应优化措施</h3><p>相关的优化措施会有一篇博客出，至于什么时候出，看笔者的个人努力吧23333333333333333333333</p>
 
       

@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="MySQL5.7 JSON新特性项目实践背景在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180828151514.png">
-<meta property="og:updated_time" content="2018-09-26T15:31:46.917Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180828151514.png">
+<meta property="og:updated_time" content="2018-12-08T06:27:37.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL5.7 JSON新特性">
 <meta name="twitter:description" content="MySQL5.7 JSON新特性项目实践背景在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180828151514.png">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/20180828151514.png">
 
 
 
@@ -340,7 +340,7 @@
         <h1 id="MySQL5-7-JSON新特性"><a href="#MySQL5-7-JSON新特性" class="headerlink" title="MySQL5.7 JSON新特性"></a>MySQL5.7 JSON新特性</h1><h2 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在一次项目中，有一个这样的需求，就是可以编辑一个报名表单结构，同时能够保存用户的报名表单数据，并且根据条件进行搜索。由于表单结构可变，并且搜索项根据表单结构查询，因此这块使用了MySQL5.7新特性json函数。因为一开始考虑到这个问题，原想着用MonoDB去实现，但觉得觉得在项目初步阶段，为了这样一个小需求，使用一个NoSQL数据库，仅保存这一点东西，不太合理，恰巧有伙伴了解到MySQL在5.7版本支持了json的存储，因此把数据库升级到MySQL5.7.x使用JSON这个新特性。不得不说MySQL大有一统数据库的野心，一个关系型数据库，居然支持json形式存储。</p>
 <a id="more"></a>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>项目使用SpringBoot，SpringDataJpa。由于SpringDataJpa里面对MySQL5.7的json支持不是很够，因此需要手写sql语句。由于初期并没有考虑MySQL优化这方面，只想着把服务给跑起来，后续再进行优化。因此手写的sql语句并没有顾及到全表扫描等问题。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180828151514.png" alt="JSON操作"></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img src="http://img.blog.tomapple.cn/20180828151514.png" alt="JSON操作"></p>
 <p>由上图可以看到，sql语句并没有对优化做出任何努力。这在后续会进行一定的优化。主要目的是为了了解json的函数。图中使用的json函数包括JSON_CONTAINS_PATH，以及查询json字段里面的key，value。sql语句的意思是，如果表单里有某个字段，就查这个字段的值，如果表单里没有这个字段，就跳过去，不查。</p>
 <h2 id="JSON函数"><a href="#JSON函数" class="headerlink" title="JSON函数"></a>JSON函数</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>引用文章<a href="https://blog.csdn.net/wuzuodingfeng/article/details/53693209" target="_blank" rel="noopener">MySQL5.7中对json的支持</a></p>
 <p>从5.7.8开始，MySQL提供了一个原生的json类型，因此json不再以字符串形式存储，而是采用一种允许快速读取文本元素的内部二进制格式。MySQL5.7.8还提供了一些基于json的函数，包括：</p>

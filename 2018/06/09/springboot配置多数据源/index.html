@@ -86,21 +86,21 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png">
-<meta property="og:updated_time" content="2018-09-26T15:32:41.000Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_userreposi_1528543385_21055.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_adminrepos_1528543421_12138.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_masterdata_1528544186_10770.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_slavedatac_1528546104_32045.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_testservic_1528546284_24971.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png">
+<meta property="og:updated_time" content="2018-12-08T06:28:57.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot配置多数据源">
 <meta name="twitter:description" content="springboot配置多数据源概述考虑到当项目发展壮大的时候，项目在数据库层面会遭遇瓶颈，因此想起了多数据源配置，并且实现主从数据库分离。下文将演示如何使用springboot进行多数据源配置。 项目框架 SpringBoot Spring Data JPA MySQL  基本操作">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png">
 
 
 
@@ -361,28 +361,28 @@
 <p>这里提一下。测试中将建立两个实体类。一个是User类，一个是Admin类，其中User放在主数据库，Admin放在从数据库</p>
 </blockquote>
 <p>项目分层结构：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png" alt="项目结构"></p>
+<p><img src="http://img.blog.tomapple.cn/_%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528542398_32460.png" alt="项目结构"></p>
 <p>在项目目录中，我们可以看到在com.shanyu.datasource.entity的包下再分层，一个是primary，一个是slave，primary包下管理主数据库的实体，entity包下管理从数据库的实体。</p>
 <ul>
 <li>com.shanyu.datasource.entity.primary.<strong>User</strong> 实体如下所示</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png" alt="User实体类"></p>
+<p><img src="http://img.blog.tomapple.cn/_user%E5%AE%9E%E4%BD%93%E7%B1%BB_1528542932_3692.png" alt="User实体类"></p>
 <ul>
 <li>com.shanyu.datasource.entity.slave.<strong>Admin</strong> 实体类</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png" alt="Admin实体类"></p>
+<p><img src="http://img.blog.tomapple.cn/_admin%E5%AE%9E%E4%BD%93%E7%B1%BB_1528543026_32287.png" alt="Admin实体类"></p>
 <h3 id="建立数据操作类（repository）"><a href="#建立数据操作类（repository）" class="headerlink" title="建立数据操作类（repository）"></a>建立数据操作类（repository）</h3><p>数据操作类分组也可以像entity下进行这样的分类，以便进行区分</p>
 <ul>
 <li>UserRepository接口</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_userreposi_1528543385_21055.png" alt="UserRepository"></p>
+<p><img src="http://img.blog.tomapple.cn/_userreposi_1528543385_21055.png" alt="UserRepository"></p>
 <ul>
 <li>AdminRepository接口</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_adminrepos_1528543421_12138.png" alt="AdminRepository"></p>
+<p><img src="http://img.blog.tomapple.cn/_adminrepos_1528543421_12138.png" alt="AdminRepository"></p>
 <p>说明一下，使用SpringDataJpa之后，就可以直接通过继承JpaRepository接口实现基本的增删查改操作，同时因为只是接口，因此可以不用加@Repository这个注解，Spring容器就可以识别。当然也可以加。</p>
 <h3 id="配置主从数据源（config）"><a href="#配置主从数据源（config）" class="headerlink" title="配置主从数据源（config）"></a>配置主从数据源（config）</h3><p>在SpringBoot项目中，通过注解@Configuration在一个类上，可对整个项目进行配置。</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png" alt="config项目结构"></p>
+<p><img src="http://img.blog.tomapple.cn/_config%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84_1528543841_439.png" alt="config项目结构"></p>
 <p>在图上可以知道，config文件夹下并不像entity和Repository下那样进行分层。可以同时对主数据库，从数据库进行配置。其中无论主数据库还是从数据库，都只需要配置一下三个东西。</p>
 <ul>
 <li>dataSource：数据源连接信息（上面配过了）</li>
@@ -392,7 +392,7 @@
 <h4 id="对主数据库配置"><a href="#对主数据库配置" class="headerlink" title="对主数据库配置"></a>对主数据库配置</h4><ul>
 <li>MasterDataConfig中配置。</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/_masterdata_1528544186_10770.png" alt="MasterDataConfig"></p>
+<p><img src="http://img.blog.tomapple.cn/_masterdata_1528544186_10770.png" alt="MasterDataConfig"></p>
 <ul>
 <li>@Configuration：表明这是一个SpringBoot下的配置类</li>
 <li>@EnableTransactionManagement：开启事务管理器。</li>
@@ -418,10 +418,10 @@
 <li>对事务管理器进行配置</li>
 </ul>
 <p>就使用Jpa的事务管理器就行了，因为Jpa本身支持多数据源配置。</p>
-<h4 id="对从数据库配置"><a href="#对从数据库配置" class="headerlink" title="对从数据库配置"></a>对从数据库配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_slavedatac_1528546104_32045.png" alt="SlaveDataConfig"></p>
+<h4 id="对从数据库配置"><a href="#对从数据库配置" class="headerlink" title="对从数据库配置"></a>对从数据库配置</h4><p><img src="http://img.blog.tomapple.cn/_slavedatac_1528546104_32045.png" alt="SlaveDataConfig"></p>
 <p>配置从数据库跟配置主数据库基本一致。不同的是扫描application.properties中的前缀是spring.datasource.secondary，同时配置的Repository的路径和Entity的包路径也与主数据库配置不一样。</p>
-<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><h4 id="编写Service层"><a href="#编写Service层" class="headerlink" title="编写Service层"></a>编写Service层</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_testservic_1528546284_24971.png" alt="TestService"></p>
-<h4 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png" alt="测试类"></p>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><h4 id="编写Service层"><a href="#编写Service层" class="headerlink" title="编写Service层"></a>编写Service层</h4><p><img src="http://img.blog.tomapple.cn/_testservic_1528546284_24971.png" alt="TestService"></p>
+<h4 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h4><p><img src="http://img.blog.tomapple.cn/_%E6%B5%8B%E8%AF%95%E7%B1%BB_1528568143_12461.png" alt="测试类"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为SpringBoot + SpringDataJPA对多数据源的支持，所以极大地简化了多数据源的配置，让开发配置越来越简单，开发配置成本越来越低。</p>
 
       

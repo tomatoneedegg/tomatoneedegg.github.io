@@ -86,15 +86,15 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png">
-<meta property="og:updated_time" content="2018-09-26T15:32:19.193Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180826173107.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180826223449.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180826223916.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180826223959.png">
+<meta property="og:updated_time" content="2018-12-08T06:28:31.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot Quartz 定时任务">
 <meta name="twitter:description" content="SpringBoot Quartz 定时任务简介Quartz是一个完全由Java编写的开源作业调度框架。项目由于需要使用定时任务，考虑到其与Spring里面的SpringTask在cron表达式的一个区别，所以选择了Quartz（具体什么区别末尾会提及）。不得不说，Quartz在定时任务这块操作起来简易得让人发指。起一个定时任务超级简单。  创建实现org.quartz.Job接口的java类，其">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/20180826173107.png">
 
 
 
@@ -363,13 +363,13 @@
 <p>上述设置时，会在项目启动的5秒之后，每隔6秒执行一次啊ScheduleTask中的scheduleTest方法。若想动态改变cron表达式，可以重新生成一个trigger，schedule重新规划这个触发器</p>
 <h4 id="动态改变cron表达式"><a href="#动态改变cron表达式" class="headerlink" title="动态改变cron表达式"></a>动态改变cron表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">    @GetMapping(&quot;/&#123;prod&#125;/quart&quot;)</span><br><span class="line">    public String quartzTest(@PathVariable Integer prod) throws SchedulerException&#123;</span><br><span class="line">         //获取这个触发器</span><br><span class="line">         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         //触发器中的cron表达式</span><br><span class="line">         String currentCron = trigger.getCronExpression();// 当前Trigger使用的  </span><br><span class="line">         System.err.println(&quot;当前trigger使用的-&quot;+currentCron);</span><br><span class="line">        </span><br><span class="line">         //改变cron表达式，1秒钟执行一次</span><br><span class="line">         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(&quot;0/1 * * * * ?&quot;);  </span><br><span class="line">         </span><br><span class="line">         // 按新的cronExpression表达式重新构建trigger  </span><br><span class="line">         trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());  </span><br><span class="line">         trigger = trigger.getTriggerBuilder().withIdentity(cronTrigger.getKey())  </span><br><span class="line">                 .withSchedule(scheduleBuilder).build();  </span><br><span class="line">                 </span><br><span class="line">         // 按新的trigger重新设置job执行  </span><br><span class="line">         scheduler.rescheduleJob(cronTrigger.getKey(), trigger);  </span><br><span class="line">        return prod+&quot;-这是quartz测试&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>上述的单任务在项目启动时就会启动，但是在项目往往的场景是项目启动时，不要你启动，而只需要用户指定启动的时候，启动某一特定的任务。因此这一动态多任务相比单任务要简单得多</p>
-<h4 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826173107.png" alt="实现了Job接口的任务"></p>
+<h4 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h4><p><img src="http://img.blog.tomapple.cn/20180826173107.png" alt="实现了Job接口的任务"></p>
 <p>实际情况是，有多少个任务就有多少个类实现Job这个接口</p>
 <p>上面图片，实现了通过传一个id过来，去数据查找，然后更新。我的处理使将id作为Job的name，然后传过来，再将其转换为Integer类型。若遇到更多的参数的话，应通过使用JobDetail的JobDataMap传输过来，例如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDetail job = JobBuilder.newJob(。。。).withIdentity(..., ...).build();</span><br><span class="line">job.getJobDataMap().putAsString(&quot;key&quot;, &quot;value&quot;);</span><br></pre></td></tr></table></figure>
 <p>这种方式传入参数是Quartz比较推荐的。然后再execute方法里再通过JobDataMap取出来，例如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobDataMap map = context.getJobDetail().getJobDataMap()</span><br><span class="line">map.getString(&quot;key&quot;);</span><br></pre></td></tr></table></figure>
-<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223449.png" alt="开启任务配置"></p>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p><img src="http://img.blog.tomapple.cn/20180826223449.png" alt="开启任务配置"></p>
 <p>上图步骤如下：</p>
 <ul>
 <li>先使用JobBuilder将任务放进去，同时设置name，group，得到一个JobDetail</li>
@@ -378,8 +378,8 @@
 <li>Scheduler去规划这个Job和这个触发器什么时候触发</li>
 </ul>
 <p>基本步骤如上，当然项目还使用了其他的方法，如下：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223916.png" alt="其他方法"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180826223959.png" alt="其他方法"></p>
+<p><img src="http://img.blog.tomapple.cn/20180826223916.png" alt="其他方法"></p>
+<p><img src="http://img.blog.tomapple.cn/20180826223959.png" alt="其他方法"></p>
 <p>综合上图可以看到，要找到一个任务，只需传入name和group，得到一个JobKey，再通过JobKey获取这个JobDetail。Quartz就是这么简单操作</p>
 <h2 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h2><p>既然提及到定时任务，就不得不提一下Cron表达式，<a href="https://www.cnblogs.com/javahr/p/8318728.html" target="_blank" rel="noopener">详情请参考这篇文章</a>，参考一下大神的博客，受益匪浅</p>
 <blockquote>

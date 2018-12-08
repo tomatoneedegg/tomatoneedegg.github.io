@@ -86,29 +86,29 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="springboot动态选择数据源前情回顾：  springboot配置多数据源  前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，动态选择数据源不等于主从复制，也不等于读写分离，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_getconnect_1528734255_12254.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_determinet_1528734325_2914.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_resolvedda_1528734670_10043.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_afterprope_1528734764_5131.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testdataso_1528709353_11090.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_repository_1528718694_32169.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528735484_4303.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528736661_3737.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528736796_16364.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528737061_22288.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737184_20158.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737215_13591.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testservic_1528737397_19408.png">
-<meta property="og:updated_time" content="2018-09-26T15:32:28.548Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528734013_27458.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_getconnect_1528734255_12254.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_determinet_1528734325_2914.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_resolvedda_1528734670_10043.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_afterprope_1528734764_5131.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_testdataso_1528709353_11090.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_repository_1528718694_32169.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528735484_4303.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528736661_3737.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_dynamicdat_1528736796_16364.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_dynamicdat_1528737061_22288.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528737184_20158.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528737215_13591.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_testservic_1528737397_19408.png">
+<meta property="og:updated_time" content="2018-12-08T06:28:43.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot动态选择多数据源">
 <meta name="twitter:description" content="springboot动态选择数据源前情回顾：  springboot配置多数据源  前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，动态选择数据源不等于主从复制，也不等于读写分离，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528734013_27458.png">
 
 
 
@@ -360,13 +360,13 @@
 </ul>
 <p>前面介绍了springboot如何配置多数据源，最近又捣鼓了一下怎么去动态选择数据源，这里先提醒一下，<strong>动态选择数据源不等于主从复制，也不等于读写分离</strong>，这三的概念必须先理清楚，动态选择数据源是读写分离的基础，而主从复制是读写分离的依据。读写分离可以减少数据访问时的压力，并提高性能，同时也是作为负载均衡的一个重要基础</p>
 <a id="more"></a>
-<h2 id="基础原理"><a href="#基础原理" class="headerlink" title="基础原理"></a>基础原理</h2><p>既然要动态选择数据源，本质上还是进行动态选择数据库连接。查看一下java.sql.DataSource的接口，会发现有其有返回对应的Connection<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528734013_27458.png" alt="DataSource"></p>
+<h2 id="基础原理"><a href="#基础原理" class="headerlink" title="基础原理"></a>基础原理</h2><p>既然要动态选择数据源，本质上还是进行动态选择数据库连接。查看一下java.sql.DataSource的接口，会发现有其有返回对应的Connection<br><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528734013_27458.png" alt="DataSource"></p>
 <p>然后在IDEA中按Ctrl + Alt 同时点击getConnection（）方法查看其实现类。在实现类列表中找到AbstractRoutingDataSource这个类，这个类由Spring框架提供实现，点进去</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_getconnect_1528734255_12254.png" alt="getConnectionRouting"></p>
-<p>在上图，由determineTargetDataSource实现了getConnection方法，点进去<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_determinet_1528734325_2914.png" alt="determineTargetDataSource"></p>
-<p>上图中，<strong>determineCurrentLookupKey</strong>是一个抽象方法，其返回值可以通过传给resolvedDataSource从而决定一个连接的DataSource。而resolvedDataSource是一个Map&lt;Object, Object&gt;类型，其中约摸估计应该包含有用户所定义的所有的数据库DataSource。然后点击resolvedDataSource可以看到其是一个Map&lt;Object, Object&gt;<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_resolvedda_1528734670_10043.png" alt="resolvedDataSource"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_getconnect_1528734255_12254.png" alt="getConnectionRouting"></p>
+<p>在上图，由determineTargetDataSource实现了getConnection方法，点进去<br><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_determinet_1528734325_2914.png" alt="determineTargetDataSource"></p>
+<p>上图中，<strong>determineCurrentLookupKey</strong>是一个抽象方法，其返回值可以通过传给resolvedDataSource从而决定一个连接的DataSource。而resolvedDataSource是一个Map&lt;Object, Object&gt;类型，其中约摸估计应该包含有用户所定义的所有的数据库DataSource。然后点击resolvedDataSource可以看到其是一个Map&lt;Object, Object&gt;<br><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_resolvedda_1528734670_10043.png" alt="resolvedDataSource"></p>
 <p>继续往下看，看到一个方法afterPropertiesSet，里面会对resolvedDataSource进行初始化操作</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_afterprope_1528734764_5131.png" alt="afterPropertiesSet"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_afterprope_1528734764_5131.png" alt="afterPropertiesSet"></p>
 <p>其中的resolvedDataSource的值是由targetDataSource设置二来，而targetDataSource也是一个Map&lt;Object, Object&gt;类型。</p>
 <p>看到这里，相信大家都应该知道要做什么了，先把流程理一下</p>
 <ol>
@@ -383,24 +383,24 @@
 </ul>
 <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>在前面我们知道如何配置多数据源，而配置多数据源又是动态选择数据源的基础，但是此处配置又与前面有所不同（进度条充足，请继续食用）</p>
 <p>在开始介绍之前，首先来看一下项目结构：</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testdataso_1528709353_11090.png" alt="TestDataSource2结构"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_testdataso_1528709353_11090.png" alt="TestDataSource2结构"></p>
 <h3 id="配置数据库连接（application-properties）"><a href="#配置数据库连接（application-properties）" class="headerlink" title="配置数据库连接（application.properties）"></a>配置数据库连接（application.properties）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.primary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.primary.password=root</span><br><span class="line">spring.datasource.primary.username=root</span><br><span class="line">spring.datasource.primary.jdbc-url=jdbc:mysql://localhost:3306/shanpu</span><br><span class="line"></span><br><span class="line">spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.secondary.jdbc-url=jdbc:mysql://localhost:3306/time_designer</span><br><span class="line">spring.datasource.secondary.password=root</span><br><span class="line">spring.datasource.secondary.username=root</span><br><span class="line"></span><br><span class="line">spring.jpa.database=mysql</span><br><span class="line">spring.jpa.show-sql=true</span><br><span class="line">spring.jpa.hibernate.ddl-auto=update</span><br><span class="line">spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span><br><span class="line">spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</span><br></pre></td></tr></table></figure>
 <p>数据库连接这块与前面没有什么不同之处，为了方便，我们使用同一服务下的不同库进行模拟演示</p>
 <h3 id="建立实体类（entity）"><a href="#建立实体类（entity）" class="headerlink" title="建立实体类（entity）"></a>建立实体类（entity）</h3><p>在前面配置多数据源的时候，我是将entity下再进行分层primary和slave，这样是方便演示，实际上这在多数据源中是不需要进行再分包的，可以直接在entity建立实体，如下图</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png" alt="Entity结构"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_entity%E7%BB%93%E6%9E%84_1528709500_13810.png" alt="Entity结构"></p>
 <ul>
 <li>User类；</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png" alt="User类"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_user%E7%B1%BB_1528709546_21261.png" alt="User类"></p>
 <ul>
 <li>Admin类</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png" alt="Admin类"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_admin%E7%B1%BB_1528709574_30902.png" alt="Admin类"></p>
 <h3 id="建立数据操作类"><a href="#建立数据操作类" class="headerlink" title="建立数据操作类"></a>建立数据操作类</h3><p>数据操作类也不必像配置多数据源一样进行分层，可以直接在repository下建立</p>
 <ul>
 <li>repository分类</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_repository_1528718694_32169.png" alt="repository分类"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_repository_1528718694_32169.png" alt="repository分类"></p>
 <ul>
 <li>UserRepository</li>
 </ul>
@@ -410,7 +410,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface AdminRepository extends JpaRepository&lt;Admin, Integer&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="配置动态数据源"><a href="#配置动态数据源" class="headerlink" title="配置动态数据源"></a>配置动态数据源</h3><p>动态数据源配置与配置多数据源的不太一样，前者是以后者为基础的，话不多说，先贴图</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png" alt="动态数据源配置结构"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84_1528721828_24917.png" alt="动态数据源配置结构"></p>
 <p>说明：</p>
 <ul>
 <li>Datasource：自定义一个注解</li>
@@ -421,7 +421,7 @@
 <li>DynamicDatasourceConfig：动态选择数据源的配置类</li>
 <li>DynamicDatasourceHolder：动态数据源决策类</li>
 </ul>
-<h4 id="DataSourceConfig"><a href="#DataSourceConfig" class="headerlink" title="DataSourceConfig"></a>DataSourceConfig</h4><p>有多少个数据源，就配置多少个Bean<br><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528735484_4303.png" alt="DataSourceConfig"></p>
+<h4 id="DataSourceConfig"><a href="#DataSourceConfig" class="headerlink" title="DataSourceConfig"></a>DataSourceConfig</h4><p>有多少个数据源，就配置多少个Bean<br><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528735484_4303.png" alt="DataSourceConfig"></p>
 <h4 id="DynamicDataSouceConfig"><a href="#DynamicDataSouceConfig" class="headerlink" title="DynamicDataSouceConfig"></a>DynamicDataSouceConfig</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableTransactionManagement</span><br><span class="line">@EnableJpaRepositories(</span><br><span class="line">        entityManagerFactoryRef = &quot;dynamicEntityManagerFactory&quot;,</span><br><span class="line">        basePackages = &#123;&quot;com.shanyu.datasource.repository&quot;&#125;</span><br><span class="line">)</span><br><span class="line">public class DynamicDatasourceConfig &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private JpaProperties jpaProperties;</span><br><span class="line">    </span><br><span class="line">    @Bean</span><br><span class="line">    @Primary</span><br><span class="line">    public AbstractRoutingDataSource routingDataSource(</span><br><span class="line">            @Qualifier(&quot;masterDatasource&quot;)DataSource masterDatasource,</span><br><span class="line">            @Qualifier(&quot;slaveDatasource&quot;)DataSource slaveDatasource</span><br><span class="line">    ) &#123;</span><br><span class="line">        System.out.println(&quot;---------begin-------------&quot;);</span><br><span class="line">        DynamicDatasource dynamicDatasource = new DynamicDatasource();</span><br><span class="line">        Map&lt;Object, Object&gt; targetDatasource = new HashMap&lt;Object, Object&gt;();</span><br><span class="line">        targetDatasource.put(DatasourceType.MASTER.type(), masterDatasource);</span><br><span class="line">        targetDatasource.put(DatasourceType.SLAVE.type(), slaveDatasource);</span><br><span class="line">        dynamicDatasource.setTargetDataSources(targetDatasource);//设置targetDataSources</span><br><span class="line">        dynamicDatasource.setDefaultTargetDataSource(masterDatasource);//设置默认的targetDataSources</span><br><span class="line">        System.out.println(&quot;------------end-------------&quot;);</span><br><span class="line">        return dynamicDatasource;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactoryBean&quot;)</span><br><span class="line">    @Primary</span><br><span class="line">    public LocalContainerEntityManagerFactoryBean dynamicEntityFactoryBean(EntityManagerFactoryBuilder entityManagerFactoryBuilder,</span><br><span class="line">                                                                                         DataSource dataSource) &#123;</span><br><span class="line">        return entityManagerFactoryBuilder.dataSource(dataSource)</span><br><span class="line">                .packages(&quot;com.shanyu.datasource.entity&quot;)</span><br><span class="line">                .properties(jpaProperties.getProperties())</span><br><span class="line">                .persistenceUnit(&quot;dynamicDataSource&quot;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;dynamicEntityManagerFactory&quot;)</span><br><span class="line">    public EntityManagerFactory dynamicEntityFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder, DataSource dataSource) &#123;</span><br><span class="line">        return this.dynamicEntityFactoryBean(entityManagerFactoryBuilder, dataSource).getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = &quot;transactionManager&quot;)</span><br><span class="line">    public PlatformTransactionManager transactionManager(@Qualifier(&quot;dynamicEntityManagerFactory&quot;) EntityManagerFactory entityManagerFactory) &#123;</span><br><span class="line"></span><br><span class="line">        return new JpaTransactionManager(entityManagerFactory);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>DynamicDataSourceConfig里面也是主要配置三个东西</p>
 <ul>
@@ -438,31 +438,31 @@
 <h4 id="DataSourceType"><a href="#DataSourceType" class="headerlink" title="DataSourceType"></a>DataSourceType</h4><blockquote>
 <p>在DataSourceType里定义了Map&lt;Object, Opject&gt;结构里的key值，随后可以动态选择key值，然后通过DynamicDataSourceHolder决策类进行设置。</p>
 </blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528736661_3737.png" alt="DataSourceType"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528736661_3737.png" alt="DataSourceType"></p>
 <p>其是一个Enum类，MASTER表示masterDataSource，SLAVE表示slaveDataSource</p>
 <h4 id="DynamicDataSource"><a href="#DynamicDataSource" class="headerlink" title="DynamicDataSource"></a>DynamicDataSource</h4><blockquote>
 <p>继承自AbstractRoutingDataSource，并且重写了determineCurrentLookupKey方法</p>
 </blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528736796_16364.png" alt="DynamicDataSource"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_dynamicdat_1528736796_16364.png" alt="DynamicDataSource"></p>
 <p>就简单地选择了一下，其依赖DynamicDataSourceHolder决策类，通过决策类进行选择，如果决策类里有，就返回，否则默认返回masterDataSource。</p>
 <h4 id="DynamicDataSourceHolder"><a href="#DynamicDataSourceHolder" class="headerlink" title="DynamicDataSourceHolder"></a>DynamicDataSourceHolder</h4><blockquote>
 <p>动态数据源的决策，如果用户选择了某个数据库连接，那么DataSourceType将会通过设值到DynamicDataSourceHolder，然后determineCurrentLookupKey将会取出Holder里面的值，然后再源码层面上将这个key值取出targetDataSource里面对应的DataSource，并getConnection。</p>
 </blockquote>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_dynamicdat_1528737061_22288.png" alt="DynamicDataSourceHolder"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_dynamicdat_1528737061_22288.png" alt="DynamicDataSourceHolder"></p>
 <h4 id="注解DataSource和切面DataSourceAspect"><a href="#注解DataSource和切面DataSourceAspect" class="headerlink" title="注解DataSource和切面DataSourceAspect"></a>注解DataSource和切面DataSourceAspect</h4><blockquote>
 <p>在本次测试项目中，将通过AOP进行动态的数据源选择</p>
 </blockquote>
 <ul>
 <li>注解DataSource</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737184_20158.png" alt="DataSourceAnnotation"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528737184_20158.png" alt="DataSourceAnnotation"></p>
 <ul>
 <li>切面DataSourceAspect</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_datasource_1528737215_13591.png" alt="DataSourceAspect"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_datasource_1528737215_13591.png" alt="DataSourceAspect"></p>
 <p>用完清除是个好习惯~</p>
 <h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><p>由于自定义了一个@DataSource，此注解应用在service层，因此，将其注解在service层，就能实现动态选择数据源</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/springboot/datasource/2/_testservic_1528737397_19408.png" alt="testService"></p>
+<p><img src="http://img.blog.tomapple.cn/springboot/datasource/2/_testservic_1528737397_19408.png" alt="testService"></p>
 <p>由于尽量模拟读写分离，因此读就从SLAVE读，而写就写进MASTER。</p>
 <p>至此，关于sprinboot动态选择数据源就已经介绍到这里，下次继续向读写分离进发，最近考试月2333333333333333333</p>
 

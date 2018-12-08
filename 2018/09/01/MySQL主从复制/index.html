@@ -86,22 +86,22 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="MySQL主从复制参考文章：mysql主从复制 做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。 由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901002403.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901004240.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901005136.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901005439.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901005806.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901011305.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901011453.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123011.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123103.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123236.png">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901123414.png">
-<meta property="og:updated_time" content="2018-09-26T15:31:56.649Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901002403.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901004240.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901005136.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901005439.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901005806.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901011305.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901011453.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901123011.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901123103.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901123236.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20180901123414.png">
+<meta property="og:updated_time" content="2018-12-08T06:27:50.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL主从复制">
 <meta name="twitter:description" content="MySQL主从复制参考文章：mysql主从复制 做完项目之后，翻翻以前的博客，发觉之前配置了SpringBoot动态选择数据源，然后仔细想想当时MySQL的主从复制并没有弄出来，今儿就来弄一下MySQL的主从复制，加上之前的动态选择数据源，真正向读写分离进一步靠近。同时也向分布式一步一步靠近。 由于使用了Docker配置，因此我将在Docker上进行MySQL的主从复制的配置。当然实际生产环境中，">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/20180901002403.png">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/20180901002403.png">
 
 
 
@@ -356,7 +356,7 @@
 <li>将mysql pull到本地，执行命令 <strong>sudo docker pull mysql:5.6.40</strong>，本例使用mysql:5.6.40，当然什么版本都可以，但是有一点必须注意的是 <strong>主从容器的MySQL版本一定要一致</strong>。</li>
 <li>使用 <strong>sudo docker images</strong> 看看是否已经下载好了~，由于我之前已经下载好了，所以可以看到下图的情况</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901002403.png" alt="Docker images"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901002403.png" alt="Docker images"></p>
 <p>（请忽略掉hello-world~）</p>
 <h3 id="Docker运行MySQL"><a href="#Docker运行MySQL" class="headerlink" title="Docker运行MySQL"></a>Docker运行MySQL</h3><ol>
 <li>在主机下建立/mysql/conf，/mysql/logs，/mysql/data这三个文件夹，同时创建一个slave的文件夹，用来存放从服务器的mysql配置，当然也可以在/mysql/conf下建立两个配置文件：master.cnf，slave.cnf。关于这两个配置文件的内容可以参考这篇文章：<a href="https://blog.csdn.net/linzhiqiang0316/article/details/79249271" target="_blank" rel="noopener">docker配置mysql主从复制</a>。当然整个docker配置也可以参考这个。不过我更倾向于在容器内设置，然后重启这种方法</li>
@@ -374,15 +374,15 @@
 <li>-v：将主机目录的/mysql/conf挂载到容器的/etc/mysql/conf.d下，（$PWD表示获取当前目录），当然也可以指定文件：-v $PWD/mysql/conf/master.cnf:/etc/mysql/conf.d/master.cnf这样也是可以的</li>
 <li>-e：初始化root用户的密码</li>
 </ul>
-<p>运行结果如下所示：<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901004240.png" alt="docker下运行的容器"></p>
+<p>运行结果如下所示：<br><img src="http://img.blog.tomapple.cn/20180901004240.png" alt="docker下运行的容器"></p>
 <h3 id="Docker-MySQL主从配置"><a href="#Docker-MySQL主从配置" class="headerlink" title="Docker MySQL主从配置"></a>Docker MySQL主从配置</h3><h4 id="主容器配置"><a href="#主容器配置" class="headerlink" title="主容器配置"></a>主容器配置</h4><ol>
 <li>进入到容器当中，执行命令<strong>sudo docker exec -it <container-id> bash</container-id></strong>，其中的container-id是上一图中的container-id。首先上图第二个是主容器，所以sudo docker exec -it 477 bash就可以了，container-id不用太长，取前面的2,3位就行。</li>
 <li>进入到容器之后，找到/etc/mysql</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005136.png" alt="容器中的/etc/mysql"></p>
-<p>可以看到下面有这几个东西，我看了网上说在conf.d下写my.cnf~但是我看到my.cnf里的内容。<br><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005439.png" alt="my.cnf的内容"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901005136.png" alt="容器中的/etc/mysql"></p>
+<p>可以看到下面有这几个东西，我看了网上说在conf.d下写my.cnf~但是我看到my.cnf里的内容。<br><img src="http://img.blog.tomapple.cn/20180901005439.png" alt="my.cnf的内容"></p>
 <p>里面明确写了包括这两个文件夹下的东西，所以之前说的master.cnf是可以的，当然我看了下mysql.conf.d下的东西，有一个mysqld.cnf的配置文件，我索性就在下面配置了</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901005806.png" alt="mysqld.cnf的配置"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901005806.png" alt="mysqld.cnf的配置"></p>
 <p>如上图，重要配置代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql_bin</span><br><span class="line">server-id=226 //默认为1，服务器唯一id，一般取IP的最后一段，我这里参考了上面博客的，只要唯一就行。</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>哦对了，在docker容器里是没有vim和gedit的，这些东西要自行安装，在容器外安装没用，得在容器里安装：执行命令 <strong>apt-get update</strong>之后，再执行命令<strong>apt-get install vim</strong>这样就可以使用vim去编辑了。（好麻烦感觉，在宿舍网络差的10k/s也是很迷人）</p>
@@ -405,12 +405,12 @@
 <li>打开主容器的mysql，连接上之后，打开命令行界面。我使用的是Navicat，所以我这样说，如果各位用惯mysql的纯命令行也行的哈。</li>
 <li>查看主容器状态</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011305.png" alt="mysql主容器状态"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901011305.png" alt="mysql主容器状态"></p>
 <p><strong>记住其中的File，Position，待会有用</strong></p>
 <ol start="3">
 <li>授权给从容器</li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901011453.png" alt="授权"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901011453.png" alt="授权"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
 <p>解释一下上面的sql语句：‘slave’@‘%’中slave表示User，即账号名，像root一样。而后面的%表示Host，此时可以填入从服务器的ip地址。identified by ‘123456’表示设置密码。</p>
 <h5 id="从服务器操作"><a href="#从服务器操作" class="headerlink" title="从服务器操作"></a>从服务器操作</h5><p>从服务器只需要配置一下代码即可</p>
@@ -425,10 +425,10 @@
 </ul>
 <p>然后执行命令 <strong>start slave;</strong>启动从服务器复制功能</p>
 <h4 id="检验从服务器复制功能"><a href="#检验从服务器复制功能" class="headerlink" title="检验从服务器复制功能"></a>检验从服务器复制功能</h4><p>在从服务器中执行命令 <strong>show slave status</strong> ，当Slave_IO和Slave_SQL为Yes时，表示正常执行，否则都是错误的</p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123011.png" alt="主服务器测试数据库"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123103.png" alt="从服务器测试数据库"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123236.png" alt="主服务器里的表"></p>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/20180901123414.png" alt="从服务器数据表"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901123011.png" alt="主服务器测试数据库"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901123103.png" alt="从服务器测试数据库"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901123236.png" alt="主服务器里的表"></p>
+<p><img src="http://img.blog.tomapple.cn/20180901123414.png" alt="从服务器数据表"></p>
 <p>由上图可见，从服务器实现了在主服务器上通过二进制文件进行复制的操作。</p>
 
       

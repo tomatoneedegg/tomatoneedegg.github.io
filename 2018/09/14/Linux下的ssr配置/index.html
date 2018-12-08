@@ -86,14 +86,14 @@
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
 <meta property="og:description" content="Linux下ssr配置Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了同事的博客，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。 服务端配置 下载ssr  1wget http://www.texfox.com/ssr  将ssr移动到/usr/local/bin文件下  1sudo mv ssr /usr/loca">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/52327757.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/44811550.jpg">
-<meta property="og:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/33216445.jpg">
-<meta property="og:updated_time" content="2018-09-26T15:31:25.805Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/52327757.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/44811550.jpg">
+<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/33216445.jpg">
+<meta property="og:updated_time" content="2018-12-08T06:27:23.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下ssr配置">
 <meta name="twitter:description" content="Linux下ssr配置Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了同事的博客，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。 服务端配置 下载ssr  1wget http://www.texfox.com/ssr  将ssr移动到/usr/local/bin文件下  1sudo mv ssr /usr/loca">
-<meta name="twitter:image" content="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/52327757.jpg">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/18-9-14/52327757.jpg">
 
 
 
@@ -370,7 +370,7 @@
 <ol>
 <li>下载google插件：<a href="https://www.switchyomega.com/download/" target="_blank" rel="noopener">SwitchyOmega</a></li>
 </ol>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/52327757.jpg" alt="安装代理插件"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/52327757.jpg" alt="安装代理插件"></p>
 <ol start="2">
 <li>将插件插入google中，直接拖动下载的文件到google浏览器的扩展程序中，就会识别</li>
 <li>设置switchyomega</li>
@@ -378,12 +378,12 @@
 <ul>
 <li>第一步：配置auto switch</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/44811550.jpg" alt="配置auto switch"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/44811550.jpg" alt="配置auto switch"></p>
 <p>首先设置情景模式为 proxy，如上图的第一个箭头，然后将 <strong><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></strong>这个url复制粘贴到规则列表地址上，这是被墙的url列表。当代理检测到你要访问里面的url时，认定你将要翻墙。最后点击立即更新情景模式</p>
 <ul>
 <li>第二步：配置proxy</li>
 </ul>
-<p><img src="http://pa2fe0kuy.bkt.clouddn.com/18-9-14/33216445.jpg" alt="配置proxy"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/33216445.jpg" alt="配置proxy"></p>
 <p>这里配置的是proxy项，代理服务器填127.0.0.1，代理端口是1080，当然代理端口看运营方给你的端口设置。</p>
 <p>到这里基本配置是完了，接下来的可能因每个人的Linux发行版不同而有所差别，笔者用的是 稍微有点低级的deepin（小白用户专用），所以接下来配置跟主流Linux发行版不太一样。</p>
 <h2 id="配置ssr自启动"><a href="#配置ssr自启动" class="headerlink" title="配置ssr自启动"></a>配置ssr自启动</h2><p>其他Linux发行版中 /etc下是应该有rc.local文件的，直接在rc.local文件上配置就行了，但是deepin呢就比较奇葩，他在最新版本没有rc.local，因此得另找门路</p>
