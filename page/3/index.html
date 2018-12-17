@@ -246,6 +246,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/html&css基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/31/html&css基础/" itemprop="url">HTML&CSS基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:45:04+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端基础/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>[TOC]</p>
+<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><blockquote>
+<p>相对路径就是相对于当前HTML页面所在的位置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;abc/cba/2.gif&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>上述代码中src属性配置的是图片的格式，使用相对路径。如果当前页面所在的文件夹里有abc文件夹，将进入abc文件夹，同时进入abc里的cba文件夹找到2.gif。==可以使用../来返回上一级目录，返回几级目录就写几个../==</p>
+<h2 id="图片格式"><a href="#图片格式" class="headerlink" title="图片格式"></a>图片格式</h2><blockquote>
+<p>JPEG(JPG), GIF, PNG都是图片格式</p>
+</blockquote>
+<ul>
+<li><strong>JPEG格式</strong>：支持颜色比较多，图片可以压缩，但是不支持透明，一般使用JPEG保存照片等颜色丰富的图片</li>
+<li><strong>GIF格式</strong>：支持颜色少，只支持简单的透明（直线型透明），支持动态图，一般使用图片颜色单一或者动态图。</li>
+<li><strong>PNG格式</strong>：支持颜色多，支持复杂透明，一般用于显示颜色复杂的透明图片</li>
+</ul>
+<p>==图片使用原则：==</p>
+<ul>
+<li>效果不一致，使用效果好的</li>
+<li>效果一致，使用小的    </li>
+</ul>
+<h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><blockquote>
+<p>代表网页元数据，给搜索引擎看的，搜索引擎在检索页面时，会同时检索页面中的关键字和描述。</p>
+</blockquote>
+<ul>
+<li><strong>使用meta标签设置网页关键字</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;HTML5&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>HTML5是关键字，也就是说content里面是关键字，name的值是对content的描述。content里可以使用多个关键字，如content=“HTML5，Java，Python”</p>
+<ul>
+<li><strong>使用meta标签指定网页的描述</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;decription&quot; content=&quot;666666博文&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>666666博文是描述</p>
+<ul>
+<li><strong>使用meta标签用来做请求重定向</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;5; url=http://www.baidu.com&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>http-equiv是http协议，然后content里面5表示秒数，等待的时间；url表示目标路径，整个表示5秒以后去到<a href="http://www.baidu.com这个地址。" target="_blank" rel="noopener">http://www.baidu.com这个地址。</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/31/html&css基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/JDK与JRE区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1392,7 +1579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
