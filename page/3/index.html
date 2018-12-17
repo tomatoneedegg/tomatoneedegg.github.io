@@ -246,6 +246,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/springboot + maven多模块配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/springboot + maven多模块配置/" itemprop="url">SpringBoot + Maven多模块配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:04+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>最近准备跟伙伴合作开发一个OA系统，环境使用SpringBoot + maven，由于在此之前我们都是单兵作战，所以在项目开始前，打算率先解决这个问题。使用SpringBoot + Maven进行多模块配置</p>
+</blockquote>
+<p>开始前，先了解一下maven的几个知识点。</p>
+<ul>
+<li><strong>groupId</strong>：定义当前 Maven 项目隶属的实际项目，一个实际项目下会有多个 Maven 项目。如一家公司开发的产品，groupId 就是公司/个人域名，但会包括众多的 Maven 项目；</li>
+<li><strong>artifactId</strong>：定义实际项目中的一个 Maven 项目，一般用实际项目名称作为 artifactId 的前缀；</li>
+<li><strong>versioin</strong>：指定工程的版本，如 - 1.0 SNAPSHOT，SNAPSHOT 意为快照，说明在该项目还处于开发中；</li>
+<li><strong>packaging</strong>：定义 Maven 项目的打包方式，有 JAR 、WAR 和 EAR 三种格式<a href="http://www.jb51.net/article/35881.htm" target="_blank" rel="noopener">详情见：JAR，WAR，EAR区别</a></li>
+<li><strong>dependencies</strong>：所有依赖在此范围添加，包含众多dependency</li>
+<li><strong>parent</strong>：指定当前项目的父模块或者父工程，使用groupId，artifactId定位项目</li>
+<li><strong>modules</strong>：在父模块中引用子模块，所有子模块均包含在里面</li>
+<li><strong>module</strong>：表示一个子模块，使用相对路径</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/07/springboot + maven多模块配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/html&css基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1579,7 +1743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
