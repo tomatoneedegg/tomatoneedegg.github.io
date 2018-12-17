@@ -246,6 +246,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/SQL 优化（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/SQL 优化（一）/" itemprop="url">SQL优化（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T18:01:45+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SQL-优化（一）"><a href="#SQL-优化（一）" class="headerlink" title="SQL 优化（一）"></a>SQL 优化（一）</h1><h2 id="优化SQL一般步骤"><a href="#优化SQL一般步骤" class="headerlink" title="优化SQL一般步骤"></a>优化SQL一般步骤</h2><ol>
+<li>通过show status命令了解各种SQL的执行频率</li>
+<li>定位执行效率较低的SQL语句</li>
+<li>通过EXPLAIN分析低效SQL的执行计划</li>
+<li>通过show profile分析SQL</li>
+<li>通过trace分析优化器如何选择执行计划</li>
+<li>确定问题并采取相应的优化措施</li>
+</ol>
+<h3 id="通过show-status命令了解各种SQL的执行频率"><a href="#通过show-status命令了解各种SQL的执行频率" class="headerlink" title="通过show status命令了解各种SQL的执行频率"></a>通过show status命令了解各种SQL的执行频率</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show [session|global] status;</span><br></pre></td></tr></table></figure>
+<p>该命令提供服务器状态信息</p>
+<ul>
+<li>session选项：显示当前连接的统计结果</li>
+<li>global选项：显示自数据库上次启动至今的统计结果</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &quot;Com_%&quot;;</span><br></pre></td></tr></table></figure>
+<p>几个重要的统计参数：</p>
+<p><strong>Com_xxx：</strong>每个xxx语句执行数，对于所有的存储引擎的表操作都会进行累计</p>
+<ul>
+<li>Com_select：执行SELECT的次数</li>
+<li>Com_insert：执行INSERT的次数</li>
+<li>Com_update：执行UPDATE的次数</li>
+<li>Com_delete：执行DELETED的次数</li>
+</ul>
+<p><strong>Com_commit：</strong>记录事务提交的次数</p>
+<p><strong>Com_rollback：</strong>记录事务回滚的次数</p>
+<p><strong>Innodb_rows_xxx：</strong>针对InnoDB存储引擎的每个xxx语句所影响的行数</p>
+<ul>
+<li>Innodb_rows_read：SELECT返回的行数</li>
+<li>Innodb_rows_inserted：INSERT插入的行数</li>
+<li>Innodb_rows_updated：更新的行数</li>
+<li>Innodb_rows_deleted：删除的行数</li>
+</ul>
+<p><strong>Connections: </strong>试图连接MySQL服务器的次数</p>
+<p><strong>Uptime:</strong>服务器工作时间</p>
+<p><strong>Slow_queries:</strong>慢查询次数</p>
+<h3 id="定位执行效率较低的SQL语句"><a href="#定位执行效率较低的SQL语句" class="headerlink" title="定位执行效率较低的SQL语句"></a>定位执行效率较低的SQL语句</h3><ul>
+<li>通过慢查询日志定位执行效率较低的SQL语句，用 –log-slow-queries[=file_name]选项启动</li>
+<li>使用<strong>show processlist</strong>命令查看当前MySQL在进行的线程，</li>
+</ul>
+<h3 id="通过EXPLAIN分析低效SQL的执行计划"><a href="#通过EXPLAIN分析低效SQL的执行计划" class="headerlink" title="通过EXPLAIN分析低效SQL的执行计划"></a>通过EXPLAIN分析低效SQL的执行计划</h3><p>定位到低效的SQL语句之后，通过EXPLAIN或者DESC获取MySQL是如何执行这些语句的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN [select|update|delete sql语句]</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.tomapple.cn/18-9-9/38184190.jpg" alt="示例结果"></p>
+<p>由图中我们可以看出其中有几列是需要我们去理解的</p>
+<ul>
+<li>select_type：表示SELECT的类型，常见取值如下，<ul>
+<li>SIMPLE：简单类型，就是不使用表连接或者子查询</li>
+<li>PRIMARY：主查询，就是外层的查询</li>
+<li>UNION：UNION中的第二个或者后面的查询语句</li>
+<li>SUBQUERY：子查询中的第一个SELECT</li>
+</ul>
+</li>
+<li>table：输出结果集的表</li>
+<li>type：访问类型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>All</th>
+<th>index</th>
+<th>range</th>
+<th>ref</th>
+<th>eq_ref</th>
+<th>const,system</th>
+<th>NULL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>​     <strong>All</strong>：全表扫描</p>
+<p>​     <strong>index</strong>：索引全扫描</p>
+<p>​     <strong>range</strong>：索引范围扫描，常见于&lt;，&lt;=, &gt;, &gt;=, between等操作</p>
+<p>​     <strong>ref</strong>：使用非唯一索引扫描或唯一索引的前缀扫描，返回匹配某个单独值的记录行，还经常出现在join操作</p>
+<p>​     <strong>eq_ref</strong>：类似ref，区别在于使用的索引是唯一索引，简单来说就是多表连接中使用primary key或者unique index作为关联条件</p>
+<p>​     <strong>const/system</strong>：单表中最多有一个匹配行，系统会把匹配行中的其他列作为常数处理</p>
+<p>​     <strong>NULL</strong>：MySQL不用访问表或者索引，就得到结果</p>
+<p>类似的type还有ref_or_null，index_merge，unique_subquery，index_subquery等</p>
+<ul>
+<li>possible_keys：表示查询时可能使用的索引</li>
+<li>key：表示实际使用的索引</li>
+<li>ken_len：使用到的索引字段的长度</li>
+<li>rows：扫描行的数量</li>
+<li>Extra：执行情况的说明和描述</li>
+</ul>
+<h3 id="通过show-profile分析SQL"><a href="#通过show-profile分析SQL" class="headerlink" title="通过show profile分析SQL"></a>通过show profile分析SQL</h3><p>MySQL从5.0.37版本开始增加了对show profiles和show profile语句的支持，通过have_profiling参数，可以看到当前MSQL是否支持profile</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@have_profiling;</span><br></pre></td></tr></table></figure>
+<p>可以通过在Session级别（当前连接时）开启profiling：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@profiling</span><br></pre></td></tr></table></figure>
+<p>通过profile，我们可以清楚了解SQL执行的过程</p>
+<ul>
+<li>执行一个select语句当做示例</li>
+<li>通过<strong>show profiles</strong>可以看到当前SQL的Query的ID是多少</li>
+<li>执行<strong>show profile for query  [QueryID]</strong> 看到执行过程中线程的每个状态和消耗时间</li>
+<li>在获取到最消耗时间的线程状态后，MySQL进一步支持选择all，cpu，block io，context switch，page faults等明细类型查看MySQL在使用什么资源上耗费了过高的时间，如 <strong>show profile cpu for query 3;</strong></li>
+</ul>
+<p>下面用个例子来说明一下：</p>
+<ol>
+<li>首先执行一个语句 <strong>select * from test.tb_account;</strong>这是个查找全部的语句</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-11/31750654.jpg" alt="查询"></p>
+<ol start="2">
+<li>执行完毕后，通过<strong>show profiles</strong>语句拿到当前SQL的QueryID为3；</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-11/64260682.jpg" alt="show profiles结果"></p>
+<ol start="3">
+<li>通过<strong>show profile for query</strong>可以看到执行过程中的每个线程的状态和消耗时间</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/21274102.jpg" alt="结果"></p>
+<p>（因为之前那个可视化工具用的太慢，所以换到WorkBench来了，之所以用可视化，还不是因为懒）</p>
+<ol start="4">
+<li>通过第三步获取最消耗时间的线程状态后，通过选择类型来看看MySQL在使用什么资源上耗费过高的时间</li>
+</ol>
+<p><strong>执行 show profile cpu for query 3;</strong></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/46978529.jpg" alt="cpu profile"></p>
+<h3 id="通过trace-分析优化器如何选择执行计划"><a href="#通过trace-分析优化器如何选择执行计划" class="headerlink" title="通过trace 分析优化器如何选择执行计划"></a>通过trace 分析优化器如何选择执行计划</h3><p>MySQL 5.6提供了对SQL的跟踪trace，通过trace文件进一步了解为什么优化器选择A计划，而不选择B计划。</p>
+<p>使用方式：</p>
+<ol>
+<li>打开trace，设置格式为JSON，设置trace最大能够使用的内存大小，避免因内存过小而不能够完整显示</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/59716600.jpg" alt="打开trace，设置格式"></p>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/44376876.jpg" alt="设置最大内存"></p>
+<ol start="2">
+<li>执行想做trace的SQL语句</li>
+<li>检查INFORMATION_SCHEMA.OPTIMIZER_TRACE</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-13/84608899.jpg" alt="检查"></p>
+<h3 id="确定问题并采取相应优化措施"><a href="#确定问题并采取相应优化措施" class="headerlink" title="确定问题并采取相应优化措施"></a>确定问题并采取相应优化措施</h3><p>相关的优化措施会有一篇博客出，至于什么时候出，看笔者的个人努力吧23333333333333333333333</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/Linux下的ssr配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1703,181 +1985,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/JDK与JRE区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/04/JDK与JRE区别/" itemprop="url">JDK与JRE区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T09:53:18+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="JDK与JRE的区别与联系"><a href="#JDK与JRE的区别与联系" class="headerlink" title="JDK与JRE的区别与联系"></a>JDK与JRE的区别与联系</h1><h2 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h2><p><strong>JDK</strong>：Java Development Kit，简单来说就是面向开发人员用的软件开发包（Software Development Kit）</p>
-<p><strong>JRE</strong>：Java Runtime Enviroment，就是Java运行环境，面向Java程序的使用者，不是开发者</p>
-<blockquote>
-<p>如果安装JDK，会同时安装两个Jre，一个在JDK所在目录中的/jre文件夹里，另一个在C:\Programe Files\Java目录下的Jre。</p>
-<p>如果只安装Jre的话，那么就不会有JDK所在目录下的Jre，就只会有唯一一个C盘里的Jre</p>
-</blockquote>
-<h2 id="JRE的作用"><a href="#JRE的作用" class="headerlink" title="JRE的作用"></a>JRE的作用</h2><p>Jre就好比于一个PC机，所有window应用程序都在PC机上运行，同样的所有的Java程序都在JRE上面运行。==Jre包含了Java虚拟机，Java基础类库等==，因此提供了运行Java的环境。</p>
-<h2 id="JDK的作用"><a href="#JDK的作用" class="headerlink" title="JDK的作用"></a>JDK的作用</h2><p>JDK是提供给程序员使用的，JDK包含Jre，Javac编译器，还有很多Java程序调试和分析的工具</p>
-<h2 id="为什么JDK要使用两套JRE？"><a href="#为什么JDK要使用两套JRE？" class="headerlink" title="为什么JDK要使用两套JRE？"></a>为什么JDK要使用两套JRE？</h2><p>首先JRE是Java应用程序的运行环境，然后JDK里面的工具几乎都是Java编写的，所以也是Java应用程序，因此JDK目录下也要自附一套JRE，这是用来运行JDK里面的Java应用程序。而C盘下面的JRE是用来运行一般Java应用程序的。</p>
-<h2 id="还需要注意的是"><a href="#还需要注意的是" class="headerlink" title="还需要注意的是"></a>还需要注意的是</h2><ol>
-<li>JVM：Java Virtual Machine。所有的Java程序都会被编译成.class文件，然后.class文件并不直接与计算机操作系统相对应，而是通过JVM与操作系统简介运行（详情看《深入分析JavaWeb技术内幕》以及《深入理解Java虚拟机》）</li>
-<li>JRE：Java Runtime Environment。光有JVM还不能成功执行.class文件，还需要一些类库lib。在安装JDK的目录下面找到JRE目录，里面有两个文件夹bin和lib，可以这样认为bin就是jvm，而lib就是jvm工作时所需要的类库，所以jre=jvm+lib，jvm=bin。==所以在写完Java程序编译成.class文件后，就可以把.class文件和jre一起打包给别人，别人就可以运行我的Java程序了（因为jre里面有运行.class文件的java.exe）==。</li>
-<li>JDK：Java Development Kit。看一下JDK的安装目录。</li>
-</ol>
-<ul>
-<li>bin：最主要的编译器javac.exe</li>
-<li>lib：类库</li>
-<li>db：Java实现的数据库</li>
-<li>include：java和JVM交互用的头文件</li>
-<li>jre：JDK里面Java程序的运行环境。</li>
-<li>src：src类库源码包<blockquote>
-<p>真正运行Java时起作用的bin,include,lib,jre</p>
-</blockquote>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/04/JDK与JRE区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1928,7 +2035,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
