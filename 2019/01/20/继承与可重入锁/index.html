@@ -79,19 +79,22 @@
 
 
 
-<meta name="description" content="Linux下定期备份数据库 emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要  使用docker备份数据库1docker exec -it &amp;lt;containerId&amp;gt; mysqldump -u&amp;lt;username&amp;gt; -p&amp;lt;password&amp;gt; -h&amp;lt;host&amp;gt; --tables">
+<meta name="description" content="继承与可重入锁 可重入锁在继承情况下super锁住的是谁。关于这个问题，设计了一个Demo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下定期备份数据库">
-<meta property="og:url" content="http://yoursite.com/2018/09/26/Linux 定期备份数据库/index.html">
+<meta property="og:title" content="笔记 - 关于继承与可重入锁">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/继承与可重入锁/index.html">
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
-<meta property="og:description" content="Linux下定期备份数据库 emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要  使用docker备份数据库1docker exec -it &amp;lt;containerId&amp;gt; mysqldump -u&amp;lt;username&amp;gt; -p&amp;lt;password&amp;gt; -h&amp;lt;host&amp;gt; --tables">
+<meta property="og:description" content="继承与可重入锁 可重入锁在继承情况下super锁住的是谁。关于这个问题，设计了一个Demo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-26/67509590.jpg">
-<meta property="og:updated_time" content="2018-12-08T06:26:31.730Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190120010418.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190120010715.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190120005703.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190120005844.png">
+<meta property="og:updated_time" content="2019-01-19T17:25:45.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下定期备份数据库">
-<meta name="twitter:description" content="Linux下定期备份数据库 emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要  使用docker备份数据库1docker exec -it &amp;lt;containerId&amp;gt; mysqldump -u&amp;lt;username&amp;gt; -p&amp;lt;password&amp;gt; -h&amp;lt;host&amp;gt; --tables">
-<meta name="twitter:image" content="http://img.blog.tomapple.cn/18-9-26/67509590.jpg">
+<meta name="twitter:title" content="笔记 - 关于继承与可重入锁">
+<meta name="twitter:description" content="继承与可重入锁 可重入锁在继承情况下super锁住的是谁。关于这个问题，设计了一个Demo">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/20190120010418.png">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/26/Linux 定期备份数据库/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/20/继承与可重入锁/"/>
 
 
 
 
 
-  <title>Linux下定期备份数据库 | Stuartd's Blog</title>
+  <title>笔记 - 关于继承与可重入锁 | Stuartd's Blog</title>
   
 
 
@@ -248,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/Linux 定期备份数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/继承与可重入锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stuartd">
@@ -265,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux下定期备份数据库</h1>
+          <h1 class="post-title" itemprop="name headline">笔记 - 关于继承与可重入锁</h1>
         
 
         <div class="post-meta">
@@ -277,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T23:15:18+08:00">
-                2018-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T00:31:45+08:00">
+                2019-01-20
               </time>
             
 
@@ -300,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Java多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java多线程</span>
                   </a>
                 </span>
 
@@ -337,35 +340,29 @@
       
 
       
-        <h1 id="Linux下定期备份数据库"><a href="#Linux下定期备份数据库" class="headerlink" title="Linux下定期备份数据库"></a>Linux下定期备份数据库</h1><blockquote>
-<p>emmm最近某个项目数据库被绑架的事实还缠绕在脑里，从此注重数据库以及服务器这方面的容灾能力，其中对于数据库而言，备份比较重要</p>
-</blockquote>
-<h2 id="使用docker备份数据库"><a href="#使用docker备份数据库" class="headerlink" title="使用docker备份数据库"></a>使用docker备份数据库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &lt;containerId&gt; mysqldump -u&lt;username&gt; -p&lt;password&gt; -h&lt;host&gt; --tables&lt;databaseName&gt; &gt; /path/to/save/your/backup</span><br></pre></td></tr></table></figure>
-<p>上面就是docker下的对远程某个mysql进行数据库备份。最后 <strong>&gt;</strong> 右边的地址是要存放备份文件的地址。</p>
-<h2 id="使用mysql命令备份数据库"><a href="#使用mysql命令备份数据库" class="headerlink" title="使用mysql命令备份数据库"></a>使用mysql命令备份数据库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u&lt;username&gt; -p&lt;password&gt; -h&lt;host&gt; --tables&lt;databaseName&gt; &gt; /path/as/same</span><br></pre></td></tr></table></figure>
-<p>跟docker上面的差不多，就是直接使用mysqldump</p>
-<blockquote>
-<p>我在某篇文章的评论中看到，用mysqldump会被经理骂？然后网上找了下有个mysqlhotcopy工具，<a href="https://blog.csdn.net/maixiaohai/article/details/24838541" target="_blank" rel="noopener">这篇文章</a>说<strong>mysqlhotcopy的优点就是快，缺点就是只支持MyISAM</strong>，然后想了想，项目数据库不使用MyISAM存储引擎，所以就没用mysqlhotcopy来进行备份。</p>
+        <h1 id="继承与可重入锁"><a href="#继承与可重入锁" class="headerlink" title="继承与可重入锁"></a>继承与可重入锁</h1><blockquote>
+<p>可重入锁在继承情况下super锁住的是谁。关于这个问题，设计了一个Demo</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h2><h3 id="编写定时任务"><a href="#编写定时任务" class="headerlink" title="编写定时任务"></a>编写定时任务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br></pre></td></tr></table></figure>
-<p>创建一个文件夹保存备份文件以及定时任务需要执行的shell文件（这里放在/home下）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd backup/</span><br><span class="line">vi backup.sh</span><br></pre></td></tr></table></figure>
-<p>进入文件夹，使用vim编辑shell文件，如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">time=`date +%Y%m%d_%H%M%S`</span><br><span class="line">data_dir='/path/to/save/your/task/'</span><br><span class="line"></span><br><span class="line">docker exec -it &lt;containerId&gt; mysqldump -u&lt;username&gt; -p&lt;password&gt; -h&lt;host&gt; --tables&lt;databaseName&gt; &gt; /path/to/save/your/backup/datebasename_$&#123;time&#125;.sql</span><br><span class="line"></span><br><span class="line">old_time=`date --date='8 day ago'+%Y%m%d`</span><br><span class="line">rm -rf /path/to/save/your/backup/databasename_$&#123;old_time&#125;*</span><br></pre></td></tr></table></figure>
-<h3 id="利用crontab创建定时任务"><a href="#利用crontab创建定时任务" class="headerlink" title="利用crontab创建定时任务"></a>利用crontab创建定时任务</h3><p>定时任务使用Linux下的crontab模块，稍微配置一下就可以了</p>
-<ul>
-<li>创建</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加定时任务</li>
-</ul>
-<p><img src="http://img.blog.tomapple.cn/18-9-26/67509590.jpg" alt="添加定时任务"></p>
-<p>在上面图片末尾添加<strong>0 23 <em> </em> Sun /home/backup/backup.sh</strong>，这里使用了crontab表达式，后面紧接着要执行的命令，当然最后是一个shell文件，里面是一个个命令集。</p>
-<p>然后就等待他吧</p>
-<p>若想删除掉定时任务只需要</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoggingWidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(toString() + <span class="string">": calling doSomething"</span>);</span><br><span class="line">        <span class="keyword">super</span>.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果上面代码似曾相识，好像在哪里见过，不用怀疑，我就是从《Java并发编程实战》里摘下来的。至于为什么呢？因为我对里面有些地方表示疑惑。</p>
+<p><strong>问：子类重写了父类的doSomething方法，然后通过super去调用父类的doSomething方法，那么在父类同步锁的doSomething方法里锁住的是谁？是父类Widget吗，还是子类LoggingWidget？</strong></p>
+<p>为此，通过Demo来说话吧</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><blockquote>
+<p>尝试直接在父类同步方法里打印</p>
+</blockquote>
+<h3 id="对比代码"><a href="#对比代码" class="headerlink" title="对比代码"></a>对比代码</h3><p>对比代码：</p>
+<p><img src="http://img.blog.tomapple.cn/20190120010418.png" alt="对比代码"></p>
+<p>这里先直接new一个父类去调用他的方法，来看看父类方法中的this（即锁的是什么）</p>
+<p>代码结果：</p>
+<p><img src="http://img.blog.tomapple.cn/20190120010715.png" alt="对比代码结果"></p>
+<p>我们可以看到直接调用父类方法，不出意外都是会打印出自个儿的类的地址。那么下面我们看看通过super去调用又会怎样。</p>
+<h3 id="实验代码"><a href="#实验代码" class="headerlink" title="实验代码"></a>实验代码</h3><p>实验代码：</p>
+<p><img src="http://img.blog.tomapple.cn/20190120005703.png" alt="第一个demo"></p>
+<p>运行结果：</p>
+<p><img src="http://img.blog.tomapple.cn/20190120005844.png" alt="第一个Demo运行结果"></p>
+<p>从结果可以看出 先打印 “子类 - doSomething” 再打印 “父类 - doSomething” 最后打印出锁住的对象 “thread.LoggingWidget@74a14482”。这里打印出的是子类的地址。对比我们的对比代码中的结果，我们可以很轻易地得出 <strong>在一个得到了锁的方法里通过使用super去调用父类的同步方法，那么父类同步方法中被锁住的是子类对象，其父类并没有被锁住</strong></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在《Java并发编程实战》里关于重入锁的描述中有个不那么严谨的说法：由于Widget和LoggingWidget中doSometimes方法都是Synchronized方法，因此每个doSomething方法在执行前都会获取Widget上的锁。关于这个，通过一些简单的Demo，现在知道，<strong>调用一个Synchronized方法，Synchronized锁住的是调用的对象（即子类），而在这个Synchronized方法里通过super调用父类的同步方法，父类同步方法锁住的也是子类对象</strong></p>
 
       
     </div>
@@ -402,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/17/Linux-设立Swap空间/" rel="next" title="Linux设立Swap空间">
-                <i class="fa fa-chevron-left"></i> Linux设立Swap空间
+              <a href="/2019/01/18/私有构造器捕获模式/" rel="next" title="笔记 - 私有构造器捕获模式">
+                <i class="fa fa-chevron-left"></i> 笔记 - 私有构造器捕获模式
               </a>
             
           </div>
@@ -411,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/07/JVM调试相关指令/" rel="prev" title="JVM调试指令">
-                JVM调试指令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +556,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux下定期备份数据库"><span class="nav-number">1.</span> <span class="nav-text">Linux下定期备份数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用docker备份数据库"><span class="nav-number">1.1.</span> <span class="nav-text">使用docker备份数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用mysql命令备份数据库"><span class="nav-number">1.2.</span> <span class="nav-text">使用mysql命令备份数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建定时任务"><span class="nav-number">1.3.</span> <span class="nav-text">创建定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写定时任务"><span class="nav-number">1.3.1.</span> <span class="nav-text">编写定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用crontab创建定时任务"><span class="nav-number">1.3.2.</span> <span class="nav-text">利用crontab创建定时任务</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#继承与可重入锁"><span class="nav-number">1.</span> <span class="nav-text">继承与可重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">1.1.</span> <span class="nav-text">Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比代码"><span class="nav-number">1.1.1.</span> <span class="nav-text">对比代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验代码"><span class="nav-number">1.1.2.</span> <span class="nav-text">实验代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.2.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></div>
             
 
           </div>
