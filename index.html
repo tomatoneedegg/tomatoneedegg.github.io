@@ -246,6 +246,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/SpringMVC中绑定复杂数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/20/SpringMVC中绑定复杂数据/" itemprop="url">Spring中多线程事务处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T00:39:04+08:00">
+                2019-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">项目杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SpringMVC中绑定复杂数据"><a href="#SpringMVC中绑定复杂数据" class="headerlink" title="SpringMVC中绑定复杂数据"></a>SpringMVC中绑定复杂数据</h1><blockquote>
+<p>SpringMVC中可以实现将前端传过来的数据封装好。在此之前一直都是对一个实体的封装，但在青芒项目里，遇到两个关于SpringMVC数据绑定的问题</p>
+<ol>
+<li>SpringMVC一个请求绑定多个不同实体</li>
+<li>SpringMVC绑定实体里复杂的数据结构</li>
+</ol>
+</blockquote>
+<h2 id="SpringMVC一个请求绑定多个不同实体"><a href="#SpringMVC一个请求绑定多个不同实体" class="headerlink" title="SpringMVC一个请求绑定多个不同实体"></a>SpringMVC一个请求绑定多个不同实体</h2><p>场景：</p>
+<p>接口中要保存活动信息，活动报名表，活动展示，活动的问答，其中活动的问答传过来是一串数组，而活动报名表里有一些复杂的数据结构</p>
+<p><img src="http://img.blog.tomapple.cn/20190219202454.png" alt="接口里的实体"></p>
+<p>解决办法：</p>
+<p>对于一串数组，平日里传的话，就直接传，然后就会绑定到参数里了，就如同下面一样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/publish)</span></span><br><span class="line"><span class="string">public void test(List&lt;String&gt; testString) &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>但是在多实体的情况下这样就不管用了，多实体的话，SpringMVC不知道这是数组啊，所以要使用@InitBinder去绑定</p>
+<p><img src="http://img.blog.tomapple.cn/20190219204026.png" alt=""></p>
+<p>这里使用@InitBinder主要就是用以区分前端传过来的数据，使用WebDataBinder.setFieldDefaultPrefix（）设置前缀用以区分，这里要特别留意一下：@InitBinder后面跟着的是某个类的类名的驼峰命名，如：Activity，@InitBinder(“activity”)；ActivityRegister，@InitBinder(“activityRegister”)等等，而在webDataBinder.setFieldDefaultPrefix()中的字符串参数则是自己定义的，前端传数据过来带上这个前缀就知道哪个是哪个了，如下图</p>
+<p><img src="http://img.blog.tomapple.cn/20190219212244.png" alt=""></p>
+<p><img src="http://img.blog.tomapple.cn/20190219212331.png" alt=""></p>
+<h2 id="SpringMVC绑定实体里复杂的数据结构"><a href="#SpringMVC绑定实体里复杂的数据结构" class="headerlink" title="SpringMVC绑定实体里复杂的数据结构"></a>SpringMVC绑定实体里复杂的数据结构</h2><p>场景：</p>
+<p>同上，上面还有几个问题没有解决，就是活动QA就是以一串数组传过来的嘛，然后上面解决了如何区分多个实体，但却没有解决如何封装这些数组，以及一些复杂的数据结构</p>
+<p>解决办法：</p>
+<p>SpringMVC在多实体的情况下，貌似不能直接以List去封装的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 貌似在SpringMVC里这样是不可以的，数据绑定不到qaList上</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/publish)</span></span><br><span class="line"><span class="string">public void test(Activity activity, List&lt;ActivityQA&gt; qaList, ActivityShow show) &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这样不行，我们换个法子，用一个实体来封装这些数据结构，这个实体应该叫VO吧，用来封装前端传过来的数据</p>
+<p><img src="http://img.blog.tomapple.cn/20190219213543.png" alt="QAListVO"></p>
+<p>这里也有个注意的地方就是前端传的时候，如果不加任何别名的话，应该是这样的</p>
+<p><img src="http://img.blog.tomapple.cn/20190219214216.png" alt="QAList"></p>
+<p><strong>前缀 + 属性名[index] + QA里的属性名</strong></p>
+<p>如上 前缀 -&gt; “activityQA.”，而ActivityQAListModel里的List属性名 activityQAList，所以以 activityQA.activityQAList[index] 去封装数据，index为索引</p>
+<p>这样就解决了SpringMVC在多实体情况下绑定实体数组</p>
+<p>但是这里的实例是List，List倒是明白了，Java里面有List，Map等数据结构，那又怎么办？同样还是一样的招数，只不过传的时候形式有点变化。</p>
+<p>如下ActivityRegister， ActivityRegisterFormList，ActivityRegisterForm所示</p>
+<p>ActivityRegister:</p>
+<p><img src="http://img.blog.tomapple.cn/20190220001529.png" alt="ActivityRegister"></p>
+<p>ActivityRegisterFormList:</p>
+<p><img src="http://img.blog.tomapple.cn/20190220001712.png" alt="ActivityRegisterFormList"></p>
+<p>ActivityRegisterForm:</p>
+<p><img src="http://img.blog.tomapple.cn/20190220001753.png" alt="ActivityRegisterForm"></p>
+<p>可以看到ActivityRegister中Map包含了ActivityRegisterFormList，List里用ActivityRegisterForm做元素，所展示出来大概就如下面一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">form: &#123;</span><br><span class="line">    person: &#123;</span><br><span class="line">        formList: [</span><br><span class="line">            &#123;</span><br><span class="line">                title: 姓名,</span><br><span class="line">                type: 0,</span><br><span class="line">                ifNecessary: true,</span><br><span class="line">                ifChoice: false,</span><br><span class="line">                choice: null</span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;...&#125;, </span><br><span class="line">            &#123;...&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时Map中有List，对于List的数据绑定，前面已经介绍过了，直接 formList[0].title = 姓名，formList[0].type = 0，formList[0].ifNecessary = true这样，那么Map又如何？</p>
+<p>Map的话，由于其是key-value结构，而List是索引-value结构，那么这样对比一下，List中的索引相对于Map的key，应该是有共通之处，所以，数据绑定的时候，招数是一样的，形式不同而已</p>
+<p><img src="http://img.blog.tomapple.cn/20190220002524.png" alt="ActivityRegister"></p>
+<p>直接以指定的字符串作为内容，后面接着List的格式，代表value就是一个List，那么整理一下格式就可以概括为：</p>
+<p><strong>map[key].list[index].属性名</strong></p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>上面介绍了List，Map&lt;String, List&gt;的情况，那么如果是List&lt;Map&lt;String, List&gt;&gt;这样的呢</p>
+<p>像List&lt;Map&lt;String, List&gt;&gt;这样的，同理</p>
+<p><strong>list[index].map[key].list[index]</strong>这样</p>
+<p>注意一点！！！<strong>就是Map&lt;String, Map&lt;String, String&gt;&gt;或者Map&lt;String, Map&lt;String, List&gt;&gt;这样的，直接套用上面的方法是不行的</strong>，这时建议审视数据结构，重新规划一下，因为本人就是一开始使用Map&lt;String, Map&lt;String, List&gt;&gt;这样的，发现无论怎样都不能比较方便直接地转换过来，这时重新审查自己的数据结构，结合业务，然后洗个澡，就把这个问题给解决了，重新建立了数据模型，在不影响业务需求的情况下，更好地进行访问，也不用再恶心地使用什么json字段，设置application/json这样的请求类型，传入不好校验，极其不安全的参数。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>在多实体数据绑定情况下，使用@InitBinder + webdataBinder.setFieldDefaultPerfix()设置前缀去区分</li>
+<li>List数据结构在多实体数据绑定情况下，使用一个VO去包装这个List，前端传过来，在不加别名的情况下，按照List的属性名传</li>
+<li>List，Map数据结构的组合，基本掌握 List的数据传输格式为 <strong>list[index]</strong>，Map的数据传输格式为 <strong>map[key]</strong> 这两种基本就可以了，同时注意Map中Map数据结构本人暂时没有办法解决，若有晓得的，可以告知我一下</li>
+</ul>
+<p>## </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/19/Spring中多线程事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1631,161 +1832,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Semaphore(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/Semaphore(一)/" itemprop="url">Semaphore(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T18:01:45+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java多线程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java多线程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Semaphore-一"><a href="#Semaphore-一" class="headerlink" title="Semaphore(一)"></a>Semaphore(一)</h1><blockquote>
-<p>了解Semaphore</p>
-</blockquote>
-<h2 id="Semaphore是什么"><a href="#Semaphore是什么" class="headerlink" title="Semaphore是什么"></a>Semaphore是什么</h2><p>semaphore是JUC包里的一个同步工具类，翻译成中文就是信号量，一个计数信号量。以下都是从文档中的理解：</p>
-<p>概念上，Semaphore维护了一组许可证，在许可证可用之前阻塞acquire()方法；而许可证有可用之后，获取该许可证，立即从acquire()方法返回。而release()就使得有可用的许可证的方法，每个release()添加一个许可证，从而会释放一个正在阻塞等待acquire()的获取线程。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/Semaphore(一)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1836,7 +1882,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
