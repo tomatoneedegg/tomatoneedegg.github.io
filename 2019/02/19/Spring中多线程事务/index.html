@@ -79,21 +79,20 @@
 
 
 
-<meta name="description" content="Linux下ssr配置Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了同事的博客，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。 服务端配置 下载ssr  1wget http://www.texfox.com/ssr  将ssr移动到/usr/local/bin文件下  1sudo mv ssr /usr/loca">
+<meta name="description" content="Spring中多线程事务处理 在青芒第三次迭代时，一个活动模块需要同时处理多个实体的业务，而彼此业务间没有关联，但存在事务性，考虑再三，决定尝试使用多线程处理多个业务  在了解了Spring事务处理之后，使用 编程式事务处理 更为灵活，由于有多个线程，而每个线程对应一个数据库连接，所以在多线程环境中，事务不止一个，同理事务状态也不止一个，因此这里的解决办法就是 将所有线程的事务状态保存到一个同步集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下ssr配置">
-<meta property="og:url" content="http://yoursite.com/2018/09/14/Linux下的ssr配置/index.html">
+<meta property="og:title" content="Spring中多线程事务处理">
+<meta property="og:url" content="http://yoursite.com/2019/02/19/Spring中多线程事务/index.html">
 <meta property="og:site_name" content="Stuartd&#39;s Blog">
-<meta property="og:description" content="Linux下ssr配置Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了同事的博客，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。 服务端配置 下载ssr  1wget http://www.texfox.com/ssr  将ssr移动到/usr/local/bin文件下  1sudo mv ssr /usr/loca">
+<meta property="og:description" content="Spring中多线程事务处理 在青芒第三次迭代时，一个活动模块需要同时处理多个实体的业务，而彼此业务间没有关联，但存在事务性，考虑再三，决定尝试使用多线程处理多个业务  在了解了Spring事务处理之后，使用 编程式事务处理 更为灵活，由于有多个线程，而每个线程对应一个数据库连接，所以在多线程环境中，事务不止一个，同理事务状态也不止一个，因此这里的解决办法就是 将所有线程的事务状态保存到一个同步集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/52327757.jpg">
-<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/44811550.jpg">
-<meta property="og:image" content="http://img.blog.tomapple.cn/18-9-14/33216445.jpg">
-<meta property="og:updated_time" content="2018-12-08T06:27:23.380Z">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190219173612.png">
+<meta property="og:image" content="http://img.blog.tomapple.cn/20190219173922.png">
+<meta property="og:updated_time" content="2019-02-19T09:55:36.635Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下ssr配置">
-<meta name="twitter:description" content="Linux下ssr配置Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了同事的博客，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。 服务端配置 下载ssr  1wget http://www.texfox.com/ssr  将ssr移动到/usr/local/bin文件下  1sudo mv ssr /usr/loca">
-<meta name="twitter:image" content="http://img.blog.tomapple.cn/18-9-14/52327757.jpg">
+<meta name="twitter:title" content="Spring中多线程事务处理">
+<meta name="twitter:description" content="Spring中多线程事务处理 在青芒第三次迭代时，一个活动模块需要同时处理多个实体的业务，而彼此业务间没有关联，但存在事务性，考虑再三，决定尝试使用多线程处理多个业务  在了解了Spring事务处理之后，使用 编程式事务处理 更为灵活，由于有多个线程，而每个线程对应一个数据库连接，所以在多线程环境中，事务不止一个，同理事务状态也不止一个，因此这里的解决办法就是 将所有线程的事务状态保存到一个同步集">
+<meta name="twitter:image" content="http://img.blog.tomapple.cn/20190219173612.png">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/14/Linux下的ssr配置/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/19/Spring中多线程事务/"/>
 
 
 
 
 
-  <title>Linux下ssr配置 | Stuartd's Blog</title>
+  <title>Spring中多线程事务处理 | Stuartd's Blog</title>
   
 
 
@@ -250,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/Linux下的ssr配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/19/Spring中多线程事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stuartd">
@@ -267,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux下ssr配置</h1>
+          <h1 class="post-title" itemprop="name headline">Spring中多线程事务处理</h1>
         
 
         <div class="post-meta">
@@ -279,8 +278,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T12:39:04+08:00">
-                2018-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-19T17:54:04+08:00">
+                2019-02-19
               </time>
             
 
@@ -302,8 +301,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/项目杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">项目杂谈</span>
                   </a>
                 </span>
 
@@ -339,57 +338,46 @@
       
 
       
-        <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
-<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
-<li>下载ssr</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.texfox.com/ssr</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>将ssr移动到/usr/local/bin文件下</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv ssr /usr/local/bin</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>修改文件的权限</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 766 /usr/local/bin/ssr</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>ssr install</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr install</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>ssr config，将从运营商获取的配置json信息填入里面</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr config</span><br></pre></td></tr></table></figure>
-<p>这个操作会调起一个gedit的文本编辑器，将节点json信息配置到里面去就ok</p>
-<ol start="6">
-<li>开启ssr</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br></pre></td></tr></table></figure>
+        <h1 id="Spring中多线程事务处理"><a href="#Spring中多线程事务处理" class="headerlink" title="Spring中多线程事务处理"></a>Spring中多线程事务处理</h1><blockquote>
+<p>在青芒第三次迭代时，一个活动模块需要同时处理多个实体的业务，而彼此业务间没有关联，但存在事务性，考虑再三，决定尝试使用多线程处理多个业务</p>
+</blockquote>
+<p>在了解了Spring事务处理之后，使用 编程式事务处理 更为灵活，由于有多个线程，而每个线程对应一个数据库连接，所以在多线程环境中，事务不止一个，同理事务状态也不止一个，因此这里的解决办法就是 <strong>将所有线程的事务状态保存到一个同步集合（多线程环境下使用同步集合，保证线程安全），若某个线程出现错误，遍历所有线程的事务状态，循环回滚</strong></p>
 <a id="more"></a>
-<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>讲完服务端的配置，接下来就要说下客户端配置，例子将会在google上进行配置</p>
+<h2 id="编程式事务步骤"><a href="#编程式事务步骤" class="headerlink" title="编程式事务步骤"></a>编程式事务步骤</h2><p>步骤：（使用PlatformTransactionManager）</p>
 <ol>
-<li>下载google插件：<a href="https://www.switchyomega.com/download/" target="_blank" rel="noopener">SwitchyOmega</a></li>
+<li><p>定义事务属性 </p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DefaultTransactionDefinition dt = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置事务传播行为</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获得事务状态</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TrasactionStatus status = platformTransactionManager.getTransaction(dt);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库操作</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ...一些业务处理</span><br><span class="line">platformTransactionManager.commit(status); // 记得一定要手动提交！手动提交！手动提交！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若有异常，回滚</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 上面数据操作应在try...catch里，完整代码</span><br><span class="line">try &#123;</span><br><span class="line">    // ...一些业务处理</span><br><span class="line">	platformTransactionManager.commit(status); // 记得一定要手动提交！手动提交！手动提交！</span><br><span class="line">&#125; catch(Exception e) &#123;</span><br><span class="line">    platformTransactionManager.rollback(status);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/52327757.jpg" alt="安装代理插件"></p>
+<h2 id="实际项目运用"><a href="#实际项目运用" class="headerlink" title="实际项目运用"></a>实际项目运用</h2><p>上面展示了实现Spring编程式事务的一些基本步骤，接下来展示如何应用在青芒项目中多线程事务处理</p>
+<ol>
+<li>定义 TransactionStatus的同步集合</li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/20190219173612.png" alt="主程序"></p>
+<p>注意上图的 <strong>List<transactionstatus> transactionStatuses = Collections.synchronizedList(new ArrayList<transactionstatus>());</transactionstatus></transactionstatus></strong></p>
 <ol start="2">
-<li>将插件插入google中，直接拖动下载的文件到google浏览器的扩展程序中，就会识别</li>
-<li>设置switchyomega</li>
+<li><p>启动线程</p>
+<p> <img src="http://img.blog.tomapple.cn/20190219173922.png" alt="启动线程"></p>
+</li>
 </ol>
-<ul>
-<li>第一步：配置auto switch</li>
-</ul>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/44811550.jpg" alt="配置auto switch"></p>
-<p>首先设置情景模式为 proxy，如上图的第一个箭头，然后将 <strong><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></strong>这个url复制粘贴到规则列表地址上，这是被墙的url列表。当代理检测到你要访问里面的url时，认定你将要翻墙。最后点击立即更新情景模式</p>
-<ul>
-<li>第二步：配置proxy</li>
-</ul>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/33216445.jpg" alt="配置proxy"></p>
-<p>这里配置的是proxy项，代理服务器填127.0.0.1，代理端口是1080，当然代理端口看运营方给你的端口设置。</p>
-<p>到这里基本配置是完了，接下来的可能因每个人的Linux发行版不同而有所差别，笔者用的是 稍微有点低级的deepin（小白用户专用），所以接下来配置跟主流Linux发行版不太一样。</p>
-<h2 id="配置ssr自启动"><a href="#配置ssr自启动" class="headerlink" title="配置ssr自启动"></a>配置ssr自启动</h2><p>其他Linux发行版中 /etc下是应该有rc.local文件的，直接在rc.local文件上配置就行了，但是deepin呢就比较奇葩，他在最新版本没有rc.local，因此得另找门路</p>
-<p>不过，根据官网的wiki <a href="http://wiki.deepin.org/wiki/%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">deepin自启动程序</a>里面介绍到，直接在/etc下创建个rc.local文件，然后配上以下代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-<p>然后修改下文件权限 <strong>sudo chmod +x /etc/rc.local</strong> ，然后重启，就会发现可以了。</p>
+<p>使用statusList将当前的事务状态放进同步集合里，每当业务处理中有出错信息，则回滚每个线程中的事务，同时抛出异常。</p>
+<p>注意：在子线程里的异常是不能被主线程捕获，如果子线程发生异常，而内部不处理，则会逃逸到控制台，所以子线程的异常要在子线程自己内部处理。这时要想将异常被主线程捕获，可以使用比较多的方法，如UncaughtExceptionHandler，Futrue等等，这里使用线程框架 Executors + Future去将子线程发生的异常捕获出来。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在多线程中保证事务，在Spring里可以利用同步集合 + 编程式事务实现，同时要想获取子线程的事务，可以使用线程框架Executors的submit + Futrue获取结果，遍历结果，可以获得错误信息。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://www.voidcn.com/article/p-qomeeiod-gz.html" target="_blank" rel="noopener">多线程异常与事务</a></li>
+</ol>
 
       
     </div>
@@ -426,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/01/一台电脑管理多个ssh key/" rel="next" title="一台电脑管理多个ssh key">
-                <i class="fa fa-chevron-left"></i> 一台电脑管理多个ssh key
+              <a href="/2019/01/20/继承与可重入锁/" rel="next" title="笔记 - 关于继承与可重入锁">
+                <i class="fa fa-chevron-left"></i> 笔记 - 关于继承与可重入锁
               </a>
             
           </div>
@@ -435,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/14/SQL 优化（一）/" rel="prev" title="SQL优化（一）">
-                SQL优化（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -587,7 +571,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux下ssr配置"><span class="nav-number">1.</span> <span class="nav-text">Linux下ssr配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端配置"><span class="nav-number">1.1.</span> <span class="nav-text">服务端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端配置"><span class="nav-number">1.2.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置ssr自启动"><span class="nav-number">1.3.</span> <span class="nav-text">配置ssr自启动</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring中多线程事务处理"><span class="nav-number">1.</span> <span class="nav-text">Spring中多线程事务处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编程式事务步骤"><span class="nav-number">1.1.</span> <span class="nav-text">编程式事务步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际项目运用"><span class="nav-number">1.2.</span> <span class="nav-text">实际项目运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.4.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
 
           </div>
