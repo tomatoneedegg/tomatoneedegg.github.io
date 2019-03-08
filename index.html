@@ -1222,6 +1222,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/Ubuntu下部署Gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/17/Ubuntu下部署Gitlab/" itemprop="url">Ubuntu下部署Gitlab并汉化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T00:41:35+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Ubuntu下部署Gitlab并汉化"><a href="#Ubuntu下部署Gitlab并汉化" class="headerlink" title="Ubuntu下部署Gitlab并汉化"></a>Ubuntu下部署Gitlab并汉化</h1><blockquote>
+<p>因为工作室原来的Gitlab挂了，服务器不再续费，所以重新部署Gitlab并且汉化</p>
+</blockquote>
+<p>首先先看下<a href="https://about.gitlab.com/install/#ubuntu" target="_blank" rel="noopener">官方文档</a>，里面记录了一些主要步骤，但是由于环境因素，所以有些步骤不太适用</p>
+<h2 id="1-安装并配置必要的依赖项"><a href="#1-安装并配置必要的依赖项" class="headerlink" title="1. 安装并配置必要的依赖项"></a>1. 安装并配置必要的依赖项</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y curl openssh-server ca-certificates</span><br></pre></td></tr></table></figure>
+<p>安装Postfix以发送通知电子邮件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y postfix</span><br></pre></td></tr></table></figure>
+<p>安装postfix过程中，选择“Internet Site”并按Enter键。使用服务器的外部DNS作为“邮件名称”，然后按Enter键。如果出现其他屏幕，请继续按Enter键接受默认值。（官网上的描述，照抄）</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/17/Ubuntu下部署Gitlab/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/Ubuntu损坏sudoers文件之后/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1678,165 +1836,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Semaphore(二)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/Semaphore(二)/" itemprop="url">Semaphore(二)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T18:01:50+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java多线程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java多线程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Semaphore-二"><a href="#Semaphore-二" class="headerlink" title="Semaphore(二)"></a>Semaphore(二)</h1><blockquote>
-<p>了解Semaphore - 了解方法</p>
-</blockquote>
-<h2 id="源码浅析"><a href="#源码浅析" class="headerlink" title="源码浅析"></a>源码浅析</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/Semaphore(二)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1882,7 +1886,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
