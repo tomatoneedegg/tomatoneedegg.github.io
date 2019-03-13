@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Jenkins + Gitlab 自动化部署 前面用自己的服务器搭了个Jenkins + Github + Maven部署SpringBoot项目，上面所有都在一台机子上完成。但是很快，由于工作室的需要，因此这种全部集成在一台机子上的部署是行不通的，因此考虑使用远程连接服务器部署  之前描述的是Jenkins + Github + Maven在一台机子上部署SpringBoot项目，也就是说Jen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins + Gitlab 自动化部署">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/Jenkins + Gitlab 自动化部署/index.html">
+<meta property="og:site_name" content="Stuartd&#39;s Blog">
+<meta property="og:description" content="Jenkins + Gitlab 自动化部署 前面用自己的服务器搭了个Jenkins + Github + Maven部署SpringBoot项目，上面所有都在一台机子上完成。但是很快，由于工作室的需要，因此这种全部集成在一台机子上的部署是行不通的，因此考虑使用远程连接服务器部署  之前描述的是Jenkins + Github + Maven在一台机子上部署SpringBoot项目，也就是说Jen">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313130940.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313131506.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313132026.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313132120.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313134216.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313134751.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313135825.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313135916.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313141021.png">
+<meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313195556.png">
+<meta property="og:updated_time" content="2019-03-13T12:22:40.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins + Gitlab 自动化部署">
+<meta name="twitter:description" content="Jenkins + Gitlab 自动化部署 前面用自己的服务器搭了个Jenkins + Github + Maven部署SpringBoot项目，上面所有都在一台机子上完成。但是很快，由于工作室的需要，因此这种全部集成在一台机子上的部署是行不通的，因此考虑使用远程连接服务器部署  之前描述的是Jenkins + Github + Maven在一台机子上部署SpringBoot项目，也就是说Jen">
+<meta name="twitter:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313130940.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/Jenkins + Gitlab 自动化部署/"/>
+
+
+
+
+
+  <title>Jenkins + Gitlab 自动化部署 | Stuartd's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/tomatoneedegg/tomatoneedegg.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stuartd's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/Jenkins + Gitlab 自动化部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jenkins + Gitlab 自动化部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T00:05:35+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Jenkins/" itemprop="url" rel="index">
+                    <span itemprop="name">Jenkins</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Jenkins-Gitlab-自动化部署"><a href="#Jenkins-Gitlab-自动化部署" class="headerlink" title="Jenkins + Gitlab 自动化部署"></a>Jenkins + Gitlab 自动化部署</h1><blockquote>
+<p>前面用自己的服务器搭了个Jenkins + Github + Maven部署SpringBoot项目，上面所有都在一台机子上完成。但是很快，由于工作室的需要，因此这种全部集成在一台机子上的部署是行不通的，因此考虑使用远程连接服务器部署</p>
+</blockquote>
+<p>之前描述的是Jenkins + Github + Maven在一台机子上部署SpringBoot项目，也就是说Jenkins在A服务器上，Maven在A服务器上，从Github拉取的源码在A服务器上，打包好的Jar包也在A服务器上，这种是最基础的自动化部署，同时也是不用怎么进行网络传输的部署方式。但是你想，如果一个初创企业，服务器只够买几台云服务器，而一些云服务器空间不大，大概也就是一台机部署一个项目的这样子，那要是按照上面说的单机部署，服务器肯定吃不消，而且一个企业内部商业项目也不太可能放到Github上，一般企业都是搭建自己的Gitlab服务器的，所以从安全性，可扩展性，以及内存争用问题上看，应该选择 <strong>Jenkins + Gitlab + Maven 自动化远程部署SpringBoot项目</strong></p>
+<a id="more"></a>
+<h2 id="一-准备"><a href="#一-准备" class="headerlink" title="一. 准备"></a>一. 准备</h2><ul>
+<li>在A服务器安装Jenkins</li>
+<li>在A服务器安装Maven</li>
+<li>在A服务器安装Java</li>
+<li><p>在B服务器部署Gitlab</p>
+</li>
+<li><p>另外C服务器运行SpringBoot项目</p>
+</li>
+</ul>
+<h2 id="二-部署"><a href="#二-部署" class="headerlink" title="二. 部署"></a>二. 部署</h2><h3 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1. 安装插件"></a>1. 安装插件</h3><p>这里特别要重视一下插件问题：</p>
+<p><strong>对Maven插件</strong>：Maven Integration Plugin / Pipeline Maven Integration Plugin</p>
+<p><strong>对Gitlab插件</strong>：Git，Git Plugin，GitLab Plugin，Gitlab Authentication Plugin，Git client Plugin</p>
+<p><strong>对SSH传输插件</strong>：Publish Over SSH，SSH plugin</p>
+<p>安装完上面的插件后，接下来就是配置项….</p>
+<h3 id="2-系统配置"><a href="#2-系统配置" class="headerlink" title="2. 系统配置"></a>2. 系统配置</h3><p>系统配置： 系统管理 -&gt; 系统设置</p>
+<ul>
+<li><strong>SSH remote hosts设置</strong></li>
+</ul>
+<p>这里只有下载了SSH plugin才会显示</p>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313130940.png" alt=""></p>
+<blockquote>
+<p>所有的端口都用127.0.0.1表示</p>
+</blockquote>
+<p>在这里Hostname使用C服务器的ip表示（即要运行SpringBoot Jar包的服务器）</p>
+<ul>
+<li><strong>Gitlab设置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313131506.png" alt=""></p>
+<p>填写Gitlab host URL（即存放Gitlab服务的B服务器的域名或者ip+端口），而下面的Credentials可以暂时不用理会，具体的凭证可以到Job里具体设置凭证</p>
+<ul>
+<li><strong>Publish over SSH设置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313132026.png" alt=""></p>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313132120.png" alt=""></p>
+<blockquote>
+<p>上下图是连着的，</p>
+</blockquote>
+<p>要填的是 SSH Servers里的内容，其中得指定私钥位置，以及将公钥放到C服务器的~/.ssh/authoried_key里面</p>
+<p>这里要详细说下，毕竟是一个坑</p>
+<p>SSH Servers：</p>
+<p>Name：指定要连接的远程C服务器的名字</p>
+<p>HostName：远程C服务器的ip</p>
+<p>Username：要登录的远程C服务器的账号</p>
+<p>Remote Directory：要登录的远程C服务器的家目录，也可以说是指定进入目录</p>
+<p>Passhphrase / Password：要登录的远程C服务器的密码</p>
+<p>Path to key：本机下私钥的位置。（本机指的是 该Jenkins所在的A服务器）</p>
+<p>Key：私钥内容（指定了私钥位置，就可以不用复制内容来这里了）</p>
+<p>使用 ssh-keygen -t rsa -C “你的内容” 生成ssh key，在指定内容里可以看到一个 xxxx_rsa，xxxx_rsa.pub。这时将xxxx_rsa.pub的内容复制到 C 服务器的 .ssh/authoried_key里面</p>
+<p>点击Test Configuration，显示Success即表示成功</p>
+<h3 id="3-任务配置"><a href="#3-任务配置" class="headerlink" title="3. 任务配置"></a>3. 任务配置</h3><p>完成一系列系统配置之后，此时即可New任务了</p>
+<p>New任务 -&gt; 构建一个Maven项目（下载Maven Integration Plugin即可）</p>
+<ul>
+<li><strong>General配置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313134216.png" alt=""></p>
+<p>这里要填的是：</p>
+<p>Gitlab Connection：如果在系统配置里填过了，这里会直接导入；如果没有填过，则会指定一个Repository URL</p>
+<p>参数化构建过程：这里填的目的主要是，用参数来控制一些变量。</p>
+<ul>
+<li><strong>Source Code Management设置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313134751.png" alt=""></p>
+<p>上面再次填一次Repository URL，同时这里指定了一个凭证，<strong>但这个凭证我用的不是Username Password，而是使用了SSH的私钥公钥方法，这里做法跟平时在Gitlab上添加SSH key没两样，也还是使用ssh-keygen -t rsa -C生成私钥公钥，然后将公钥放到Gitlab账户里，这样就可以连接了</strong>，说来也奇怪，我之前在别的机子上部署反而不需要ssh key，只用Username Password即可，这机子居然要ssh key，才可以连接。。。不过想想，那台机子貌似只能 Jenkins主动去拉，而Gitlab没有将push event发到Jenkins这里，所以可能是这个原因吧……</p>
+<ul>
+<li><strong>Build Triggers设置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313135825.png" alt=""></p>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313135916.png" alt=""></p>
+<p>这里设置下Build的触发器，也就是这里和Gitlab去进行连接，接收Gitlab的Push events</p>
+<p>这里首先要记录两个东西：</p>
+<ol>
+<li>第一张图后面的URL</li>
+<li>第二张图最后Generate生成的Secret Code</li>
+</ol>
+<p>这两个要填入Gitlab的Webhooks里的</p>
+<p>同时指出这里要填的是Allowed branches -&gt; Filter branches by regex -&gt; Target Branch Regex，使用正则表达式去指定对应的分支拉过来进行构建。</p>
+<p>然后点击Generate，生成Secret Code，然后保存好</p>
+<ul>
+<li><strong>Build Environment设置</strong></li>
+</ul>
+<p>这里可设置，可不设置</p>
+<p>要是设置的话，就设置 Send files or execute commands over SSH after the build runs 这个选项，</p>
+<p>要是不设置的话，什么都不选，可在下面进行发送文件，执行命令的设置。</p>
+<ul>
+<li><strong>Pre Steps</strong></li>
+</ul>
+<p>不需要前置步骤</p>
+<ul>
+<li><strong>Build</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313141021.png" alt=""></p>
+<ul>
+<li><strong>Post Steps设置</strong></li>
+</ul>
+<p><img src="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190313195556.png" alt=""></p>
+<p>因为之前没有在Build Environment中设置传输文件，所以这里得指定一些信息。</p>
+<ol>
+<li>Add Post-build step中选择 Send file or exec command over SSH</li>
+<li>弹出上图，配置SSH Publishers，这里默认将全局配置中的Publish Over SSH中的配置导入进来，所以默认是全局配置</li>
+<li>点击Advanced，点击Retry（即失败后延迟多少秒重试几次），Delay：延迟多少秒，Retries：几次</li>
+<li>配置Tranfers</li>
+</ol>
+<p>Source files：相对于你项目目录里，要上传的文件的路径（即：一个springboot_demo文件夹，在这里Maven打包后即springboot_demo-0.0.1_SNAPSHOT.jar这样的jar包文件就是这里要上传的source files，路径就是target/springboot_demo-0.0.1_SNAPSHOT.jar）</p>
+<p>Remove prefix：要去除的前缀。Source files指定路径，这里去除指定的路径前缀，剩下的就是文件本身。</p>
+<p>Remote directory：指定远程的目录。这里与全局配置的 Home Directory有联系（比如你在全局配置里配置Home directory是/home/ubuntu，这里Remote directory是/test/mingyu/，那么最后会进入/home/ubuntu/test/mingyu这里。</p>
+<blockquote>
+<p>这里特别要留意的是：全局配置的用户以及这些文件夹的用户权限，比如前面全局配置的时候，你填写的是test用户，test用户组，而你要进入的目录是root用户，root用户组所属，那么这里就涉及到权限问题了。如果不注意，那么在构建的时候会报出错误 permission denied，并且没有足够的信息进行排错。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>emmmm这个花了挺长时间的，先后在3台机子上部署过，第一台因为跟应用一起放不好，所以独立开来，第二台因为内存空间不足，然后8080端口关闭而不行，最后终于在第三台机子上成功安装。安装还没完，因为之前第一次搭Gitlab，所以以为只要填上去就可以连接上了，然后报了几次错之后，想想Host Anthenticated Failed是认证失败的意思，然后上面有提示一个git连接命令行报错128，于是在机子上试了下这个命令行，果然连不了仓库。这时注意到git使用ssh连接的，于是使用ssh -vT去连接发现失败，然后最后是因为找不到公钥秘钥，所以报错，于是我才醒悟，原来还是要生成公钥秘钥的。</p>
+<p>还有个坑就是权限问题，一切弄好之后，发现最后发送不了到C服务器，显示Permission denied，这个东西没有详细的信息，排查不了。于是我只能百度，百度看到一个跟我比较类似，说是全局配置的时候的用户跟C服务器的文件的所属用户不是同一个，或者不是在同一个组里，于是就出现权限异常。我看了还真的是…….最后改正之后，项目得以正常部署，但还是有改进的地方</p>
+<p>改进：</p>
+<p>因为这是使用远程部署，两台服务器之间传输几十MB的文件很慢，形象地描述一下，我一边跑部署，一边看视频，视频看完了，项目还没跑完，视频大概4分多钟吧…….泪崩。改进的方法目前还在项目小组里讨论</p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/08/Ubuntu下部署Gitlab/" rel="next" title="Ubuntu下部署Gitlab并汉化">
+                <i class="fa fa-chevron-left"></i> Ubuntu下部署Gitlab并汉化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/09/Jenkins 自动化部署/" rel="prev" title="Jenkins 自动化部署">
+                Jenkins 自动化部署 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Stuartd</p>
+              <p class="site-description motion-element" itemprop="description">不定时更新一些技术上的坑或者吐槽之类的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Jenkins-Gitlab-自动化部署"><span class="nav-number">1.</span> <span class="nav-text">Jenkins + Gitlab 自动化部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-准备"><span class="nav-number">1.1.</span> <span class="nav-text">一. 准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-部署"><span class="nav-number">1.2.</span> <span class="nav-text">二. 部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装插件"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-系统配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 系统配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-任务配置"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 任务配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stuartd</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
