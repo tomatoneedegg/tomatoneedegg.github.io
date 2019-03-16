@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/20190310135652.png">
 <meta property="og:image" content="https://dolphin-blog.oss-cn-shenzhen.aliyuncs.com/git多人协作.jpg">
-<meta property="og:updated_time" content="2019-03-16T08:47:49.477Z">
+<meta property="og:updated_time" content="2019-03-16T08:59:35.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git多人协作">
 <meta name="twitter:description" content="Git多人协作 每次项目都是使用的git，整理下多人协作时git的流程。以一个在Gitlab上的TestProject作为例子  首先创建远程库在对应的Git代码管理平台上创建一个项目，比如Gitlab，就new出一个项目">
@@ -353,7 +353,7 @@
 <li>配置config文件</li>
 </ol>
 <p>目的：防止多个Git仓库名字的秘钥冲突，以及ssh找不到你的秘钥文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host git.shanyutech.net</span><br><span class="line">	HostName git.shanyutech.net</span><br><span class="line">	Username git</span><br><span class="line">	IdentityFile /c/Users/Mi/.ssh/id_Mi_rsa</span><br><span class="line">Host github.com</span><br><span class="line">	HostName github.com</span><br><span class="line">	Username git</span><br><span class="line">	IdentityFile /c/Users/Mi/.ssh/id_Mi_github_rsa</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host git.shanyutech.net</span><br><span class="line">	HostName git.shanyutech.net</span><br><span class="line">	User git</span><br><span class="line">	IdentityFile /c/Users/Mi/.ssh/id_Mi_rsa</span><br><span class="line">Host github.com</span><br><span class="line">	HostName github.com</span><br><span class="line">	User git</span><br><span class="line">	IdentityFile /c/Users/Mi/.ssh/id_Mi_github_rsa</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>去Git仓库配置公钥</li>
 </ol>
