@@ -246,202 +246,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/18/Linux下的ssr配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stuartd">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stuartd's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/18/Linux下的ssr配置/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-18T14:19:12+08:00">
-                2019-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
-<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
-<li>下载ssr</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.texfox.com/ssr</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>将ssr移动到/usr/local/bin文件下</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv ssr /usr/local/bin</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>修改文件的权限</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 766 /usr/local/bin/ssr</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>ssr install</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr install</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>ssr config，将从运营商获取的配置json信息填入里面</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr config</span><br></pre></td></tr></table></figure>
-<p>这个操作会调起一个gedit的文本编辑器，将节点json信息配置到里面去就ok</p>
-<ol start="6">
-<li>开启ssr</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br></pre></td></tr></table></figure>
-<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>讲完服务端的配置，接下来就要说下客户端配置，例子将会在google上进行配置</p>
-<ol>
-<li>下载google插件：<a href="https://www.switchyomega.com/download/" target="_blank" rel="noopener">SwitchyOmega</a></li>
-</ol>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/52327757.jpg" alt="安装代理插件"></p>
-<ol start="2">
-<li>将插件插入google中，直接拖动下载的文件到google浏览器的扩展程序中，就会识别</li>
-<li>设置switchyomega</li>
-</ol>
-<ul>
-<li>第一步：配置auto switch</li>
-</ul>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/44811550.jpg" alt="配置auto switch"></p>
-<p>首先设置情景模式为 proxy，如上图的第一个箭头，然后将 <strong><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></strong>这个url复制粘贴到规则列表地址上，这是被墙的url列表。当代理检测到你要访问里面的url时，认定你将要翻墙。最后点击立即更新情景模式</p>
-<ul>
-<li>第二步：配置proxy</li>
-</ul>
-<p><img src="http://img.blog.tomapple.cn/18-9-14/33216445.jpg" alt="配置proxy"></p>
-<p>这里配置的是proxy项，代理服务器填127.0.0.1，代理端口是1080，当然代理端口看运营方给你的端口设置。</p>
-<p>到这里基本配置是完了，接下来的可能因每个人的Linux发行版不同而有所差别，笔者用的是 稍微有点低级的deepin（小白用户专用），所以接下来配置跟主流Linux发行版不太一样。</p>
-<h2 id="配置ssr自启动"><a href="#配置ssr自启动" class="headerlink" title="配置ssr自启动"></a>配置ssr自启动</h2><h3 id="deepin"><a href="#deepin" class="headerlink" title="deepin:"></a>deepin:</h3><p>其他Linux发行版中 /etc下是应该有rc.local文件的，直接在rc.local文件上配置就行了，但是deepin呢就比较奇葩，他在最新版本没有rc.local，因此得另找门路</p>
-<p>不过，根据官网的wiki <a href="http://wiki.deepin.org/wiki/%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">deepin自启动程序</a>里面介绍到，直接在/etc下创建个rc.local文件，然后配上以下代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-<p>然后修改下文件权限 <strong>sudo chmod +x /etc/rc.local</strong> ，然后重启，就会发现可以了。</p>
-<h3 id="Manjaro"><a href="#Manjaro" class="headerlink" title="Manjaro:"></a>Manjaro:</h3><ol>
-<li>在/usr/lib/systemd/system下创建rc-local.service</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /usr/lib/systemd/system/rc-local.service</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>配置内容</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description="/etc/rc.local Compatibility"</span><br><span class="line">ConditionPathExists=/etc/rc.local</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/etc/rc.local</span><br><span class="line">TimeoutSec=0</span><br><span class="line"><span class="meta">#</span>StandardInput=tty</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">SysVStartPriority=99</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>使该文件生效：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rc-local.service</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>在/etc下创建rc.local，并编辑，同时赋予权限</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo touch rc.local</span><br><span class="line">sudo vi rc.local</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /etc/rc.local</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>使得该rc.local生效</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rc-local.service</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-  
-</div>
-
-    
-
-    
-
-    
-	
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Git多人协作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1677,6 +1481,224 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/Linux下的ssr配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stuartd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stuartd's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/17/Linux下的ssr配置/" itemprop="url">Linux下的ssr配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T22:54:35+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux下ssr配置"><a href="#Linux下ssr配置" class="headerlink" title="Linux下ssr配置"></a>Linux下ssr配置</h1><p>Linux下配置ssr，对于刚从Window转过来的小白用户实在是折腾，还好是看了<a href="changui.top">同事的博客</a>，教小白如何傻瓜式操作ssr配置，才慢慢懂得。Linux的知识实在是太欠缺了，去拜读一下鸟哥先。</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
+<li>下载ssr</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.texfox.com/ssr</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将ssr移动到/usr/local/bin文件下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv ssr /usr/local/bin</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>修改文件的权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 766 /usr/local/bin/ssr</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>ssr install</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr install</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>ssr config，将从运营商获取的配置json信息填入里面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr config</span><br></pre></td></tr></table></figure>
+<p>这个操作会调起一个gedit的文本编辑器，将节点json信息配置到里面去就ok</p>
+<ol start="6">
+<li>开启ssr</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br></pre></td></tr></table></figure>
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>讲完服务端的配置，接下来就要说下客户端配置，例子将会在google上进行配置</p>
+<ol>
+<li>下载google插件：<a href="https://www.switchyomega.com/download/" target="_blank" rel="noopener">SwitchyOmega</a></li>
+</ol>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/52327757.jpg" alt="安装代理插件"></p>
+<ol start="2">
+<li>将插件插入google中，直接拖动下载的文件到google浏览器的扩展程序中，就会识别</li>
+<li>设置switchyomega</li>
+</ol>
+<ul>
+<li>第一步：配置auto switch</li>
+</ul>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/44811550.jpg" alt="配置auto switch"></p>
+<p>首先设置情景模式为 proxy，如上图的第一个箭头，然后将 <strong><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></strong>这个url复制粘贴到规则列表地址上，这是被墙的url列表。当代理检测到你要访问里面的url时，认定你将要翻墙。最后点击立即更新情景模式</p>
+<ul>
+<li>第二步：配置proxy</li>
+</ul>
+<p><img src="http://img.blog.tomapple.cn/18-9-14/33216445.jpg" alt="配置proxy"></p>
+<p>这里配置的是proxy项，代理服务器填127.0.0.1，代理端口是1080，当然代理端口看运营方给你的端口设置。</p>
+<p>到这里基本配置是完了，接下来的可能因每个人的Linux发行版不同而有所差别，笔者用的是 稍微有点低级的deepin（小白用户专用），所以接下来配置跟主流Linux发行版不太一样。</p>
+<h2 id="配置ssr自启动"><a href="#配置ssr自启动" class="headerlink" title="配置ssr自启动"></a>配置ssr自启动</h2><h3 id="deepin"><a href="#deepin" class="headerlink" title="deepin:"></a>deepin:</h3><p>其他Linux发行版中 /etc下是应该有rc.local文件的，直接在rc.local文件上配置就行了，但是deepin呢就比较奇葩，他在最新版本没有rc.local，因此得另找门路</p>
+<p>不过，根据官网的wiki <a href="http://wiki.deepin.org/wiki/%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">deepin自启动程序</a>里面介绍到，直接在/etc下创建个rc.local文件，然后配上以下代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>然后修改下文件权限 <strong>sudo chmod +x /etc/rc.local</strong> ，然后重启，就会发现可以了。</p>
+<h3 id="Manjaro"><a href="#Manjaro" class="headerlink" title="Manjaro:"></a>Manjaro:</h3><ol>
+<li>在/usr/lib/systemd/system下创建rc-local.service</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /usr/lib/systemd/system/rc-local.service</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置内容</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description="/etc/rc.local Compatibility"</span><br><span class="line">ConditionPathExists=/etc/rc.local</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/etc/rc.local</span><br><span class="line">TimeoutSec=0</span><br><span class="line"><span class="meta">#</span>StandardInput=tty</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">SysVStartPriority=99</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使该文件生效：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rc-local.service</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在/etc下创建rc.local，并编辑，同时赋予权限</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo touch rc.local</span><br><span class="line">sudo vi rc.local</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> rc.local config file created by use</span><br><span class="line"></span><br><span class="line">sudo ssr start</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /etc/rc.local</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>使得该rc.local生效</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rc-local.service</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
